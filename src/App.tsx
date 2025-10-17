@@ -14,7 +14,7 @@ function App() {
         controls={false}
       />
       <div className="attractive-content">
-        {/* Logo Image instead of text */}
+        {/* Logo Image */}
         <img 
           src="/assets/icon.png" 
           alt="Level Up Creativity Logo" 
@@ -24,10 +24,11 @@ function App() {
         <h1 className="main-title">Design meets Dimension</h1>
         <h2 className="subtitle">UI/UX Design & 3D Animation Courses Coming Soon</h2>
 
-        <button className="call-btn">
+        {/* Call Button - Opens phone dialer on mobile */}
+        <a href="tel:+919836841945" className="call-btn">
           Request a Call
           <Phone className="call-icon" size={20} />
-        </button>
+        </a>
       </div>
     </div>
   );
