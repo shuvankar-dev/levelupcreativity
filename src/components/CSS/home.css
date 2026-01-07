@@ -1,0 +1,575 @@
+/* Our Courses Section - Full Screen Hero */
+.courses-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  gap: 80px;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: radial-gradient(110.78% 104.54% at 47.81% -9.4%, rgba(164, 75, 255, 0.12) 0%, rgba(110, 40, 201, 0.06) 56.91%, rgba(0, 0, 0, 0) 96.52%);
+  background-color: #000;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.courses-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 32px;
+  gap: 80px;
+  width: 100%;
+  max-width: 1440px;
+}
+
+/* Header */
+.courses-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 32px;
+  width: 912px;
+  height: auto;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+/* Our Courses - Title */
+.courses-title {
+  width: 912px;
+  height: auto;
+  font-family: 'DM Sans', 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 72px;
+  text-align: center;
+  letter-spacing: -1.2px;
+  color: #EDEDED;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 0;
+}
+
+/* Description */
+.courses-description {
+  width: 912px;
+  height: auto;
+  font-family: 'DM Sans', 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  color: #A199B0;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 0;
+}
+
+/* Cards - Courses Grid Container */
+.courses-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 24px;
+  width: 1280px;
+  height: 707px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+/* UI Card & 3D Animation Card */
+.course-card {
+  width: 628px;
+  height: 707px;
+  background: #060606;
+  border-radius: 24px;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex: none;
+  flex-grow: 0;
+  border: 1px solid transparent;
+  transition: border 0.3s ease;
+}
+
+/* Subtle gradient line at the top */
+.course-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(164, 75, 255, 0.2) 20%, rgba(164, 75, 255, 0.3) 50%, rgba(164, 75, 255, 0.2) 80%, transparent 100%);
+  border-radius: 24px 24px 0 0;
+  z-index: 5;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+/* UI Card - order 0 */
+.course-card:nth-child(1) {
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+/* 3D Animation Card - order 1 */
+.course-card:nth-child(2) {
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+/* Hover effect - Border appears */
+.course-card:hover {
+  border: 1px solid rgba(139, 104, 255, 0.5);
+  box-shadow: 0 0 30px rgba(139, 104, 255, 0.3);
+}
+
+/* Brighter gradient line on hover */
+.course-card:hover::before {
+  opacity: 1;
+  background: linear-gradient(90deg, transparent 0%, rgba(164, 75, 255, 0.4) 20%, rgba(164, 75, 255, 0.6) 50%, rgba(164, 75, 255, 0.4) 80%, transparent 100%);
+}
+
+/* Frame 28 - UI Card Image Wrapper - OVERFLOW HIDDEN */
+.course-card:nth-child(1) .course-image-wrapper {
+  position: absolute;
+  width: 628px;
+  height: 487px;
+  left: 0px;
+  top: 0px;
+  background: linear-gradient(180deg, #000000 -16.94%, #29253A 23.06%, #29253A 63.84%, #000000 100%);
+  border-radius: 24px 24px 0px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden; /* CRITICAL: Keeps zoom contained */
+}
+
+/* Frame 515 - 3D Animation Card Image Wrapper - OVERFLOW HIDDEN */
+.course-card:nth-child(2) .course-image-wrapper {
+  position: absolute;
+  width: 628px;
+  height: 487px;
+  left: calc(50% - 628px/2);
+  top: 0px;
+  background: linear-gradient(180deg, #000000 -16.94%, #29253A 23.06%, #29253A 63.84%, #000000 100%);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden; /* CRITICAL: Keeps zoom contained */
+}
+
+/* Hand holding phone mockup - UI Card Image */
+.course-card:nth-child(1) .course-image {
+  position: absolute;
+  width: 628px;
+  height: 474px;
+  right: -2px;
+  top: 14px;
+  object-fit: cover;
+  border-radius: 24px 24px 0px 0px;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center center;
+}
+
+/* upscale_image - 3D Animation Card Image */
+.course-card:nth-child(2) .course-image {
+  position: absolute;
+  width: 628px;
+  height: 487px;
+  left: calc(50% - 628px/2);
+  top: 0px;
+  object-fit: cover;
+  border-radius: 24px;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center center;
+}
+
+/* HOVER: Image zooms smoothly - contained within wrapper */
+.course-card:hover .course-image {
+  transform: scale(1.12);
+}
+
+/* Frame 475 - Course Content - UI Card */
+.course-card:nth-child(1) .course-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 24px;
+  position: absolute;
+  width: 564px;
+  height: 152px;
+  left: 32px;
+  top: 519px;
+}
+
+/* Frame 475 - Course Content - 3D Animation Card */
+.course-card:nth-child(2) .course-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 24px;
+  position: absolute;
+  width: 564px;
+  height: 156px;
+  left: calc(50% - 564px/2);
+  top: 519px;
+}
+
+/* Container - Course Icon */
+.course-icon {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #27272A 0%, #18181B 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  transition: all 0.3s ease;
+}
+
+.course-card:hover .course-icon {
+  border-color: rgba(139, 104, 255, 0.4);
+  background: linear-gradient(135deg, #2D2A3A 0%, #1E1B28 100%);
+}
+
+/* Design / Cube Icon */
+.course-icon svg {
+  width: 28px;
+  height: 28px;
+  color: #FFFFFF;
+  border-radius: 0px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+/* Frame 474 - Text Container - UI Card */
+.course-card:nth-child(1) .course-text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  width: 564px;
+  height: 72px;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+/* Frame 474 - Text Container - 3D Animation Card */
+.course-card:nth-child(2) .course-text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  width: 564px;
+  height: 76px;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+/* Heading 3 - Course Name */
+.course-name {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  width: 564px;
+  height: 32px;
+  border-radius: 0px;
+  font-family: 'DM Sans', 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.48px;
+  color: #EDECEE;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 1;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.course-card:hover .course-name {
+  color: #FFFFFF;
+}
+
+/* Paragraph - Course Info */
+.course-info {
+  width: 564px;
+  height: 24px;
+  border-radius: 0px;
+  font-family: 'DM Sans', 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #A29AB1;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.course-card:hover .course-info {
+  color: #B8B0C7;
+}
+
+/* Responsive Design */
+@media (max-width: 1440px) {
+  .courses-section {
+    min-height: 100vh;
+  }
+  
+  .courses-container {
+    padding: 60px 32px;
+  }
+  
+  .courses-grid {
+    width: 100%;
+    max-width: 1280px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .courses-grid {
+    flex-wrap: wrap;
+    height: auto;
+    gap: 2rem;
+  }
+  
+  .course-card {
+    width: 100%;
+    max-width: 628px;
+  }
+  
+  .course-card:nth-child(1) .course-image-wrapper,
+  .course-card:nth-child(2) .course-image-wrapper {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 628 / 487;
+    position: relative;
+    left: auto;
+    top: auto;
+  }
+  
+  .course-card:nth-child(1) .course-image,
+  .course-card:nth-child(2) .course-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+  }
+  
+  .course-card:nth-child(1) .course-content,
+  .course-card:nth-child(2) .course-content {
+    position: relative;
+    left: auto !important;
+    top: auto;
+    width: calc(100% - 64px);
+    margin: 32px;
+    height: auto;
+  }
+  
+  .course-name,
+  .course-info {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .courses-container {
+    padding: 50px 32px;
+    gap: 60px;
+  }
+  
+  .courses-header {
+    width: 100%;
+    max-width: 912px;
+    height: auto;
+  }
+  
+  .courses-title {
+    width: 100%;
+    font-size: 48px;
+    line-height: 56px;
+    height: auto;
+  }
+  
+  .courses-description {
+    width: 100%;
+    max-width: 900px;
+    font-size: 16px;
+    line-height: 24px;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .courses-container {
+    padding: 40px 24px;
+    gap: 48px;
+  }
+  
+  .courses-header {
+    gap: 24px;
+  }
+  
+  .courses-title {
+    font-size: 36px;
+    line-height: 44px;
+  }
+  
+  .courses-grid {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .course-card:nth-child(1) .course-content,
+  .course-card:nth-child(2) .course-content {
+    gap: 16px;
+  }
+  
+  .course-name {
+    font-size: 20px;
+    line-height: 28px;
+    height: auto;
+  }
+  
+  .course-info {
+    font-size: 14px;
+    line-height: 20px;
+    height: auto;
+  }
+  
+  .courses-description {
+    font-size: 15px;
+    line-height: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .courses-container {
+    padding: 30px 16px;
+    gap: 40px;
+  }
+  
+  .courses-header {
+    gap: 20px;
+  }
+  
+  .courses-title {
+    font-size: 32px;
+    line-height: 40px;
+  }
+  
+  .course-icon {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .course-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .courses-description {
+    font-size: 14px;
+    line-height: 21px;
+  }
+}
+/* Container - Course Icon - with rotation animation */
+.course-icon {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #27272A 0%, #18181B 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  transition: all 0.3s ease;
+}
+
+.course-card:hover .course-icon {
+  border-color: rgba(139, 104, 255, 0.4);
+  background: linear-gradient(135deg, #2D2A3A 0%, #1E1B28 100%);
+}
+
+/* Design / Cube Icon - with rotation */
+.course-icon svg {
+  width: 28px;
+  height: 28px;
+  color: #FFFFFF;
+  border-radius: 0px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  animation: rotate 3s linear infinite; /* Continuous smooth rotation */
+}
+
+/* Keyframe for rotation */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Optional: Rotate faster on hover */
+.course-card:hover .course-icon svg {
+  animation: rotate 2s linear infinite; /* Speeds up on hover */
+}
+
+/* End of Our Courses Section */

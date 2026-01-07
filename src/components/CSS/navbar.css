@@ -1,9 +1,7 @@
 /* Navbar Section */
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
