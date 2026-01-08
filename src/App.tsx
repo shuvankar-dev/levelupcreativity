@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import Navbar from './components/navbar';
 import Home from './components/home';
 import CTASection from './components/CTASection';
+import ToolsSection from './components/ToolsSection';
 
 function App() {
   return (
@@ -38,10 +39,9 @@ function App() {
         </div>
       </div>
 
-      {/* Home/Courses Section */}
       <Home />
-      {/* Your other components */}
       <CTASection />
+      <ToolsSection />
     </>
   );
 }

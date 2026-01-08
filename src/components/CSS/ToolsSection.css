@@ -1,0 +1,287 @@
+/* Tools Section */
+.tools-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 158px 0px;
+  gap: 64px;
+  width: 100%;
+  background-color: #000000;
+  position: relative;
+}
+
+.tools-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+  width: 100%;
+  max-width: 1442px;
+  padding: 0 32px;
+}
+
+/* Header */
+.tools-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  max-width: 1442px;
+  height: auto;
+}
+
+.tools-title {
+  width: 100%;
+  font-family: 'DM Sans', 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 72px;
+  text-align: center;
+  letter-spacing: -1.2px;
+  color: #EDEDED;
+  margin: 0;
+}
+
+.tools-description {
+  width: 100%;
+  font-family: 'DM Sans', 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  letter-spacing: 0%;
+  color: #A199B0;
+  margin: 0;
+}
+
+/* Toggle Buttons */
+.tools-toggle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px;
+  gap: 8px;
+  width: 348px;
+  height: 64px;
+  background: #140F1D;
+  border: 1px solid #2E1E4C;
+  border-radius: 48px;
+}
+
+.toggle-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 24px;
+  flex: 1;
+  height: 48px;
+  border-radius: 48px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  
+  font-family: 'DM Sans', 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #A199B0;
+  background: transparent;
+}
+
+.toggle-button.active {
+  background: linear-gradient(92.89deg, #6443FF 7.13%, #8838B9 95.65%);
+  color: #FFFFFF;
+}
+
+.toggle-button:hover:not(.active) {
+  color: #EDEDED;
+}
+
+/* Tools Grid */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+  max-width: 1440px;
+}
+
+/* Tool Card - Fixed to match Figma exactly */
+.tool-card {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 25px;
+  width: 100%;
+  height: 244px;
+  background-color: #000000;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.tool-card:hover {
+  border-color: rgba(100, 67, 255, 0.3);
+  background: rgba(20, 15, 29, 0.6);
+  transform: translateY(-4px);
+}
+
+/* Tool Icon Wrapper */
+.tool-icon-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 120px;
+  height: 164px;
+}
+
+/* Tool Icon - Displays actual logo images */
+.tool-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 40px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  background: transparent; /* No background - logo already has it */
+}
+
+.tool-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Changed from cover to contain for better display */
+  border-radius: 40px;
+}
+
+.tool-card:hover .tool-icon {
+  transform: scale(1.05);
+}
+
+/* Tool Name */
+.tool-name {
+  width: 120px;
+  height: auto;
+  min-height: 24px;
+  font-family: 'DM Sans', 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.32px;
+  text-align: center;
+  color: #EDECEE;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1440px) {
+  .tools-section {
+    padding: 120px 0px;
+  }
+  
+  .tools-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .tools-section {
+    padding: 100px 0px;
+  }
+  
+  .tools-title {
+    font-size: 48px;
+    line-height: 56px;
+  }
+  
+  .tools-description {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .tools-section {
+    padding: 80px 0px;
+    gap: 48px;
+  }
+  
+  .tools-header {
+    gap: 32px;
+  }
+  
+  .tools-title {
+    font-size: 36px;
+    line-height: 44px;
+  }
+  
+  .tools-toggle {
+    width: 100%;
+    max-width: 348px;
+  }
+  
+  .toggle-button {
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+  
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  .tool-card {
+    padding: 30px 20px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tools-section {
+    padding: 60px 0px;
+  }
+  
+  .tools-title {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  
+  .tools-description {
+    font-size: 14px;
+    line-height: 21px;
+  }
+  
+  .toggle-button {
+    font-size: 13px;
+    padding: 12px 12px;
+  }
+  
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tool-card {
+    height: 180px;
+  }
+  
+  .tool-icon {
+    width: 100px;
+    height: 100px;
+  }
+}
