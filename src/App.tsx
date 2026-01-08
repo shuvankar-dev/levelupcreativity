@@ -4,6 +4,9 @@ import Navbar from './components/navbar';
 import Home from './components/home';
 import CTASection from './components/CTASection';
 import ToolsSection from './components/ToolsSection';
+import FreeCourseSection from './components/FreeCourseSection';
+import PricingSection from './components/PricingSection';
+import CurriculumSection from './components/CurriculumSection';
 
 function App() {
   return (
@@ -42,6 +45,9 @@ function App() {
       <Home />
       <CTASection />
       <ToolsSection />
+      <FreeCourseSection />
+      <PricingSection />
+      <CurriculumSection />
     </>
   );
 }
