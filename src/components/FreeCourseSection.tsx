@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './CSS/FreeCourseSection.css';
 import figmaLogo from '../assets/toolslogo/Figma.png';
+import lookIcon from '../assets/look.png';
 
 const FreeCourseSection: React.FC = () => {
   const [selectedTrack, setSelectedTrack] = useState<'ux' | 'vfx'>('ux');
@@ -124,9 +125,7 @@ const FreeCourseSection: React.FC = () => {
 
             {/* Security Info */}
             <div className="security-info">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M10 2L4 5V9C4 13.5 7 17 10 18C13 17 16 13.5 16 9V5L10 2Z" fill="#545B68"/>
-              </svg>
+              <img src={lookIcon} alt="Secure" width="20" height="20" />
               <span>Your information is secure</span>
             </div>
           </form>
