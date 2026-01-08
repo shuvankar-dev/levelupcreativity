@@ -1,6 +1,8 @@
 import './App.css';
 import { ArrowRight } from 'lucide-react';
 import Navbar from './components/navbar';
+import Home from './components/home';
+import CTASection from './components/CTASection';
 
 function App() {
   return (
@@ -35,6 +37,11 @@ function App() {
           </button>
         </div>
       </div>
+
+      {/* Home/Courses Section */}
+      <Home />
+      {/* Your other components */}
+      <CTASection />
     </>
   );
 }

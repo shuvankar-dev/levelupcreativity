@@ -1,0 +1,292 @@
+/* CTA Section  */
+.cta-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 128px 280px;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+  height: 599px;
+  
+  background: linear-gradient(148.48deg, #813BC8 15.18%, #080808 78.25%);
+
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.cta-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  gap: 8px;
+  width: 100%;
+  max-width: 1440px;
+  height: 100%;
+  position: relative;
+}
+
+/* Animated Grid Background */
+.grid-background {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px 0px 0px 24px;
+  gap: 610px;
+  width: 1354px;
+  height: 260px;
+  mix-blend-mode: normal;
+  border-radius: 8px;
+  position: absolute;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Grid Box Container */
+.grid-box {
+  width: 348px;
+  height: 260px;
+  position: relative;
+  flex: none;
+  flex-grow: 0;
+}
+
+.grid-left {
+  order: 0;
+}
+
+.grid-right {
+  order: 1;
+}
+
+/* Individual Grid Cells - Enhanced Animation */
+.grid-cell {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.12);
+  mix-blend-mode: normal;
+  border-radius: 8px;
+  animation: floatPulse 2s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Enhanced floating and pulsing animation */
+@keyframes floatPulse {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  25% {
+    transform: translate(2px, -3px) scale(1.05);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-2px, 2px) scale(0.95);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translate(3px, 1px) scale(1.02);
+    opacity: 0.9;
+  }
+}
+
+/* Staggered animation delays for each cell - Creates wave effect */
+.grid-cell:nth-child(1) { animation-delay: 0s; }
+.grid-cell:nth-child(2) { animation-delay: 0.15s; }
+.grid-cell:nth-child(3) { animation-delay: 0.3s; }
+.grid-cell:nth-child(4) { animation-delay: 0.45s; }
+.grid-cell:nth-child(5) { animation-delay: 0.6s; }
+.grid-cell:nth-child(6) { animation-delay: 0.75s; }
+.grid-cell:nth-child(7) { animation-delay: 0.9s; }
+.grid-cell:nth-child(8) { animation-delay: 1.05s; }
+.grid-cell:nth-child(9) { animation-delay: 1.2s; }
+.grid-cell:nth-child(10) { animation-delay: 1.35s; }
+.grid-cell:nth-child(11) { animation-delay: 1.5s; }
+.grid-cell:nth-child(12) { animation-delay: 1.65s; }
+.grid-cell:nth-child(13) { animation-delay: 1.8s; }
+.grid-cell:nth-child(14) { animation-delay: 1.95s; }
+.grid-cell:nth-child(15) { animation-delay: 2.1s; }
+.grid-cell:nth-child(16) { animation-delay: 2.25s; }
+.grid-cell:nth-child(17) { animation-delay: 2.4s; }
+.grid-cell:nth-child(18) { animation-delay: 2.55s; }
+.grid-cell:nth-child(19) { animation-delay: 2.7s; }
+.grid-cell:nth-child(20) { animation-delay: 2.85s; }
+.grid-cell:nth-child(21) { animation-delay: 3s; }
+.grid-cell:nth-child(22) { animation-delay: 3.15s; }
+.grid-cell:nth-child(23) { animation-delay: 3.3s; }
+.grid-cell:nth-child(24) { animation-delay: 3.45s; }
+.grid-cell:nth-child(25) { animation-delay: 3.6s; }
+.grid-cell:nth-child(26) { animation-delay: 3.75s; }
+.grid-cell:nth-child(27) { animation-delay: 3.9s; }
+.grid-cell:nth-child(28) { animation-delay: 0.5s; }
+.grid-cell:nth-child(29) { animation-delay: 1s; }
+.grid-cell:nth-child(30) { animation-delay: 1.5s; }
+.grid-cell:nth-child(31) { animation-delay: 2s; }
+.grid-cell:nth-child(32) { animation-delay: 2.5s; }
+.grid-cell:nth-child(33) { animation-delay: 3s; }
+
+/* CTA Content */
+.cta-content {
+  width: 872px;
+  height: 430px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 72px;
+  width: 872px;
+  height: auto;
+}
+
+/* CTA Title */
+.cta-title {
+  width: 811px;
+  height: auto;
+  font-family: 'DM Sans', 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 72px;
+  text-align: center;
+  letter-spacing: -1.2px;
+  color: #EDEDED;
+  margin: 0;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+/* CTA Button */
+.cta-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 32px;
+  gap: 8px;
+  width: auto;
+  min-width: 236px;
+  height: 70px;
+  background: #FFFFFF;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  
+  font-family: 'DM Sans', 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: #140F1D;
+}
+
+.cta-button:hover {
+  background: #F5F5F5;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+}
+
+.cta-button:active {
+  transform: translateY(0px);
+}
+
+/* Responsive Design */
+@media (max-width: 1440px) {
+  .cta-section {
+    padding: 80px 32px;
+  }
+  
+  .grid-background {
+    gap: 400px;
+    width: 100%;
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .grid-background {
+    display: none;
+  }
+  
+  .cta-content {
+    width: 100%;
+    max-width: 872px;
+  }
+  
+  .cta-text-container {
+    width: 100%;
+    padding: 0 24px;
+  }
+  
+  .cta-title {
+    width: 100%;
+    font-size: 48px;
+    line-height: 56px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cta-section {
+    height: auto;
+    min-height: 400px;
+    padding: 60px 24px;
+  }
+  
+  .cta-text-container {
+    gap: 48px;
+  }
+  
+  .cta-title {
+    font-size: 36px;
+    line-height: 44px;
+    letter-spacing: -0.8px;
+  }
+  
+  .cta-button {
+    width: 100%;
+    max-width: 300px;
+    font-size: 16px;
+    padding: 20px 28px;
+    height: 64px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-section {
+    min-height: 350px;
+    padding: 40px 16px;
+  }
+  
+  .cta-title {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  
+  .cta-button {
+    font-size: 16px;
+    padding: 18px 24px;
+    height: 60px;
+  }
+}
