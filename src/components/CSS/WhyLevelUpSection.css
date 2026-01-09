@@ -1,0 +1,384 @@
+/* Why LevelUp Section */
+.whylevelup-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 1508px;
+  padding-top: 128px;
+  padding-bottom: 128px;
+  padding-left: 32px;
+  padding-right: 32px;
+  background: radial-gradient(100% 129.33% at 0% 2.64%, rgba(164, 75, 255, 0.12) 0%, rgba(137, 58, 228, 0.06) 40%, rgba(0, 0, 0, 0) 75%), #000000;
+  border-top: 1px solid;
+  border-image-source: radial-gradient(43% 34.32% at 47.19% 0%, #020104 0%, #292929 100%);
+  border-image-slice: 1;
+  opacity: 1;
+}
+
+.whylevelup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 1442px;
+}
+
+/* Header */
+.whylevelup-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  max-width: 950px;
+  height: 158px;
+  opacity: 1;
+}
+
+.whylevelup-title {
+  width: 347px;
+  height: 72px;
+  font-family: 'Inter', 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 60px; /* H1 Text Size */
+  line-height: 72px; /* H1 Line Height */
+  letter-spacing: -1.2px; /* H1 Letter Spacing */
+  text-align: center;
+  color: #EDEDED;
+  margin: 0;
+  opacity: 1;
+  white-space: nowrap;
+}
+
+.whylevelup-subtitle {
+  width: 838px;
+  height: 54px;
+  font-family: 'Inter', 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px; /* body-lg Text Size */
+  line-height: 27px; /* body-lg Line Height */
+  letter-spacing: 0%;
+  text-align: center;
+  color: #A199B0;
+  margin: 0;
+  opacity: 1;
+  
+}
+
+/* Content Area: Image + Cards */
+.whylevelup-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 32px;
+  width: 100%;
+  max-width: 1442px;
+  height: 1030px;
+  padding: 32px 80px;
+  box-sizing: border-box;
+  opacity: 1;
+  
+}
+
+/* Image Container */
+.whylevelup-image-container {
+  width: 625px;
+  height: 966px;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  opacity: 1;
+}
+
+.whylevelup-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.whylevelup-image-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180.6deg, rgba(0, 0, 0, 0) 61.39%, rgba(0, 0, 0, 0.9) 100.5%);
+  pointer-events: none;
+}
+
+/* Feature Cards Container */
+.whylevelup-features {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 625px;
+  flex-shrink: 0;
+}
+
+/* Individual Feature Card */
+.whylevelup-feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  width: 625px;
+  height: 223.5px;
+  padding: 32px;
+  background: linear-gradient(92.88deg, #18181B 1.31%, #000000 95.65%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  opacity: 1;
+}
+
+.whylevelup-feature-card:hover {
+  border-color: rgba(100, 67, 255, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0px 8px 24px rgba(100, 67, 255, 0.15);
+}
+
+/* Feature Icon */
+.feature-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px; /* Padding/md */
+  gap: 8px;
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(92.89deg, #6443FF 7.13%, #8838B9 95.65%);
+  border: 1px solid #B7A5D9;
+  border-radius: 24px; /* Radius/xl */
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.feature-icon img {
+  width: 28px;
+  height: 28px;
+}
+
+/* Feature Text */
+.feature-text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 561px;
+  height: 74px;
+  opacity: 1;
+}
+
+.feature-title {
+  width: 561px;
+  height: 34px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 100%;
+  letter-spacing: -0.5%;
+  color: #EDEDED;
+  margin: 0;
+  opacity: 1;
+}
+
+.feature-description {
+  width: 561px;
+  height: 24px;
+  font-family: 'Inter', 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px; /* body-rg Text Size */
+  line-height: 24px; /* body-rg Line Height */
+  letter-spacing: 0%;
+  color: #A199B0;
+  margin: 0;
+  opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 1440px) {
+  .whylevelup-section {
+    padding: 100px 32px;
+    min-height: auto;
+  }
+
+  .whylevelup-content {
+    padding: 32px 40px;
+    height: auto;
+  }
+
+  .whylevelup-image-container,
+  .whylevelup-features,
+  .whylevelup-feature-card {
+    width: 100%;
+    max-width: 625px;
+  }
+
+  .whylevelup-subtitle {
+    width: 100%;
+    max-width: 838px;
+    height: auto;
+  }
+
+  .feature-text,
+  .feature-title,
+  .feature-description {
+    width: 100%;
+    max-width: 561px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .whylevelup-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 32px;
+  }
+
+  .whylevelup-image-container {
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 625 / 966;
+  }
+
+  .whylevelup-features {
+    width: 100%;
+    max-width: 625px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .whylevelup-section {
+    padding: 80px 24px;
+  }
+
+  .whylevelup-header {
+    gap: 24px;
+    height: auto;
+    max-width: 100%;
+  }
+
+  .whylevelup-title {
+    font-size: 48px;
+    line-height: 56px;
+    width: auto;
+    height: auto;
+  }
+
+  .whylevelup-subtitle {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .whylevelup-feature-card {
+    height: auto;
+    min-height: 223.5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .whylevelup-section {
+    padding: 60px 20px;
+  }
+
+  .whylevelup-container {
+    gap: 80px;
+  }
+
+  .whylevelup-title {
+    font-size: 36px;
+    line-height: 44px;
+    width: auto;
+  }
+
+  .whylevelup-subtitle {
+    font-size: 16px;
+    width: 100%;
+  }
+
+  .whylevelup-content {
+    padding: 24px;
+    gap: 32px;
+  }
+
+  .whylevelup-feature-card {
+    padding: 28px;
+    width: 100%;
+  }
+
+  .feature-text,
+  .feature-title,
+  .feature-description {
+    width: 100%;
+  }
+
+  .feature-title {
+    font-size: 24px;
+    height: auto;
+  }
+
+  .feature-description {
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .whylevelup-section {
+    padding: 48px 16px;
+  }
+
+  .whylevelup-title {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .whylevelup-subtitle {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .whylevelup-content {
+    padding: 16px;
+  }
+
+  .whylevelup-feature-card {
+    padding: 24px;
+    gap: 20px;
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    padding: 10px;
+  }
+
+  .feature-icon img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .feature-title {
+    font-size: 20px;
+  }
+
+  .feature-description {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .feature-text {
+    gap: 12px;
+    height: auto;
+  }
+}

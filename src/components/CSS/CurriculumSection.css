@@ -6,7 +6,10 @@
   justify-content: center;
   width: 100%;
   min-height: 1918px;
-  padding: 128px 32px;
+  padding-top: 128px;
+  padding-right: 32px;
+  padding-bottom: 64px;
+  padding-left: 32px;
   gap: 120px;
   background-color: #000000;
   opacity: 1;
