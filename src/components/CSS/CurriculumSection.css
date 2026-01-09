@@ -112,14 +112,16 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 40px 48px;
+  padding: 32px;
   gap: 24px;
   width: 100%;
-  height: 144px;
-  background: linear-gradient(139.65deg, #18181B 1.18%, #000000 99.27%);
+  max-width: 1314px;
+  height: 139px;
+  background: linear-gradient(92.88deg, #18181B 1.31%, #000000 95.65%);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
+  border-radius: 8px; /* Radius/sm */
   box-sizing: border-box;
+  opacity: 1;
 }
 
 .modules-header-left {
@@ -131,37 +133,56 @@
 
 .modules-icon {
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
-  width: 64px;
-  height: 64px;
-  background: linear-gradient(135deg, #6443FF 0%, #8838B9 100%);
-  border-radius: 16px;
+  align-items: center;
+  padding: 12px; /* Padding/md */
+  gap: 8px;
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(92.89deg, #6443FF 7.13%, #8838B9 95.65%);
+  border: 1px solid #B7A5D9;
+  border-radius: 24px; /* Radius/xl */
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.modules-icon svg {
+  width: 28px;
+  height: 28px;
 }
 
 .modules-header-text {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
+  flex: 1;
+  max-width: 416px;
+  opacity: 1;
 }
 
 .modules-count {
-  font-family: 'Inter', 'DM Sans', sans-serif;
+  width: 100%;
+  font-family: 'DM Sans', 'Inter', sans-serif;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 24px;
   line-height: 32px;
-  color: #FFFFFF;
+  letter-spacing: -0.48px;
+  color: #EDEDED;
   margin: 0;
+  opacity: 1;
 }
 
 .modules-phases {
-  font-family: 'Inter', 'DM Sans', sans-serif;
+  width: 100%;
+  font-family: 'DM Sans', 'Inter', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #8A8494;
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: 0%;
+  color: #A199B0;
   margin: 0;
 }
 
@@ -169,14 +190,17 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 16px 32px;
-  height: 56px;
+  padding: 24px 32px; /* Padding/md and Padding/lg */
+  width: 290px;
+  height: 70px;
   background: #FFFFFF;
   border: none;
-  border-radius: 160px;
+  border-radius: 160px; /* Radius/lg-2 */
   cursor: pointer;
   transition: all 0.3s ease;
+  box-sizing: border-box;
   
   font-family: 'DM Sans', 'Inter', sans-serif;
   font-style: normal;
@@ -192,6 +216,11 @@
   transform: translateY(-2px);
 }
 
+.view-curriculum-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
 /* Modules List */
 .modules-list {
   display: flex;
@@ -202,12 +231,27 @@
 
 /* Module Item */
 .module-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 32px;
+  gap: 0;
   width: 100%;
-  background: linear-gradient(139.65deg, #18181B 1.18%, #000000 99.27%);
+  max-width: 1314px;
+  height: auto;
+  min-height: 160px;
+  background: linear-gradient(92.88deg, #18181B 1.31%, #000000 95.65%);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
+  border-radius: 16px;
+  box-sizing: border-box;
   transition: all 0.3s ease;
   overflow: hidden;
+  opacity: 1;
+}
+
+.module-item.expanded {
+  height: auto;
 }
 
 .module-item:hover {
@@ -217,14 +261,18 @@
 .module-header {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  padding: 32px 40px;
+  gap: 40px;
   width: 100%;
+  min-height: 75px;
   background: transparent;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-sizing: border-box;
+  padding: 0;
+  align-self: stretch;
 }
 
 .module-header:hover {
@@ -234,60 +282,94 @@
 .module-header-left {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  gap: 24px;
+  align-items: flex-start;
+  gap: 40px;
   flex: 1;
 }
 
 .module-number {
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, #6443FF 0%, #8838B9 100%);
-  border-radius: 12px;
+  align-items: center;
+  padding: 12px; /* Padding/md */
+  gap: 8px;
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(92.89deg, #6443FF 7.13%, #8838B9 95.65%);
+  border: 1px solid #B7A5D9;
+  border-radius: 24px; /* Radius/xl */
+  box-sizing: border-box;
   flex-shrink: 0;
   
-  font-family: 'Inter', 'DM Sans', sans-serif;
+  font-family: 'DM Sans', 'Inter', sans-serif;
   font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  color: #FFFFFF;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 31px;
+  color: #EDECEE;
+  text-align: center;
 }
 
 .module-info {
   display: flex;
   flex-direction: column;
-  gap: 8px;
   align-items: flex-start;
-  text-align: left;
+  padding: 0px;
+  gap: 16px;
+  flex: 1;
+  max-width: 1078px;
+  flex: none;
+  order: 1;
+  flex-grow: 1;
+  opacity: 1;
 }
 
 .module-title {
-  font-family: 'Inter', 'DM Sans', sans-serif;
+  width: 100%;
+  font-family: 'DM Sans', 'Inter', sans-serif;
   font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 28px;
-  color: #FFFFFF;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.48px;
+  text-align: left;
+  color: #EDEDED;
   margin: 0;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  opacity: 1;
 }
 
 .module-description {
-  font-family: 'Inter', 'DM Sans', sans-serif;
+  width: 100%;
+  font-family: 'DM Sans', 'Inter', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  color: #8A8494;
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: 0%;
+  text-align: left;
+  color: #A199B0;
   margin: 0;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+  opacity: 1;
 }
 
 .module-chevron {
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
   transition: transform 0.3s ease;
+  margin-top: 6px;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
 }
 
 .module-item.expanded .module-chevron {
@@ -296,7 +378,8 @@
 
 /* Module Content (Expanded State) */
 .module-content {
-  padding: 0 40px 32px 40px;
+  padding: 24px 0 0 0;
+  width: 100%;
   
   font-family: 'Inter', 'DM Sans', sans-serif;
   font-style: normal;
@@ -315,6 +398,22 @@
   .modules-container {
     max-width: 1200px;
   }
+
+  .modules-header-card,
+  .module-item {
+    max-width: 100%;
+  }
+
+  .modules-header-text,
+  .module-info {
+    width: auto;
+    max-width: 100%;
+  }
+
+  .modules-count,
+  .module-title {
+    width: auto;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -330,12 +429,20 @@
   .modules-header-card {
     flex-direction: column;
     height: auto;
-    padding: 32px;
+    min-height: 139px;
   }
 
   .view-curriculum-btn {
     width: 100%;
-    justify-content: center;
+    max-width: 290px;
+  }
+
+  .module-header-left {
+    gap: 24px;
+  }
+
+  .module-info {
+    height: auto;
   }
 }
 
@@ -367,12 +474,32 @@
     padding: 24px;
   }
 
-  .module-header {
+  .module-item {
     padding: 24px;
   }
 
+  .module-header {
+    gap: 20px;
+  }
+
   .module-content {
-    padding: 0 24px 24px 24px;
+    padding: 20px 0 0 0;
+  }
+
+  .module-title {
+    font-size: 20px;
+    line-height: 28px;
+    height: auto;
+  }
+
+  .module-description {
+    font-size: 16px;
+    line-height: 24px;
+    height: auto;
+  }
+
+  .view-curriculum-btn {
+    width: 100%;
   }
 }
 
@@ -391,15 +518,37 @@
 
   .modules-count {
     font-size: 20px;
+    width: auto;
   }
 
   .module-title {
     font-size: 18px;
+    width: auto;
   }
 
   .module-number {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 22px;
+  }
+
+  .modules-icon {
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    border-radius: 22px;
+  }
+
+  .modules-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .view-curriculum-btn {
+    padding: 20px 28px;
+    height: 60px;
+    font-size: 14px;
   }
 }

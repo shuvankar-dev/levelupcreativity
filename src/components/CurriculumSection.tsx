@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './CSS/CurriculumSection.css';
+import BookOpen from '../assets/BookOpen.png';
 
 interface Module {
   id: number;
@@ -123,10 +124,7 @@ const CurriculumSection: React.FC = () => {
           <div className="modules-header-card">
             <div className="modules-header-left">
               <div className="modules-icon">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <path d="M16 4L4 10V16C4 22.5 8.5 28 16 30C23.5 28 28 22.5 28 16V10L16 4Z" fill="white"/>
-                  <path d="M12 16L14.5 18.5L20 13" stroke="#6443FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                <img src={BookOpen} alt="Book Open" />
               </div>
               <div className="modules-header-text">
                 <h3 className="modules-count">
