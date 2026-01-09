@@ -1,0 +1,272 @@
+/* Prerequisites Section */
+.prerequisites-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 940px;
+  padding: 128px 32px;
+  background-color: #000000;
+  opacity: 1;
+}
+
+.prerequisites-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  width: 100%;
+  max-width: 1440px;
+}
+
+/* Header */
+.prerequisites-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  max-width: 1440px;
+  opacity: 1;
+}
+
+.prerequisites-title {
+  width: auto;
+  max-width: 706px;
+  font-family: 'Inter', 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 60px; /* H1 Text Size */
+  line-height: 72px; /* H1 Line Height */
+  letter-spacing: -1.2px; /* H1 Letter Spacing */
+  text-align: center;
+  color: #EDEDED;
+  margin: 0;
+  padding: 0;
+  opacity: 1;
+  white-space: nowrap;
+}
+
+.prerequisites-subtitle {
+  width: auto;
+  max-width: 481px;
+  font-family: 'Inter', 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px; /* body-lg Text Size */
+  line-height: 27px; /* body-lg Line Height */
+  letter-spacing: 0%;
+  text-align: center;
+  color: #A199B0;
+  margin: 0;
+  padding: 0;
+  opacity: 1;
+  white-space: nowrap;
+}
+
+/* Prerequisites Grid */
+.prerequisites-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 411px);
+  gap: 24px;
+  width: 100%;
+  max-width: 1280px;
+  min-height: 496px;
+  opacity: 1;
+  justify-content: center;
+}
+
+/* Individual Prerequisite Card */
+.prerequisite-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 411px;
+  height: 236px;
+  padding: 32px;
+  background: linear-gradient(92.88deg, #18181B 1.31%, #000000 95.65%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  opacity: 1;
+}
+
+.prerequisite-card:hover {
+  border-color: rgba(100, 67, 255, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0px 8px 24px rgba(100, 67, 255, 0.15);
+}
+
+/* Prerequisite Icon */
+.prerequisite-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #6443FF 0%, #8838B9 100%);
+  border-radius: 16px;
+  flex-shrink: 0;
+  margin-bottom: 12px;
+}
+
+.prerequisite-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* Prerequisite Title */
+.prerequisite-title {
+  width: 100%;
+  max-width: 347px;
+  font-family: 'DM Sans', 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px; /* H6 Text Size */
+  line-height: 24px; /* H6 Line Height */
+  letter-spacing: -0.36px; /* H6 Letter Spacing */
+  color: #EDEDED;
+  margin: 0;
+  padding: 0;
+  opacity: 1;
+  white-space: normal;
+}
+
+/* Prerequisite Description */
+.prerequisite-description {
+  width: 100%;
+  max-width: 349px;
+  font-family: 'Inter', 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px; /* body-rg Text Size */
+  line-height: 24px; /* body-rg Line Height */
+  letter-spacing: 0%;
+  color: #A199B0;
+  margin: 0;
+  padding: 0;
+  opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 1440px) {
+  .prerequisites-section {
+    padding: 100px 32px;
+  }
+
+  .prerequisites-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
+  }
+
+  .prerequisite-card {
+    width: 100%;
+    max-width: 411px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .prerequisites-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 850px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .prerequisites-section {
+    padding: 80px 24px;
+  }
+
+  .prerequisites-title {
+    font-size: 48px;
+    line-height: 56px;
+  }
+
+  .prerequisites-subtitle {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .prerequisite-card {
+    height: auto;
+    min-height: 236px;
+  }
+}
+
+@media (max-width: 768px) {
+  .prerequisites-section {
+    padding: 60px 20px;
+    min-height: auto;
+  }
+
+  .prerequisites-header {
+    gap: 24px;
+  }
+
+  .prerequisites-title {
+    font-size: 36px;
+    line-height: 44px;
+  }
+
+  .prerequisites-subtitle {
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  .prerequisites-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 100%;
+  }
+
+  .prerequisite-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .prerequisites-section {
+    padding: 48px 16px;
+  }
+
+  .prerequisites-title {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .prerequisites-subtitle {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .prerequisite-card {
+    padding: 24px;
+    gap: 16px;
+  }
+
+  .prerequisite-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 8px;
+  }
+
+  .prerequisite-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .prerequisite-title {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .prerequisite-description {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}

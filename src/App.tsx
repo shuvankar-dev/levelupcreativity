@@ -7,6 +7,7 @@ import ToolsSection from './components/ToolsSection';
 import FreeCourseSection from './components/FreeCourseSection';
 import PricingSection from './components/PricingSection';
 import CurriculumSection from './components/CurriculumSection';
+import PrerequisitesSection from './components/PrerequisitesSection';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
       <FreeCourseSection />
       <PricingSection />
       <CurriculumSection />
+      <PrerequisitesSection />
     </>
   );
 }
