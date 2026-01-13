@@ -10,6 +10,8 @@ import CurriculumSection from './components/CurriculumSection';
 import PrerequisitesSection from './components/PrerequisitesSection';
 import WhyLevelUpSection from './components/WhyLevelUpSection';
 import ShortCoursesSection from './components/ShortCoursesSection';
+import QASection from './components/QASection';
+import CTABannerSection from './components/CTABannerSection';
 
 function App() {
   return (
@@ -54,6 +56,8 @@ function App() {
       <PrerequisitesSection />
       <WhyLevelUpSection />
       <ShortCoursesSection />
+      <QASection />
+      <CTABannerSection />
     </>
   );
 }
