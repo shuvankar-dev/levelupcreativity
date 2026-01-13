@@ -9,6 +9,7 @@ import PricingSection from './components/PricingSection';
 import CurriculumSection from './components/CurriculumSection';
 import PrerequisitesSection from './components/PrerequisitesSection';
 import WhyLevelUpSection from './components/WhyLevelUpSection';
+import ShortCoursesSection from './components/ShortCoursesSection';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
       <CurriculumSection />
       <PrerequisitesSection />
       <WhyLevelUpSection />
+      <ShortCoursesSection />
     </>
   );
 }
