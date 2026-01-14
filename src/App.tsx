@@ -21,14 +21,45 @@ function App() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const maxScroll = window.innerHeight * 0.8; // Transition completes at 80% of viewport height
+      const maxScroll = window.innerHeight * 0.8;
       const progress = Math.min(scrollPosition / maxScroll, 1);
       setScrollProgress(progress);
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial call
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Scroll reveal effect - runs after component mounts
+  useEffect(() => {
+    // Small delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      const observerOptions = {
+        threshold: 0.05,
+        rootMargin: '0px 0px -250px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Add revealed class when scrolling into view
+            entry.target.classList.add('revealed');
+          } else {
+            // Remove revealed class when scrolling out of view (for re-animation)
+            entry.target.classList.remove('revealed');
+          }
+        });
+      }, observerOptions);
+
+      // Observe all sections and elements
+      const sections = document.querySelectorAll('.scroll-reveal, .scroll-reveal-title, .scroll-reveal-content, .scroll-reveal-item');
+      sections.forEach(el => observer.observe(el));
+
+      return () => observer.disconnect();
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -37,7 +68,7 @@ function App() {
       
       {/* Scroll Container */}
       <div className="scroll-transition-container">
-        {/* Hero Section - Fades out and scales down on scroll */}
+        {/* Hero Section */}
         <div 
           className="scroll-hero-wrapper"
           style={{
@@ -80,7 +111,7 @@ function App() {
           </section>
         </div>
 
-        {/* Video Section - Slides up from below on scroll */}
+        {/* Video Section */}
         <div 
           className="scroll-video-wrapper"
           style={{
@@ -99,23 +130,23 @@ function App() {
         </div>
       </div>
 
-      {/* Spacer to create scroll distance for the transition */}
+      {/* Spacer */}
       <div style={{ height: '100vh' }}></div>
 
-      {/* Main Content - Starts after the scroll transition */}
+      {/* Main Content with Scroll Reveal */}
       <div className="main-content">
-        <Home />
-        <CTASection />
-        <ToolsSection />
-        <FreeCourseSection />
-        <PricingSection />
-        <CurriculumSection />
-        <PrerequisitesSection />
-        <WhyLevelUpSection />
-        <ShortCoursesSection />
-        <QASection />
-        <CTABannerSection />
-        <Footer />
+        <div className="scroll-reveal" style={{ transitionDelay: '0s' }}><Home /></div>
+        <div className="scroll-reveal" style={{ transitionDelay: '0.1s' }}><CTASection /></div>
+        <div className="scroll-reveal" style={{ transitionDelay: '0s' }}><ToolsSection /></div>
+        <div className="scroll-reveal" style={{ transitionDelay: '0.1s' }}><FreeCourseSection /></div>
+        <div className="scroll-reveal" style={{ transitionDelay: '0s' }}><PricingSection /></div>
+        <div className="scroll-reveal" style={{ transitionDelay: '0.1s' }}><CurriculumSection /></div>
+        <div className="scroll-reveal" style={{ transitionDelay: '0s' }}><PrerequisitesSection /></div>
+        <div className="scroll-reveal" style={{ transitionDelay: '0.1s' }}><WhyLevelUpSection /></div>
+        <div className="scroll-reveal" style={{ transitionDelay: '0s' }}><ShortCoursesSection /></div>
+        <div className="scroll-reveal" style={{ transitionDelay: '0.1s' }}><QASection /></div>
+        <div className="scroll-reveal" style={{ transitionDelay: '0s' }}><CTABannerSection /></div>
+        <div className="scroll-reveal" style={{ transitionDelay: '0.1s' }}><Footer /></div>
       </div>
     </>
   );
