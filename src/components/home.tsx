@@ -28,7 +28,14 @@ function Home() {
               <div className="course-icon">
                 <Palette size={24} />
               </div>
-              <h3 className="course-name">UI/UX Design</h3>
+              <div className="course-name-wrapper">
+                <h3 className="course-name">UI/UX Design</h3>
+                <img 
+                  src="/src/assets/circle-arrow-out-up-right.png" 
+                  alt="arrow" 
+                  className="course-arrow-icon"
+                />
+              </div>
               <p className="course-info">
                 Build strong UI/UX skills with expert guidance and real-world practice
               </p>
@@ -48,7 +55,14 @@ function Home() {
               <div className="course-icon">
                 <Box size={24} />
               </div>
-              <h3 className="course-name">VFX Animation</h3>
+              <div className="course-name-wrapper">
+                <h3 className="course-name">VFX Animation</h3>
+                <img 
+                  src="/src/assets/circle-arrow-out-up-right.png" 
+                  alt="arrow" 
+                  className="course-arrow-icon"
+                />
+              </div>
               <p className="course-info">
                 Master cinematic VFX skills with real projects and expert mentorship.
               </p>

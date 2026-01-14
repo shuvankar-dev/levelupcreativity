@@ -330,7 +330,7 @@
   flex-direction: row;
   align-items: flex-start;
   padding: 0px;
-  width: 564px;
+  width: auto;
   height: 32px;
   border-radius: 0px;
   font-family: 'DM Sans', 'Montserrat', sans-serif;
@@ -342,8 +342,6 @@
   color: #EDECEE;
   flex: none;
   order: 0;
-  align-self: stretch;
-  flex-grow: 1;
   margin: 0;
   transition: color 0.3s ease;
 }
@@ -592,3 +590,72 @@
 }
 
 /* End of Our Courses Section */
+
+/* Course name wrapper with arrow */
+.course-name-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+}
+
+/* Animated arrow icon */
+.course-arrow-icon {
+  width: 24px;
+  height: 24px;
+  animation: arrowAnimation 5s ease-in-out infinite;
+  transform-origin: center;
+  flex-shrink: 0;
+}
+
+/* Arrow animation: rotate counter-clockwise (VISIBLE) → dissolve → pause → repeat */
+@keyframes arrowAnimation {
+  /* Start: Arrow visible and begins rotating */
+  0% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  /* Rotating counter-clockwise - VISIBLE */
+  10% {
+    transform: rotate(-90deg);
+    opacity: 1;
+  }
+  20% {
+    transform: rotate(-180deg);
+    opacity: 1;
+  }
+  30% {
+    transform: rotate(-270deg);
+    opacity: 1;
+  }
+  40% {
+    transform: rotate(-360deg);
+    opacity: 1;
+  }
+  /* Stay visible after rotation */
+  50% {
+    transform: rotate(-360deg);
+    opacity: 1;
+  }
+  /* Dissolve (fade out) */
+  60% {
+    transform: rotate(-360deg);
+    opacity: 0;
+  }
+  /* Stay invisible (pause) */
+  90% {
+    transform: rotate(-360deg);
+    opacity: 0;
+  }
+  /* Reset to start position (invisible) */
+  100% {
+    transform: rotate(0deg);
+    opacity: 0;
+  }
+}
+
+/* Hover effect on card - pause animation */
+.course-card:hover .course-arrow-icon {
+  animation-play-state: paused;
+  opacity: 1;
+}
