@@ -543,3 +543,152 @@ html, body {
 .scroll-reveal-item:nth-child(4) { transition-delay: 2.4s; }
 .scroll-reveal-item:nth-child(5) { transition-delay: 2.7s; }
 .scroll-reveal-item:nth-child(6) { transition-delay: 3.0s; }
+
+/* Text-specific animations - Like Landio website - ONLY when class is applied */
+.scroll-text-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-text-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Heading animations - More dramatic - ONLY when class is applied */
+.scroll-heading-reveal {
+  opacity: 0;
+  transform: translateY(60px) scale(0.95);
+  filter: blur(5px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-heading-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0px);
+}
+
+/* Paragraph/description animations - Subtle - ONLY when class is applied */
+.scroll-paragraph-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0.2s;
+}
+
+.scroll-paragraph-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Button animations - ONLY when class is applied */
+.scroll-button-reveal {
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0.4s;
+}
+
+.scroll-button-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Fade in animation - Simple - ONLY when class is applied */
+.scroll-fade-reveal {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-fade-reveal.revealed {
+  opacity: 1;
+}
+
+/* Slide up with fade - Smooth like Landio - ONLY when class is applied */
+.scroll-slide-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-slide-up.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger for multiple text elements */
+.scroll-text-reveal:nth-child(1) { transition-delay: 0s; }
+.scroll-text-reveal:nth-child(2) { transition-delay: 0.1s; }
+.scroll-text-reveal:nth-child(3) { transition-delay: 0.2s; }
+.scroll-text-reveal:nth-child(4) { transition-delay: 0.3s; }
+.scroll-text-reveal:nth-child(5) { transition-delay: 0.4s; }
+
+/* Automatic text animations for all sections */
+.scroll-reveal h1, 
+.scroll-reveal h2, 
+.scroll-reveal h3, 
+.scroll-reveal h4, 
+.scroll-reveal h5, 
+.scroll-reveal h6 {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal h1.text-revealed, 
+.scroll-reveal h2.text-revealed, 
+.scroll-reveal h3.text-revealed, 
+.scroll-reveal h4.text-revealed, 
+.scroll-reveal h5.text-revealed, 
+.scroll-reveal h6.text-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-reveal p, 
+.scroll-reveal span, 
+.scroll-reveal a, 
+.scroll-reveal button,
+.scroll-reveal label {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal p.text-revealed, 
+.scroll-reveal span.text-revealed, 
+.scroll-reveal a.text-revealed, 
+.scroll-reveal button.text-revealed,
+.scroll-reveal label.text-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Specific targeting for nested elements in sections */
+.scroll-reveal .cta-title,
+.scroll-reveal .cta-button,
+.scroll-reveal .tools-title,
+.scroll-reveal .tools-description,
+.scroll-reveal .free-course-title,
+.scroll-reveal .free-course-description {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal.revealed .cta-title,
+.scroll-reveal.revealed .cta-button,
+.scroll-reveal.revealed .tools-title,
+.scroll-reveal.revealed .tools-description,
+.scroll-reveal.revealed .free-course-title,
+.scroll-reveal.revealed .free-course-description {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Add delay for button after title */
+.scroll-reveal.revealed .cta-button {
+  transition-delay: 0.3s;
+}

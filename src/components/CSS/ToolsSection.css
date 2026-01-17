@@ -117,7 +117,6 @@
 /* Tool Card - Fixed to match Figma exactly */
 .tool-card {
   display: flex;
-
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -126,13 +125,19 @@
   height: 244px;
   background-color: #000000;
   border-radius: 16px;
-  transition: all 0.3s ease;
+  border: 1px solid #322F37;
+  transition: all 0.4s ease;
+  position: relative;
 }
 
 .tool-card:hover {
-  border-color: rgba(100, 67, 255, 0.3);
   background: rgba(20, 15, 29, 0.6);
   transform: translateY(-4px);
+  border: 1px solid rgba(100, 67, 255, 0.5);
+  box-shadow: 0 0 30px rgba(100, 67, 255, 0.4),
+              0 0 60px rgba(136, 56, 185, 0.3),
+              0 0 90px rgba(100, 67, 255, 0.2),
+              inset 0 0 20px rgba(100, 67, 255, 0.1);
 }
 
 /* Tool Icon Wrapper */
@@ -153,9 +158,26 @@
   width: 120px;
   height: 120px;
   border-radius: 40px;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
   overflow: hidden;
   background: transparent; /* No background - logo already has it */
+  position: relative;
+}
+
+.tool-icon::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background: linear-gradient(94.54deg, #6443FF 5.91%, #8838B9 95.53%);
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(30px);
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.tool-card:hover .tool-icon::before {
+  opacity: 0.6;
 }
 
 .tool-icon img {
@@ -163,10 +185,17 @@
   height: 100%;
   object-fit: contain; /* Changed from cover to contain for better display */
   border-radius: 40px;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 1;
 }
 
 .tool-card:hover .tool-icon {
   transform: scale(1.05);
+}
+
+.tool-card:hover .tool-icon img {
+  filter: brightness(1.1);
 }
 
 /* Tool Name */

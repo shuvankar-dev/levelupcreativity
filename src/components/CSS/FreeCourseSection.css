@@ -81,38 +81,71 @@
   padding-top: 8px;
 }
 
-/* Layer 1: Rectangle 5961 - Purple Gradient Glow (Bottom/furthest back) */
+/* Animated Ring 1 - Outermost */
 .free-course-card-area::before {
   content: '';
   position: absolute;
-  width: 866px;
-  height: 797px;
-  left: calc(50% - 866px / 2 + 2px);
-  top: -2px;
-  background: linear-gradient(180deg, rgba(173, 70, 255, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
-  mix-blend-mode: plus-lighter;
-  filter: blur(15.05px);
-  border-radius: 16px;
+  width: 900px;
+  height: 900px;
+  left: calc(50% - 450px);
+  top: calc(50% - 450px);
+  background: linear-gradient(94.54deg, #6443FF 5.91%, #8838B9 95.53%);
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(40px);
   z-index: 0;
   pointer-events: none;
+  animation: pulseRing1 4s ease-in-out infinite;
 }
 
-
-/* Layer 2: Rectangle 5959 - Blurred Layer (Middle layer) */
+/* Animated Ring 2 - Middle */
 .free-course-card-area::after {
   content: '';
   position: absolute;
-  width: 858px;
-  height: 783px;
-  left: calc(50% - 858px / 2 + 5px);
-  top: 0px;
-  background: rgba(136, 104, 255, 0.15);
-  border-radius: 16px;
-  mix-blend-mode: plus-lighter;
-  filter: blur(28.15px);
+  width: 800px;
+  height: 800px;
+  left: calc(50% - 400px);
+  top: calc(50% - 400px);
+  background: linear-gradient(94.54deg, #8838B9 5.91%, #6443FF 95.53%);
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(35px);
   z-index: 1;
   pointer-events: none;
-  box-sizing: border-box;
+  animation: pulseRing2 4s ease-in-out infinite;
+  animation-delay: 1.3s;
+}
+
+/* Keyframes for Ring 1 */
+@keyframes pulseRing1 {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+/* Keyframes for Ring 2 */
+@keyframes pulseRing2 {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.25;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
 }
 
 /* Layer 3: Main Registration Form Card (Top/front) */
