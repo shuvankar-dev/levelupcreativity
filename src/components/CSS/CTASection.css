@@ -16,6 +16,29 @@
   isolation: isolate;
 }
 
+/* Video Background */
+.cta-video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: brightness(1.3) contrast(1.1);
+}
+
+/* Dark Overlay on Video */
+.cta-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(148.48deg, rgba(129, 59, 200, 0.4) 15.18%, rgba(8, 8, 8, 0.5) 78.25%);
+  z-index: 1;
+}
+
 .cta-container {
   display: flex;
   flex-direction: row;
@@ -27,6 +50,7 @@
   max-width: 1440px;
   height: 100%;
   position: relative;
+  z-index: 2;
 }
 
 /* Animated Grid Background */
@@ -44,25 +68,17 @@
   flex: none;
   order: 0;
   flex-grow: 0;
-  z-index: 0;
+  z-index: 3;
   pointer-events: none;
 }
 
 /* Grid Box Container */
 .grid-box {
-  width: 240px;
-  height: 340px;
+  width: 348px;
+  height: 260px;
   position: relative;
   flex: none;
   flex-grow: 0;
-}
-
-.character-shape {
-  width: 220px;
-}
-
-.mobile-shape {
-  width: 200px;
 }
 
 .grid-left {
@@ -147,7 +163,7 @@
   flex: none;
   order: 1;
   flex-grow: 0;
-  z-index: 1;
+  z-index: 4;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -182,28 +198,6 @@
   flex-grow: 0;
 }
 
-/* Text Animation for CTA Title */
-.cta-text-animate {
-  opacity: 0;
-  transform: translateY(30px);
-  filter: blur(10px);
-  animation: blurInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 0.3s;
-}
-
-@keyframes blurInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-    filter: blur(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0px);
-  }
-}
-
 /* CTA Button */
 .cta-button {
   display: flex;
@@ -230,25 +224,6 @@
   font-size: 18px;
   line-height: 27px;
   color: #140F1D;
-}
-
-/* Button Animation */
-.cta-button-animate {
-  opacity: 0;
-  transform: translateY(20px) scale(0.95);
-  animation: slideUpScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 0.8s;
-}
-
-@keyframes slideUpScale {
-  0% {
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
 }
 
 .cta-button:hover {

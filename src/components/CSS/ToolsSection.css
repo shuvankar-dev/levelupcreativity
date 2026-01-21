@@ -70,6 +70,11 @@
   background: #140F1D;
   border: 1px solid #2E1E4C;
   border-radius: 48px;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative;
+  z-index: 10;
+  overflow: visible;
 }
 
 .toggle-button {
@@ -84,7 +89,7 @@
   border-radius: 48px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
   white-space: nowrap;
   
   font-family: 'DM Sans', 'Montserrat', sans-serif;
@@ -92,17 +97,25 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #A199B0;
+  color: #A199B0 !important;
   background: transparent;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative;
+  z-index: 11;
+  transform: none !important;
+  will-change: auto;
 }
 
 .toggle-button.active {
-  background: linear-gradient(92.89deg, #6443FF 7.13%, #8838B9 95.65%);
-  color: #FFFFFF;
+  background: linear-gradient(92.89deg, #6443FF 7.13%, #8838B9 95.65%) !important;
+  color: #FFFFFF !important;
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 .toggle-button:hover:not(.active) {
-  color: #EDEDED;
+  color: #EDEDED !important;
 }
 
 /* Tools Grid */
@@ -125,19 +138,15 @@
   height: 244px;
   background-color: #000000;
   border-radius: 16px;
-  border: 1px solid #322F37;
-  transition: all 0.4s ease;
+  transition: none;
   position: relative;
 }
 
+/* Remove all card hover effects */
 .tool-card:hover {
-  background: rgba(20, 15, 29, 0.6);
-  transform: translateY(-4px);
-  border: 1px solid rgba(100, 67, 255, 0.5);
-  box-shadow: 0 0 30px rgba(100, 67, 255, 0.4),
-              0 0 60px rgba(136, 56, 185, 0.3),
-              0 0 90px rgba(100, 67, 255, 0.2),
-              inset 0 0 20px rgba(100, 67, 255, 0.1);
+  background: #000000;
+  transform: none;
+  box-shadow: none;
 }
 
 /* Tool Icon Wrapper */
@@ -159,43 +168,50 @@
   height: 120px;
   border-radius: 40px;
   transition: all 0.4s ease;
-  overflow: hidden;
-  background: transparent; /* No background - logo already has it */
+  overflow: visible;
+  background: transparent;
   position: relative;
+  border: 2px solid transparent;
 }
 
+/* Gradient background on hover */
 .tool-icon::before {
   content: '';
   position: absolute;
-  inset: -20px;
-  background: linear-gradient(94.54deg, #6443FF 5.91%, #8838B9 95.53%);
-  border-radius: 50%;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(173, 70, 255, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+  border-radius: 40px;
   opacity: 0;
-  filter: blur(30px);
   transition: opacity 0.4s ease;
   z-index: 0;
 }
 
 .tool-card:hover .tool-icon::before {
-  opacity: 0.6;
+  opacity: 1;
+}
+
+/* Glowing border on hover */
+.tool-card:hover .tool-icon {
+  border: 2px solid rgba(173, 70, 255, 1);
+  box-shadow: 0 0 25px rgba(173, 70, 255, 0.9),
+              0 0 50px rgba(173, 70, 255, 0.7),
+              0 0 75px rgba(173, 70, 255, 0.5),
+              inset 0 0 25px rgba(173, 70, 255, 0.3);
 }
 
 .tool-icon img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Changed from cover to contain for better display */
+  object-fit: contain;
   border-radius: 40px;
-  transition: all 0.4s ease;
+  transition: transform 0.4s ease;
   position: relative;
   z-index: 1;
 }
 
-.tool-card:hover .tool-icon {
-  transform: scale(1.05);
-}
-
+/* Zoom in icon on hover */
 .tool-card:hover .tool-icon img {
-  filter: brightness(1.1);
+  transform: scale(1.15);
 }
 
 /* Tool Name */

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import './CSS/ToolsSection.css';
 
 // Import tool logos
@@ -19,6 +20,12 @@ import photoshopLogo from '../assets/toolslogo/Adobe Photoshop.png';
 
 const ToolsSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'ux' | 'vfx'>('ux');
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { 
+    once: false,
+    amount: 0.2,
+    margin: "0px 0px -100px 0px"
+  });
 
   const uxTools = [
     { name: 'Figma', logo: figmaLogo },
@@ -29,7 +36,7 @@ const ToolsSection: React.FC = () => {
     { name: 'Lottie files', logo: lottieLogo },
   ];
 
-const vfxTools = [
+  const vfxTools = [
     { name: 'Maya', logo: mayaLogo },
     { name: 'Mocha', logo: mochaLogo },
     { name: 'Blender', logo: blenderLogo },
@@ -38,22 +45,86 @@ const vfxTools = [
     { name: 'ZBrush', logo: zbrushLogo },
     { name: 'Substance 3D Painter', logo: substanceLogo },
     { name: 'Adobe Photoshop', logo: photoshopLogo },
-];
+  ];
 
   const displayTools = activeTab === 'ux' ? uxTools : vfxTools;
 
+  // Animation variants
+  const titleVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.95
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const
+      }
+    }
+  };
+
+  const descriptionVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 40
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+        delay: 0.3
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 60,
+      scale: 0.95
+    },
+    visible: (index: number) => ({ 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 1.2,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+        delay: index * 0.1
+      }
+    })
+  };
+
   return (
-    <section className="tools-section">
+    <section className="tools-section" ref={sectionRef}>
       <div className="tools-container">
         {/* Header */}
         <div className="tools-header">
-          <h2 className="tools-title">Tools We Offer</h2>
-          <p className="tools-description">
+          <motion.h2 
+            className="tools-title"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={titleVariants}
+          >
+            Tools We Offer
+          </motion.h2>
+          <motion.p 
+            className="tools-description"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={descriptionVariants}
+          >
             Upgrade your skills with professional tools used across UI/UX and VFX industries.
-          </p>
+          </motion.p>
         </div>
 
-        {/* Toggle Buttons */}
+        {/* Toggle Buttons - Always visible, no animation */}
         <div className="tools-toggle">
           <button
             className={`toggle-button ${activeTab === 'ux' ? 'active' : ''}`}
@@ -72,14 +143,21 @@ const vfxTools = [
         {/* Tools Grid */}
         <div className="tools-grid">
           {displayTools.map((tool, index) => (
-            <div key={index} className="tool-card">
+            <motion.div 
+              key={`${activeTab}-${tool.name}`}
+              className="tool-card"
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              variants={cardVariants}
+              custom={index}
+            >
               <div className="tool-icon-wrapper">
                 <div className="tool-icon">
                   <img src={tool.logo} alt={tool.name} />
                 </div>
                 <p className="tool-name">{tool.name}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
