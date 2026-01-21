@@ -1,7 +1,7 @@
 import './App.css';
-import './components/CSS/hero.css';
 import { useEffect, useState } from 'react';
 import Navbar from './components/navbar';
+import Hero from './components/Hero';
 import Home from './components/home';
 import CTASection from './components/CTASection';
 import ToolsSection from './components/ToolsSection';
@@ -88,49 +88,17 @@ function App() {
           style={{
             opacity: 1 - scrollProgress,
             transform: `scale(${1 - scrollProgress * 0.1})`,
-            zIndex: scrollProgress < 0.5 ? 10 : 1,
             pointerEvents: scrollProgress > 0.8 ? 'none' : 'auto'
           }}
         >
-          <section className="hero-section">
-            <div className="hero-content">
-              <div className="limited-spots-badge">
-                <span>🔥</span>
-                <span>Hurry, Limited Spots Left</span>
-              </div>
-              
-              <h1 className="hero-title">
-                Become a UI/UX and<br />
-                VFX Animation Expert
-              </h1>
-              
-              <p className="hero-subtitle">
-                Become job-ready with real design projects, industry-standard processes.
-              </p>
-              
-              <button className="enroll-button">
-                Enroll Now
-                <span>→</span>
-              </button>
-            </div>
-
-            <div className="ellipse-animation">
-              <div className="ellipse ellipse-27"></div>
-              <div className="ellipse ellipse-23"></div>
-              <div className="ellipse ellipse-24"></div>
-              <div className="ellipse ellipse-25"></div>
-              <div className="ellipse ellipse-26"></div>
-              <div className="frame-582"></div>
-            </div>
-          </section>
+          <Hero />
         </div>
 
         {/* Video Section */}
         <div 
           className="scroll-video-wrapper"
           style={{
-            transform: `translateY(${(1 - scrollProgress) * 100}%)`,
-            zIndex: scrollProgress >= 0.5 ? 10 : 1
+            transform: `translateY(${(1 - scrollProgress) * 100}%)`
           }}
         >
           <video
@@ -149,7 +117,7 @@ function App() {
 
       {/* Main Content with Scroll Reveal */}
       <div className="main-content">
-        <div className="scroll-reveal" style={{ transitionDelay: '0s' }}><Home /></div>
+        <Home />
         <div className="scroll-reveal" style={{ transitionDelay: '0.1s' }}><CTASection /></div>
         <div className="scroll-reveal" style={{ transitionDelay: '0s' }}><ToolsSection /></div>
         <div className="scroll-reveal" style={{ transitionDelay: '0.1s' }}><FreeCourseSection /></div>

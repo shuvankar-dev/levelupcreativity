@@ -1,22 +1,113 @@
 import './CSS/home.css';
 import { Palette, Box } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 function Home() {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { 
+    once: false, // Changed to false - animates every time it enters/exits viewport
+    amount: 0.2,
+    margin: "0px 0px -100px 0px"
+  });
+
+  // Animation variants for staggered reveal
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const titleVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.95
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const
+      }
+    }
+  };
+
+  const descriptionVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 40
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 60,
+      scale: 0.95
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 1.2,
+        ease: [0.25, 0.46, 0.45, 0.94] as const
+      }
+    }
+  };
+
   return (
-    <section className="courses-section">
-      <div className="courses-container">
-        {/* Section Header - Appears FIRST */}
-        <div className="courses-header scroll-reveal-title">
-          <h2 className="courses-title">Our Courses</h2>
-          <p className="courses-description">
+    <section className="courses-section" ref={sectionRef}>
+      <motion.div 
+        className="courses-container"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
+        {/* Section Header */}
+        <div className="courses-header">
+          <motion.h2 
+            className="courses-title"
+            variants={titleVariants}
+          >
+            Our Courses
+          </motion.h2>
+          
+          <motion.p 
+            className="courses-description"
+            variants={descriptionVariants}
+          >
             Learn in-demand UI/UX and VFX skills through practical, mentor-led training designed to build a standout portfolio and job-ready confidence.
-          </p>
+          </motion.p>
         </div>
 
-        {/* Courses Grid - Appears AFTER title */}
-        <div className="courses-grid scroll-reveal-content">
+        {/* Courses Grid */}
+        <motion.div 
+          className="courses-grid"
+          variants={containerVariants}
+        >
           {/* UI/UX Design Card */}
-          <div className="course-card scroll-reveal-item">
+          <motion.div 
+            className="course-card"
+            variants={cardVariants}
+          >
             <div className="course-image-wrapper">
               <img 
                 src="/src/assets/mobile_image.png" 
@@ -40,10 +131,13 @@ function Home() {
                 Build strong UI/UX skills with expert guidance and real-world practice
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* VFX Animation Card */}
-          <div className="course-card scroll-reveal-item">
+          <motion.div 
+            className="course-card"
+            variants={cardVariants}
+          >
             <div className="course-image-wrapper">
               <img 
                 src="/src/assets/animated.png" 
@@ -67,9 +161,9 @@ function Home() {
                 Master cinematic VFX skills with real projects and expert mentorship.
               </p>
             </div>
-          </div>
-        </div>
-      </div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
