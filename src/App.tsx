@@ -14,6 +14,7 @@ import ShortCoursesSection from './components/ShortCoursesSection';
 import QASection from './components/QASection';
 import CTABannerSection from './components/CTABannerSection';
 import Footer from './components/Footer';
+import CursorFollower from './components/CursorFollower';
 
 function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -78,6 +79,7 @@ function App() {
 
   return (
     <>
+      <CursorFollower />
       <Navbar />
       
       {/* Scroll Container */}

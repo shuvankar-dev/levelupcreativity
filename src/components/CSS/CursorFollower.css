@@ -1,0 +1,46 @@
+/* Keep default cursor visible */
+body {
+  cursor: auto;
+}
+
+/* Cursor Follower - Small solid white ball that follows with delay */
+.cursor-dot {
+  width: 18px;
+  height: 18px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Hide outline - not needed */
+.cursor-outline {
+  display: none;
+}
+
+/* Hover effect on interactive elements - ball gets slightly bigger */
+body a:hover ~ .cursor-dot,
+body button:hover ~ .cursor-dot,
+body input:hover ~ .cursor-dot,
+body textarea:hover ~ .cursor-dot {
+  width: 28px;
+  height: 28px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+
+/* Keep default cursor on interactive elements */
+a, button, input, textarea, select {
+  cursor: pointer;
+}
+
+/* Mobile - Hide follower */
+@media (max-width: 768px) {
+  .cursor-dot {
+    display: none;
+  }
+}
+

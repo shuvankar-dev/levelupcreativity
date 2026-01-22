@@ -4,6 +4,25 @@ import './CSS/CTABannerSection.css';
 const CTABannerSection: React.FC = () => {
   return (
     <section className="cta-banner-section">
+      {/* Video Background */}
+      <video 
+        className="cta-banner-video-bg"
+        autoPlay 
+        loop 
+        muted 
+        playsInline
+        preload="auto"
+        crossOrigin="anonymous"
+        onError={(e) => console.error('CTABanner Video failed to load:', e)}
+        onLoadedData={() => console.log('CTABanner Video loaded successfully')}
+      >
+        <source src="https://cdn.pixabay.com/video/2015/08/03/514-135736246_large.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      
+      {/* Dark Overlay */}
+      <div className="cta-banner-video-overlay"></div>
+      
       <div className="cta-banner-container">
         <div className="cta-banner-glow-bg"></div>
         <div className="cta-banner-content">

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import './CSS/QASection.css';
 
 interface Question {
@@ -9,6 +10,12 @@ interface Question {
 
 const QASection: React.FC = () => {
   const [openId, setOpenId] = useState<number | null>(null);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { 
+    once: false,
+    amount: 0.2,
+    margin: "0px 0px -100px 0px"
+  });
 
   const questions: Question[] = [
     {
@@ -42,23 +49,86 @@ const QASection: React.FC = () => {
     setOpenId(openId === id ? null : id);
   };
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const titleVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.95
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 60,
+      scale: 0.95
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
+
   return (
-    <section className="qa-section">
-      <div className="qa-container">
+    <section className="qa-section" ref={sectionRef}>
+      <motion.div 
+        className="qa-container"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
         {/* Header */}
         <div className="qa-header">
-          <h2 className="qa-title">Your Questions Answered</h2>
-          <p className="qa-subtitle">
+          <motion.h2 
+            className="qa-title"
+            variants={titleVariants}
+          >
+            Your Questions Answered
+          </motion.h2>
+          <motion.p 
+            className="qa-subtitle"
+            variants={titleVariants}
+          >
             Start your learning journey with our comprehensive mini course
-          </p>
+          </motion.p>
         </div>
 
         {/* Questions List */}
-        <div className="qa-list">
+        <motion.div 
+          className="qa-list"
+          variants={containerVariants}
+        >
           {questions.map((item) => (
-            <div 
+            <motion.div 
               key={item.id} 
               className={`qa-item ${openId === item.id ? 'active' : ''}`}
+              variants={itemVariants}
             >
               <button 
                 className="qa-question-btn"
@@ -84,10 +154,10 @@ const QASection: React.FC = () => {
                   <p>{item.answer}</p>
                 </div>
               )}
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

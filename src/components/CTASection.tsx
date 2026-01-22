@@ -11,11 +11,13 @@ const CTASection: React.FC = () => {
         loop
         muted
         playsInline
+        preload="auto"
+        crossOrigin="anonymous"
+        onError={(e) => console.error('CTASection Video failed to load:', e)}
+        onLoadedData={() => console.log('CTASection Video loaded successfully')}
       >
-        <source 
-          src="https://www.videobacks.net/static/preview/stock-video-free-3d-animation-stock-footage--4k-motion-graphics-stock-footage-visuals-digital-loop-download-royalty-free-hd-102044.mp4" 
-          type="video/mp4" 
-        />
+        <source src="https://cdn.pixabay.com/video/2015/08/03/514-135736246_large.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
       </video>
       
       {/* Dark Overlay */}
