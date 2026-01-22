@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import './CSS/CurriculumSection.css';
 import BookOpen from '../assets/BookOpen.png';
 
@@ -10,8 +11,15 @@ interface Module {
 }
 
 const CurriculumSection: React.FC = () => {
-  const [selectedTrack, setSelectedTrack] = useState<'ux' | 'vfx'>('vfx');
+  const [selectedTrack, setSelectedTrack] = useState<'ux' | 'vfx'>('ux');
   const [expandedModule, setExpandedModule] = useState<number | null>(null);
+  
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { 
+    once: false,
+    amount: 0.2,
+    margin: "0px 0px -100px 0px"
+  });
 
   const uxModules: Module[] = [
     {
@@ -91,15 +99,97 @@ const CurriculumSection: React.FC = () => {
     setExpandedModule(expandedModule === id ? null : id);
   };
 
+  // Animation variants
+  const titleVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.95
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const
+      }
+    }
+  };
+
+  const descriptionVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 40
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+        delay: 0.3
+      }
+    }
+  };
+
+  const headerCardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 60,
+      scale: 0.95
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 1.2,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+        delay: 0.6
+      }
+    }
+  };
+
+  const moduleVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 60,
+      scale: 0.95
+    },
+    visible: (index: number) => ({ 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 1.2,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+        delay: 0.8 + (index * 0.15)
+      }
+    })
+  };
+
   return (
-    <section className="curriculum-section">
+    <section className="curriculum-section" ref={sectionRef}>
       <div className="curriculum-container">
         {/* Header */}
         <div className="curriculum-header">
-          <h2 className="curriculum-title">Curriculum We Offer</h2>
-          <p className="curriculum-subtitle">
+          <motion.h2 
+            className="curriculum-title"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={titleVariants}
+          >
+            Curriculum We Offer
+          </motion.h2>
+          <motion.p 
+            className="curriculum-subtitle"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={descriptionVariants}
+          >
             Comprehensive learning paths designed by industry experts
-          </p>
+          </motion.p>
         </div>
 
         {/* Track Toggle Buttons */}
@@ -121,7 +211,12 @@ const CurriculumSection: React.FC = () => {
         {/* Modules Container */}
         <div className="modules-container">
           {/* Header Card */}
-          <div className="modules-header-card">
+          <motion.div 
+            className="modules-header-card"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={headerCardVariants}
+          >
             <div className="modules-header-left">
               <div className="modules-icon">
                 <img src={BookOpen} alt="Book Open" />
@@ -141,14 +236,18 @@ const CurriculumSection: React.FC = () => {
                 <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
-          </div>
+          </motion.div>
 
           {/* Module Accordion Items */}
           <div className="modules-list">
-            {currentModules.map((module) => (
-              <div
+            {currentModules.map((module, index) => (
+              <motion.div
                 key={module.id}
                 className={`module-item ${expandedModule === module.id ? 'expanded' : ''}`}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+                variants={moduleVariants}
+                custom={index}
               >
                 <button
                   className="module-header"
@@ -182,7 +281,7 @@ const CurriculumSection: React.FC = () => {
                     <p>Module content will be displayed here when expanded.</p>
                   </div>
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

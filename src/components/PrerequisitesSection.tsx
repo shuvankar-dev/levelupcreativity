@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import './CSS/PrerequisitesSection.css';
 import CheckCircle from '../assets/PrerequisitesLogo/CheckCircle.png';
 import Laptop from '../assets/PrerequisitesLogo/Laptop.png';
@@ -8,6 +9,13 @@ import Clock from '../assets/PrerequisitesLogo/Clock.png';
 import LightbulbFilament from '../assets/PrerequisitesLogo/LightbulbFilament.png';
 
 const PrerequisitesSection: React.FC = () => {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { 
+    once: false,
+    amount: 0.2,
+    margin: "0px 0px -100px 0px"
+  });
+
   const prerequisites = [
     {
       id: 1,
@@ -47,27 +55,98 @@ const PrerequisitesSection: React.FC = () => {
     }
   ];
 
+  // Animation variants
+  const titleVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.95
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const
+      }
+    }
+  };
+
+  const descriptionVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 40
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+        delay: 0.3
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 60,
+      scale: 0.95
+    },
+    visible: (index: number) => ({ 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 1.2,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+        delay: 0.6 + (index * 0.2)
+      }
+    })
+  };
+
   return (
-    <section className="prerequisites-section">
+    <section className="prerequisites-section" ref={sectionRef}>
       <div className="prerequisites-container">
         {/* Header */}
         <div className="prerequisites-header">
-          <h2 className="prerequisites-title">Prerequisites For Students</h2>
-          <p className="prerequisites-subtitle">
+          <motion.h2 
+            className="prerequisites-title"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={titleVariants}
+          >
+            Prerequisites For Students
+          </motion.h2>
+          <motion.p 
+            className="prerequisites-subtitle"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={descriptionVariants}
+          >
             Everything you need to start your creative journey with us
-          </p>
+          </motion.p>
         </div>
 
         {/* Prerequisites Grid */}
         <div className="prerequisites-grid">
-          {prerequisites.map((item) => (
-            <div key={item.id} className="prerequisite-card">
+          {prerequisites.map((item, index) => (
+            <motion.div 
+              key={item.id} 
+              className="prerequisite-card"
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              variants={cardVariants}
+              custom={index}
+            >
               <div className="prerequisite-icon">
                 <img src={item.icon} alt={item.title} />
               </div>
               <h3 className="prerequisite-title">{item.title}</h3>
               <p className="prerequisite-description">{item.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

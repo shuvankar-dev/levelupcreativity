@@ -326,25 +326,36 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 24px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
   font-family: 'DM Sans', 'Inter', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
-  color: #A29AB1;
+  color: #A29AB1 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative;
+  transform: none !important;
 }
 
 .track-button.active {
-  background: rgba(152, 16, 250, 0.2);
-  border: 1px solid #4E357E;
+  background: rgba(152, 16, 250, 0.2) !important;
+  border: 1px solid #4E357E !important;
   box-shadow: 0px 4px 6px -4px rgba(173, 70, 255, 0.3),
-              0px 10px 15px -3px rgba(173, 70, 255, 0.3);
-  color: #EDECEE;
+              0px 10px 15px -3px rgba(173, 70, 255, 0.3) !important;
+  color: #EDECEE !important;
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 .track-button:hover:not(.active) {
   border-color: rgba(255, 255, 255, 0.2);
+}
+
+.track-button span {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .track-icon {

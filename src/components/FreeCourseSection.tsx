@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import './CSS/FreeCourseSection.css';
 import figmaLogo from '../assets/toolslogo/Figma.png';
 import lookIcon from '../assets/look.png';
@@ -9,6 +10,13 @@ const FreeCourseSection: React.FC = () => {
     fullName: '',
     email: '',
     mobile: ''
+  });
+
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { 
+    once: false,
+    amount: 0.2,
+    margin: "0px 0px -100px 0px"
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,19 +32,88 @@ const FreeCourseSection: React.FC = () => {
     console.log('Form submitted:', { ...formData, track: selectedTrack });
   };
 
+  // Animation variants
+  const titleVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.95
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const
+      }
+    }
+  };
+
+  const descriptionVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 40
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+        delay: 0.3
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 60,
+      scale: 0.95
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 1.2,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+        delay: 0.6
+      }
+    }
+  };
+
   return (
-    <section className="free-course-section">
+    <section className="free-course-section" ref={sectionRef}>
       <div className="free-course-container">
         {/* Header */}
         <div className="free-course-header">
-          <h2 className="free-course-title">Get the course- Its Free</h2>
-          <p className="free-course-description">
+          <motion.h2 
+            className="free-course-title"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={titleVariants}
+          >
+            Get the course- Its Free
+          </motion.h2>
+          <motion.p 
+            className="free-course-description"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={descriptionVariants}
+          >
             Start your learning journey with our comprehensive mini course
-          </p>
+          </motion.p>
         </div>
 
         {/* Card Area */}
-        <div className="free-course-card-area">
+        <motion.div 
+          className="free-course-card-area"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={cardVariants}
+        >
           <form className="free-course-card" onSubmit={handleSubmit}>
             {/* Choose Your Track Section */}
             <div className="track-selection-section">
@@ -129,7 +206,7 @@ const FreeCourseSection: React.FC = () => {
               <span>Your information is secure</span>
             </div>
           </form>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

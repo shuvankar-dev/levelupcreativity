@@ -87,6 +87,13 @@
   opacity: 1;
 }
 
+/* Ensure all inner content stays visible */
+.pricing-card > * {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
 .pricing-card:hover {
   border-color: rgba(100, 67, 255, 0.3);
   transform: translateY(-4px);
@@ -108,9 +115,10 @@
   position: absolute;
   top: -16px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) !important;
   z-index: 10;
-  opacity: 1;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .limited-offer-badge span {
@@ -120,6 +128,8 @@
   font-size: 14px;
   line-height: 20px;
   color: #FFFFFF;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 /* Card Header */
@@ -129,6 +139,9 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
 }
 
 .course-icon {
@@ -140,6 +153,8 @@
   background: linear-gradient(135deg, #6443FF 0%, #8838B9 100%);
   border-radius: 16px;
   font-size: 28px;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .course-duration {
@@ -153,6 +168,8 @@
   font-size: 14px;
   line-height: 20px;
   color: #EDECEE;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 /* Course Title - H6 Size */
@@ -168,7 +185,9 @@
   letter-spacing: -0.36px; /* H6 Letter Spacing */
   color: #EDECEE;
   margin: 0;
-  opacity: 1;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
 }
 
 /* Pricing Info - H2 Size */
@@ -180,7 +199,9 @@
   width: 100%;
   max-width: 564px;
   height: 56px;
-  opacity: 1;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
 }
 
 .current-price {
@@ -191,6 +212,8 @@
   line-height: 48px; /* H2 Line Height */
   letter-spacing: 0.35px; /* H2 Letter Spacing */
   color: #FFFFFF;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .original-price {
@@ -202,6 +225,8 @@
   letter-spacing: 0.18px;
   color: #6F677E;
   text-decoration: line-through;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 /* Course Description */
@@ -213,6 +238,9 @@
   line-height: 24px;
   color: #A29AB1;
   margin: 0;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
 }
 
 /* Features List */
@@ -224,6 +252,9 @@
   padding: 0;
   margin: 0;
   list-style: none;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
 }
 
 .feature-item {
@@ -238,6 +269,9 @@
   font-size: 16px;
   line-height: 24px;
   color: #EDECEE;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
 }
 
 .feature-item svg {
@@ -254,6 +288,9 @@
   gap: 16px;
   width: 100%;
   margin-top: auto;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
 }
 
 .btn-learn-more,
@@ -267,7 +304,7 @@
   height: 56px;
   border-radius: 160px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
   
   font-family: 'DM Sans', 'Inter', sans-serif;
   font-style: normal;
@@ -275,6 +312,8 @@
   font-size: 16px;
   line-height: 24px;
   border: none;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .btn-learn-more {

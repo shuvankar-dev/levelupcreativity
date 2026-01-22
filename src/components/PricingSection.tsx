@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import './CSS/PricingSection.css';
 import IconPng from '../assets/Icon.png';
 import FigmaLogo from '../assets/FigmaLogo.png';
@@ -6,6 +7,13 @@ import CubeLogo from '../assets/Cube.png';
 import SealCheck from '../assets/SealCheck.png';
 
 const PricingSection: React.FC = () => {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { 
+    once: false,
+    amount: 0.2,
+    margin: "0px 0px -100px 0px"
+  });
+
   const pricingData = [
     {
       icon: FigmaLogo,
@@ -47,21 +55,92 @@ const PricingSection: React.FC = () => {
     }
   ];
 
+  // Animation variants
+  const titleVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.95
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const
+      }
+    }
+  };
+
+  const descriptionVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 40
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+        delay: 0.3
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 60,
+      scale: 0.95
+    },
+    visible: (index: number) => ({ 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 1.2,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+        delay: 0.6 + (index * 0.2)
+      }
+    })
+  };
+
   return (
-    <section className="pricing-section">
+    <section className="pricing-section" ref={sectionRef}>
       <div className="pricing-container">
         {/* Header */}
         <div className="pricing-header">
-          <h2 className="pricing-title">Our Pricing Plans</h2>
-          <p className="pricing-subtitle">
+          <motion.h2 
+            className="pricing-title"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={titleVariants}
+          >
+            Our Pricing Plans
+          </motion.h2>
+          <motion.p 
+            className="pricing-subtitle"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={descriptionVariants}
+          >
             Invest in your future with flexible learning options
-          </p>
+          </motion.p>
         </div>
 
         {/* Pricing Cards */}
         <div className="pricing-cards">
           {pricingData.map((plan, index) => (
-            <div key={index} className="pricing-card">
+            <motion.div 
+              key={index} 
+              className="pricing-card"
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              variants={cardVariants}
+              custom={index}
+            >
               {plan.isLimitedOffer && (
                 <div className="limited-offer-badge">
                   <img src={IconPng} alt="Limited Offer Icon" width="16" height="16" />
@@ -98,7 +177,7 @@ const PricingSection: React.FC = () => {
                 <button className="btn-learn-more">Learn More</button>
                 <button className="btn-enroll">Enroll Now</button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

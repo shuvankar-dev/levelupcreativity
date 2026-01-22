@@ -56,41 +56,43 @@
   white-space: nowrap;
 }
 
-.carousel-container {
+/* Block inner content animations only - keep section visible */
+.short-courses-section .short-courses-header *,
+.short-courses-section .short-course-card-content * {
+  animation: none !important;
+  transition: none !important;
+}
+
+.carousel-wrapper {
   width: 100%;
-  max-width: 1440px;
-  overflow: hidden;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 0;
   position: relative;
+  overflow: hidden;
 }
 
-.short-courses-grid {
+.carousel-track {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 24px;
-  animation: scroll-left 20s linear infinite;
-  width: fit-content;
+  gap: 32px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 2rem calc((100% - 411px) / 2);
+  align-items: center;
 }
 
-/* Pause animation on hover */
-.short-courses-grid:hover {
-  animation-play-state: paused;
-}
-
-/* Smooth continuous scroll animation */
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-435px * 3)); /* -(card width + gap) * number of original cards */
-  }
+.carousel-track::-webkit-scrollbar {
+  display: none;
 }
 
 .short-course-card {
+  flex-shrink: 0;
   width: 411px;
+  min-width: 411px;
   height: 562px;
-  opacity: 1;
   border-radius: 16px;
   background: #0C0911;
   position: relative;
@@ -98,7 +100,39 @@
   padding: 24px;
   box-sizing: border-box;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
+  scroll-snap-align: center;
+  transition: all 0.5s ease-out !important;
+  transform: scale(0.85);
+  opacity: 0.4;
+  filter: brightness(0.5);
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.short-course-card.active-card {
+  transform: scale(1) !important;
+  opacity: 1 !important;
+  filter: brightness(1) !important;
+  box-shadow: 0 20px 60px rgba(136, 104, 255, 0.5) !important;
+  border-color: rgba(136, 104, 255, 0.5) !important;
+  z-index: 10;
+}
+
+.short-course-card.active-card::before {
+  background: linear-gradient(0deg, rgba(136, 104, 255, 0.5), rgba(136, 104, 255, 0.5)), 
+              radial-gradient(50% 50% at 50% 0%, #8868FF 0%, rgba(136, 104, 255, 0.5) 100%);
+  opacity: 1;
+}
+
+/* Start button only works on active card */
+.short-course-card:not(.active-card) .start-button {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.short-course-card.active-card .start-button {
+  pointer-events: auto;
+  opacity: 1;
 }
 
 .short-course-card::before {
@@ -113,28 +147,24 @@
               radial-gradient(31.13% 17.06% at 50% 0%, #8868FF 0%, rgba(111, 97, 222, 0) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   padding: 1px;
   pointer-events: none;
   z-index: 0;
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-.short-course-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(136, 104, 255, 0.3);
-}
-
-.short-course-card:hover::before {
-  background: linear-gradient(0deg, rgba(136, 104, 255, 0.4), rgba(136, 104, 255, 0.4)), 
-              radial-gradient(50% 50% at 50% 0%, #8868FF 0%, rgba(136, 104, 255, 0.4) 100%);
   opacity: 1;
 }
 
 .short-course-card-content {
   position: relative;
   z-index: 1;
+  opacity: 1;
+  visibility: visible;
+}
+
+.short-course-card-content * {
+  opacity: 1;
+  visibility: visible;
 }
 
 .mode-badge {
@@ -151,6 +181,8 @@
   border: 1px solid #B08BF6;
   border-radius: 30px;
   margin-bottom: 35px;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .mode-text {
@@ -167,6 +199,8 @@
   flex: none;
   order: 0;
   flex-grow: 0;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .short-course-title {
@@ -175,11 +209,13 @@
   font-family: 'DM Sans', 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 60px;
-  line-height: 72px;
+  font-size: 52px;
+  line-height: 62px;
   letter-spacing: -1.2px;
   color: #EDECEE;
   margin-bottom: 35px;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .trust-tagline {
@@ -194,6 +230,8 @@
   color: #EDECEE;
   margin-bottom: 32px;
   white-space: nowrap;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .course-brief {
@@ -208,6 +246,8 @@
   color: #A29AB1;
   margin-bottom: 38px;
   white-space: nowrap;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .course-meta {
@@ -219,6 +259,8 @@
   width: 222px;
   height: 28px;
   margin-bottom: 46px;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .meta-item {
@@ -229,6 +271,8 @@
   gap: 4px;
   height: 28px;
   flex: none;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .meta-icon {
@@ -237,6 +281,8 @@
   flex: none;
   order: 0;
   flex-grow: 0;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .meta-text {
@@ -250,6 +296,8 @@
   flex: none;
   order: 1;
   flex-grow: 0;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .start-button {
@@ -258,45 +306,40 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 24px 32px;
+  padding: 16px 32px;
   gap: 8px;
-  width: 175px;
+  width: auto;
+  min-width: 175px;
   height: 56px;
   border: 1px solid #6F677E;
   border-radius: 40px;
   background: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.start-button:hover {
-  border-color: #8868FF;
-  transform: translateY(-2px);
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .button-content {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0px;
+  justify-content: center;
   gap: 8px;
-  height: 27px;
+  height: auto;
   flex: none;
-  order: 0;
-  flex-grow: 0;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .button-text {
-  height: 27px;
   font-family: 'DM Sans', 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
   color: #EDECEE;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+  white-space: nowrap;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .button-icon {
@@ -305,6 +348,8 @@
   flex: none;
   order: 1;
   flex-grow: 0;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 /* Responsive Design */

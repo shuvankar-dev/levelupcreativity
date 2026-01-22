@@ -67,7 +67,10 @@
   background: #140F1D;
   border: 1px solid #2E1E4C;
   border-radius: 32px;
-  opacity: 1;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative;
+  z-index: 10;
 }
 
 .track-toggle-btn {
@@ -78,23 +81,29 @@
   border: none;
   border-radius: 28px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
   
   font-family: 'DM Sans', 'Inter', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  color: #8A8494;
+  color: #8A8494 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  white-space: nowrap;
 }
 
 .track-toggle-btn.active {
-  background: linear-gradient(95.66deg, #6443FF 4.13%, #8838B9 100%);
-  color: #FFFFFF;
+  background: linear-gradient(95.66deg, #6443FF 4.13%, #8838B9 100%) !important;
+  color: #FFFFFF !important;
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 .track-toggle-btn:hover:not(.active) {
-  color: #A29AB1;
+  color: #A29AB1 !important;
 }
 
 /* Modules Container */

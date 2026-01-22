@@ -96,7 +96,7 @@ const ToolsSection: React.FC = () => {
       transition: {
         duration: 1.2,
         ease: [0.25, 0.46, 0.45, 0.94] as const,
-        delay: index * 0.1
+        delay: 0.6 + (index * 0.15)
       }
     })
   };
