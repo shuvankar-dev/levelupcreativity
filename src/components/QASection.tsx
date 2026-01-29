@@ -12,7 +12,7 @@ const QASection: React.FC = () => {
   const [openId, setOpenId] = useState<number | null>(null);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { 
-    once: false,
+    once: true, // Animates only once
     amount: 0.2,
     margin: "0px 0px -100px 0px"
   });
@@ -49,14 +49,14 @@ const QASection: React.FC = () => {
     setOpenId(openId === id ? null : id);
   };
 
-  // Animation variants
+  // Animation variants - smooth like ToolsSection
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 1 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.1
+        staggerChildren: 0.1,
+        delayChildren: 0
       }
     }
   };
@@ -64,16 +64,14 @@ const QASection: React.FC = () => {
   const titleVariants = {
     hidden: { 
       opacity: 0, 
-      y: 50,
-      scale: 0.95
+      y: 30
     },
     visible: { 
       opacity: 1, 
       y: 0,
-      scale: 1,
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94]
+        ease: [0.16, 1, 0.3, 1]
       }
     }
   };
@@ -81,16 +79,14 @@ const QASection: React.FC = () => {
   const itemVariants = {
     hidden: { 
       opacity: 0, 
-      y: 60,
-      scale: 0.95
+      y: 40
     },
     visible: { 
       opacity: 1, 
       y: 0,
-      scale: 1,
       transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94]
+        duration: 0.9,
+        ease: [0.16, 1, 0.3, 1]
       }
     }
   };
