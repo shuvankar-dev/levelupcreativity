@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 100vw;
   min-height: 1139px;
   padding-top: 128px;
   padding-bottom: 128px;
@@ -17,6 +17,8 @@
   box-sizing: border-box;
   opacity: 1;
   white-space: nowrap;
+  overflow-x: hidden;
+  position: relative;
 }
 
 .qa-container {

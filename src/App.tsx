@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Navbar from './components/navbar';
 import Hero from './components/Hero';
 import Home from './components/home';
@@ -18,6 +18,8 @@ import CursorFollower from './components/CursorFollower';
 
 function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoWrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +32,42 @@ function App() {
     window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Restart video when user scrolls back to it
+  useEffect(() => {
+    let wasOutOfView = false;
+    
+    const observerOptions = {
+      threshold: 0.1, // Trigger when 10% of video is visible
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && videoRef.current) {
+          // Only reset if the video was previously out of view
+          if (wasOutOfView) {
+            videoRef.current.currentTime = 0;
+            videoRef.current.play().catch(err => console.log('Video autoplay prevented:', err));
+          }
+          wasOutOfView = false;
+        } else {
+          // Mark that video went out of view
+          wasOutOfView = true;
+          // Pause video when out of view to save resources
+          if (videoRef.current) {
+            videoRef.current.pause();
+          }
+        }
+      });
+    }, observerOptions);
+
+    if (videoWrapperRef.current) {
+      observer.observe(videoWrapperRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
   // Scroll reveal effect - runs after component mounts
@@ -92,12 +130,16 @@ function App() {
 
         {/* Video Section */}
         <div 
+          ref={videoWrapperRef}
           className="scroll-video-wrapper"
           style={{
-            transform: `translateY(${(1 - scrollProgress) * 100}%)`
+            transform: `translateY(${(1 - scrollProgress) * 100}%) scale(${0.85 + scrollProgress * 0.15})`,
+            borderRadius: `${(1 - scrollProgress) * 30}px`,
+            overflow: 'hidden'
           }}
         >
           <video
+            ref={videoRef}
             className="scroll-background-video"
             src="/src/assets/vedio/landingpage_video.mp4"
             autoPlay

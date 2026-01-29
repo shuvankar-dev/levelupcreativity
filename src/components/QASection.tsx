@@ -49,13 +49,13 @@ const QASection: React.FC = () => {
     setOpenId(openId === id ? null : id);
   };
 
-  // Animation variants - smooth like ToolsSection
+  // Animation variants - SMOOTH AND SLOW
   const containerVariants = {
     hidden: { opacity: 1 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.15,
         delayChildren: 0
       }
     }
@@ -64,14 +64,14 @@ const QASection: React.FC = () => {
   const titleVariants = {
     hidden: { 
       opacity: 0, 
-      y: 30
+      y: 40
     },
     visible: { 
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1]
+        duration: 1.2,
+        ease: [0.22, 1, 0.36, 1] as const
       }
     }
   };
@@ -79,14 +79,15 @@ const QASection: React.FC = () => {
   const itemVariants = {
     hidden: { 
       opacity: 0, 
-      y: 40
+      y: 50
     },
     visible: { 
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 0.9,
-        ease: [0.16, 1, 0.3, 1]
+        duration: 1.2,
+        ease: [0.22, 1, 0.36, 1] as const,
+        delay: 0.2
       }
     }
   };
