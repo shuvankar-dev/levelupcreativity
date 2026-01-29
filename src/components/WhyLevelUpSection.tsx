@@ -19,8 +19,8 @@ const WhyLevelUpSection: React.FC = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { 
     once: true,
-    amount: 0.2,
-    margin: "0px 0px -100px 0px"
+    amount: 0.4,
+    margin: "0px 0px -50px 0px"
   });
 
   const features: Feature[] = [

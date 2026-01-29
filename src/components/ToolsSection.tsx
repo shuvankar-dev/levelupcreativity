@@ -23,8 +23,8 @@ const ToolsSection: React.FC = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { 
     once: true,
-    amount: 0.2,
-    margin: "0px 0px -100px 0px"
+    amount: 0.4, // Need 40% visible before animating
+    margin: "0px 0px -50px 0px"
   });
 
   const uxTools = [
@@ -81,6 +81,22 @@ const ToolsSection: React.FC = () => {
     }
   };
 
+  const toggleVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 30
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 1,
+        ease: [0.16, 1, 0.3, 1] as const,
+        delay: 0.5
+      }
+    }
+  };
+
   const cardVariants = {
     hidden: { 
       opacity: 0, 
@@ -92,7 +108,7 @@ const ToolsSection: React.FC = () => {
       transition: {
         duration: 1.2,
         ease: [0.16, 1, 0.3, 1] as const,
-        delay: 0.6 + (index * 0.15)
+        delay: 0.8 + (index * 0.15)
       }
     })
   };
@@ -120,8 +136,13 @@ const ToolsSection: React.FC = () => {
           </motion.p>
         </div>
 
-        {/* Toggle Buttons - Always visible, no animation */}
-        <div className="tools-toggle">
+        {/* Toggle Buttons - Animated after description */}
+        <motion.div 
+          className="tools-toggle"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={toggleVariants}
+        >
           <button
             className={`toggle-button ${activeTab === 'ux' ? 'active' : ''}`}
             onClick={() => setActiveTab('ux')}
@@ -134,7 +155,7 @@ const ToolsSection: React.FC = () => {
           >
             VFX Animation
           </button>
-        </div>
+        </motion.div>
 
         {/* Tools Grid */}
         <div className="tools-grid">

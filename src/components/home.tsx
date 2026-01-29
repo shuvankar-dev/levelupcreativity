@@ -8,17 +8,17 @@ function Home() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { 
     once: true, // Changed to true - animates only once
-    amount: 0.2,
-    margin: "0px 0px -100px 0px"
+    amount: 0.4, // Increased - need 40% visible
+    margin: "0px 0px -50px 0px"
   });
 
-  // Animation variants - SEQUENTIAL: Title → Description → Cards one by one
+  // Animation variants - ULTRA SMOOTH with overlapping animations
   const containerVariants = {
     hidden: { opacity: 1 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.25,
+        staggerChildren: 0.2, // Slightly more delay between elements
         delayChildren: 0
       }
     }
@@ -33,8 +33,8 @@ function Home() {
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 1,
-        ease: [0.16, 1, 0.3, 1] as const
+        duration: 0.9,
+        ease: [0.22, 1, 0.36, 1] as const // Smoother easing
       }
     }
   };
@@ -48,8 +48,8 @@ function Home() {
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 1,
-        ease: [0.16, 1, 0.3, 1] as const
+        duration: 0.9,
+        ease: [0.22, 1, 0.36, 1] as const
       }
     }
   };
@@ -57,14 +57,20 @@ function Home() {
   const cardVariants = {
     hidden: { 
       opacity: 0, 
-      y: 60
+      y: 60,
+      scale: 0.95
     },
     visible: { 
       opacity: 1, 
       y: 0,
+      scale: 1,
       transition: {
-        duration: 1,
-        ease: [0.16, 1, 0.3, 1] as const
+        duration: 1.1, // Slightly longer for smooth feel
+        ease: [0.22, 1, 0.36, 1] as const,
+        opacity: {
+          duration: 0.8, // Fade in faster
+          ease: "easeOut"
+        }
       }
     }
   };
