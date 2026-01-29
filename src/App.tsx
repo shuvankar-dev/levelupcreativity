@@ -44,26 +44,20 @@ function App() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            // Add revealed class when scrolling into view
-            entry.target.classList.add('revealed');
-            
-            // Also reveal all text elements inside
-            const textElements = entry.target.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, a, button, label');
-            textElements.forEach((el, index) => {
-              setTimeout(() => {
-                el.classList.add('text-revealed');
-              }, index * 50); // Stagger text animations
-            });
-          } else {
-            // Remove revealed class when scrolling out of view (for re-animation)
-            entry.target.classList.remove('revealed');
-            
-            // Remove text revealed class
-            const textElements = entry.target.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, a, button, label');
-            textElements.forEach(el => {
-              el.classList.remove('text-revealed');
-            });
+            // Only add revealed class if not already revealed (one-time animation)
+            if (!entry.target.classList.contains('revealed')) {
+              entry.target.classList.add('revealed');
+              
+              // Also reveal all text elements inside
+              const textElements = entry.target.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, a, button, label');
+              textElements.forEach((el, index) => {
+                setTimeout(() => {
+                  el.classList.add('text-revealed');
+                }, index * 50); // Stagger text animations
+              });
+            }
           }
+          // Do NOT remove 'revealed' class when scrolling out - keep it permanent
         });
       }, observerOptions);
 
