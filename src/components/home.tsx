@@ -123,11 +123,13 @@ function Home() {
               </div>
               <div className="course-name-wrapper">
                 <h3 className="course-name">UI/UX Design</h3>
-                <img 
-                  src="/src/assets/circle-arrow-out-up-right.png" 
-                  alt="arrow" 
-                  className="course-arrow-icon"
-                />
+                <div className="course-arrow-icon">
+                  <svg viewBox="0 0 30 30" className="arrow-circle-svg">
+                    <path className="arrow-circle" d="M21 6.5C19.3 5.5 17.2 5 15 5C9.477 5 5 9.477 5 15s4.477 10 10 10 10-4.477 10-10c0-1.5-.3-2.9-.8-4.2" />
+                    <line className="arrow-line" x1="16" y1="14" x2="28" y2="2" />
+                    <polyline className="arrow-head" points="21,2 28,2 28,9" />
+                  </svg>
+                </div>
               </div>
               <p className="course-info">
                 Build strong UI/UX skills with expert guidance and real-world practice
@@ -153,11 +155,13 @@ function Home() {
               </div>
               <div className="course-name-wrapper">
                 <h3 className="course-name">VFX Animation</h3>
-                <img 
-                  src="/src/assets/circle-arrow-out-up-right.png" 
-                  alt="arrow" 
-                  className="course-arrow-icon"
-                />
+                <div className="course-arrow-icon">
+                  <svg viewBox="0 0 30 30" className="arrow-circle-svg">
+                    <path className="arrow-circle" d="M21 6.5C19.3 5.5 17.2 5 15 5C9.477 5 5 9.477 5 15s4.477 10 10 10 10-4.477 10-10c0-1.5-.3-2.9-.8-4.2" />
+                    <line className="arrow-line" x1="16" y1="14" x2="28" y2="2" />
+                    <polyline className="arrow-head" points="21,2 28,2 28,9" />
+                  </svg>
+                </div>
               </div>
               <p className="course-info">
                 Master cinematic VFX skills with real projects and expert mentorship.

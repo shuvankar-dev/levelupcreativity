@@ -562,7 +562,7 @@
   background: linear-gradient(135deg, #2D2A3A 0%, #1E1B28 100%);
 }
 
-/* Design / Cube Icon - with rotation */
+/* Design / Cube Icon - rotates only on hover */
 .course-icon svg {
   width: 28px;
   height: 28px;
@@ -571,22 +571,12 @@
   flex: none;
   order: 0;
   flex-grow: 0;
-  animation: rotate 3s linear infinite; /* Continuous smooth rotation */
+  transition: transform 0.6s ease; /* Smooth rotation transition */
 }
 
-/* Keyframe for rotation */
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Optional: Rotate faster on hover */
+/* Rotate icon only on hover */
 .course-card:hover .course-icon svg {
-  animation: rotate 2s linear infinite; /* Speeds up on hover */
+  transform: rotate(360deg); /* Rotates once on hover */
 }
 
 /* End of Our Courses Section */
@@ -599,63 +589,127 @@
   width: fit-content;
 }
 
-/* Animated arrow icon */
+/* Animated arrow icon container */
 .course-arrow-icon {
-  width: 24px;
-  height: 24px;
-  animation: arrowAnimation 5s ease-in-out infinite;
-  transform-origin: center;
+  width: 28px;
+  height: 28px;
+  position: relative;
   flex-shrink: 0;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Arrow animation: rotate counter-clockwise (VISIBLE) → dissolve → pause → repeat */
-@keyframes arrowAnimation {
-  /* Start: Arrow visible and begins rotating */
-  0% {
-    transform: rotate(0deg);
-    opacity: 1;
-  }
-  /* Rotating counter-clockwise - VISIBLE */
-  10% {
-    transform: rotate(-90deg);
-    opacity: 1;
-  }
-  20% {
-    transform: rotate(-180deg);
-    opacity: 1;
-  }
-  30% {
-    transform: rotate(-270deg);
-    opacity: 1;
-  }
-  40% {
-    transform: rotate(-360deg);
-    opacity: 1;
-  }
-  /* Stay visible after rotation */
-  50% {
-    transform: rotate(-360deg);
-    opacity: 1;
-  }
-  /* Dissolve (fade out) */
-  60% {
-    transform: rotate(-360deg);
-    opacity: 0;
-  }
-  /* Stay invisible (pause) */
-  90% {
-    transform: rotate(-360deg);
-    opacity: 0;
-  }
-  /* Reset to start position (invisible) */
-  100% {
-    transform: rotate(0deg);
-    opacity: 0;
-  }
-}
-
-/* Hover effect on card - pause animation */
+/* Show arrow icon on hover */
 .course-card:hover .course-arrow-icon {
-  animation-play-state: paused;
   opacity: 1;
+  transform: scale(1);
+}
+
+/* SVG container */
+.arrow-circle-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Partial circle - draws first on hover */
+.arrow-circle {
+  fill: none;
+  stroke: #FFFFFF;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 58; /* Length of the almost-complete circle arc */
+  stroke-dashoffset: 58; /* Start hidden */
+  transition: stroke-dashoffset 0s ease;
+}
+
+/* Arrow diagonal line - hidden initially */
+.arrow-line {
+  stroke: #FFFFFF;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  opacity: 0;
+  transition: opacity 0s ease;
+}
+
+/* Arrow head - hidden initially */
+.arrow-head {
+  fill: none;
+  stroke: #FFFFFF;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  opacity: 0;
+  transition: opacity 0s ease;
+}
+
+/* Animate partial circle drawing on hover */
+.course-card:hover .arrow-circle {
+  animation: drawCircle 0.5s ease forwards;
+}
+
+/* Animate arrow line after circle */
+.course-card:hover .arrow-line {
+  opacity: 1;
+  animation: drawArrowLine 0.3s ease forwards;
+  animation-delay: 0.4s;
+}
+
+/* Animate arrow head after line */
+.course-card:hover .arrow-head {
+  opacity: 1;
+  animation: drawArrowHead 0.2s ease forwards;
+  animation-delay: 0.5s;
+}
+
+/* Circle drawing animation */
+@keyframes drawCircle {
+  0% {
+    stroke-dashoffset: 58;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Arrow line drawing animation */
+@keyframes drawArrowLine {
+  0% {
+    stroke-dashoffset: 20;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+/* Arrow head drawing animation */
+@keyframes drawArrowHead {
+  0% {
+    stroke-dashoffset: 20;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+/* Reset animation when hover ends */
+.course-card:not(:hover) .arrow-circle {
+  stroke-dashoffset: 58;
+  animation: none;
+}
+
+.course-card:not(:hover) .arrow-line,
+.course-card:not(:hover) .arrow-head {
+  stroke-dashoffset: 20;
+  opacity: 0;
+  animation: none;
 }
