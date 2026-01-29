@@ -9,7 +9,7 @@ import SealCheck from '../assets/SealCheck.png';
 const PricingSection: React.FC = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { 
-    once: false,
+    once: true,
     amount: 0.2,
     margin: "0px 0px -100px 0px"
   });
@@ -55,20 +55,18 @@ const PricingSection: React.FC = () => {
     }
   ];
 
-  // Animation variants
+  // Animation variants - smooth like ToolsSection
   const titleVariants = {
     hidden: { 
       opacity: 0, 
-      y: 50,
-      scale: 0.95
+      y: 30
     },
     visible: { 
       opacity: 1, 
       y: 0,
-      scale: 1,
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94] as const
+        ease: [0.16, 1, 0.3, 1] as const
       }
     }
   };
@@ -76,15 +74,15 @@ const PricingSection: React.FC = () => {
   const descriptionVariants = {
     hidden: { 
       opacity: 0, 
-      y: 40
+      y: 30
     },
     visible: { 
       opacity: 1, 
       y: 0,
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94] as const,
-        delay: 0.3
+        ease: [0.16, 1, 0.3, 1] as const,
+        delay: 0.15
       }
     }
   };
@@ -92,17 +90,15 @@ const PricingSection: React.FC = () => {
   const cardVariants = {
     hidden: { 
       opacity: 0, 
-      y: 60,
-      scale: 0.95
+      y: 40
     },
     visible: (index: number) => ({ 
       opacity: 1, 
       y: 0,
-      scale: 1,
       transition: {
-        duration: 1.2,
-        ease: [0.25, 0.46, 0.45, 0.94] as const,
-        delay: 0.6 + (index * 0.2)
+        duration: 0.9,
+        ease: [0.16, 1, 0.3, 1] as const,
+        delay: 0.3 + (index * 0.2)
       }
     })
   };
