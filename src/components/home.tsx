@@ -7,19 +7,19 @@ import { useRef } from 'react';
 function Home() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { 
-    once: false, // Changed to false - animates every time it enters/exits viewport
+    once: true, // Changed to true - animates only once
     amount: 0.2,
     margin: "0px 0px -100px 0px"
   });
 
-  // Animation variants for staggered reveal
+  // Animation variants - SEQUENTIAL: Title → Description → Cards one by one
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 1 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.1
+        staggerChildren: 0.25,
+        delayChildren: 0
       }
     }
   };
@@ -27,16 +27,14 @@ function Home() {
   const titleVariants = {
     hidden: { 
       opacity: 0, 
-      y: 50,
-      scale: 0.95
+      y: 50
     },
     visible: { 
       opacity: 1, 
       y: 0,
-      scale: 1,
       transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94] as const
+        duration: 1,
+        ease: [0.16, 1, 0.3, 1] as const
       }
     }
   };
@@ -50,8 +48,8 @@ function Home() {
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94] as const
+        duration: 1,
+        ease: [0.16, 1, 0.3, 1] as const
       }
     }
   };
@@ -59,16 +57,14 @@ function Home() {
   const cardVariants = {
     hidden: { 
       opacity: 0, 
-      y: 60,
-      scale: 0.95
+      y: 60
     },
     visible: { 
       opacity: 1, 
       y: 0,
-      scale: 1,
       transition: {
-        duration: 1.2,
-        ease: [0.25, 0.46, 0.45, 0.94] as const
+        duration: 1,
+        ease: [0.16, 1, 0.3, 1] as const
       }
     }
   };
