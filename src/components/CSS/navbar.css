@@ -9,7 +9,7 @@
   align-items: center;
   padding: 1.5rem 4rem;
   background: #00000033;
-  z-index: 100;
+  z-index: 1000; /* Increased from 100 to ensure it stays above all sections */
   border-bottom: 1px solid #FFFFFF1A;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
