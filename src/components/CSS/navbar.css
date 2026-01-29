@@ -35,6 +35,126 @@
   margin-bottom: 2px;
 }
 
+/* Navigation Menu */
+.nav-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 56px;
+}
+
+/* Navigation Item - All same size */
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 8px;
+  width: 160px;
+  height: 52px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 44px;
+  position: relative;
+  background: transparent;
+  border: 1.1px solid transparent;
+}
+
+/* Gradient border effect on hover */
+.nav-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 44px;
+  padding: 1.1px;
+  background: linear-gradient(94.76deg, #6443FF 5.58%, #BC35E2 99.9%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+/* Show gradient border and shadow on hover */
+.nav-item:hover::before {
+  opacity: 1;
+}
+
+.nav-item:hover {
+  background: rgba(39, 39, 40, 0.4);
+  box-shadow: 0px 4.41px 13.23px 0px rgba(173, 70, 255, 0.12);
+}
+
+/* Inner frame for text and arrow */
+.nav-item-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 128px;
+  height: 24px;
+  gap: 8px;
+}
+
+/* Navigation Text */
+.nav-text {
+  font-family: 'DM Sans', 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.4px;
+  color: #D8D6DB;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+  height: 24px;
+}
+
+.nav-item:hover .nav-text {
+  color: #FFFFFF;
+}
+
+/* Arrow Icon Container - Only for Courses */
+.nav-arrow-icon {
+  width: 24px;
+  height: 24px;
+  background: #272728;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Arrow SVG */
+.nav-arrow-icon svg {
+  transition: transform 0.3s ease;
+  color: #FFFFFF;
+}
+
+/* Hover Animation - Arrow rotates and moves up */
+.nav-item-dropdown:hover .nav-arrow-icon {
+  background: #6841F7;
+  transform: translateY(-2px);
+}
+
+.nav-item-dropdown:hover .nav-arrow-icon svg {
+  transform: rotate(180deg);
+}
+
 .get-in-touch-btn {
   background: linear-gradient(92.89deg, #6443FF 7.13%, #8838B9 95.65%);
   color: #fff;
@@ -61,6 +181,10 @@
   
   .logo {
     font-size: 1.25rem;
+  }
+  
+  .nav-menu {
+    display: none; /* Hide menu on mobile */
   }
   
   .get-in-touch-btn {
