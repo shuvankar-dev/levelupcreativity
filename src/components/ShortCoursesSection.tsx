@@ -56,14 +56,30 @@ const ShortCoursesSection: React.FC = () => {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(1); // Start with index 1 (second card)
+  const hasScrolledToCenter = useRef(false);
 
-  // Scroll to index 1 on mount
+  // Scroll to index 1 only when section comes into view
   useEffect(() => {
-    const timer = setTimeout(() => {
-      scrollToCard(1);
-    }, 100); // Small delay to ensure DOM is ready
+    const container = containerRef.current;
+    if (!container || hasScrolledToCenter.current) return;
 
-    return () => clearTimeout(timer);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasScrolledToCenter.current) {
+            hasScrolledToCenter.current = true;
+            setTimeout(() => {
+              scrollToCard(1);
+            }, 100);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(container);
+
+    return () => observer.disconnect();
   }, []);
 
   // Detect center card on scroll

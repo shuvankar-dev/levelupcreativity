@@ -21,6 +21,11 @@ function App() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoWrapperRef = useRef<HTMLDivElement>(null);
 
+  // Ensure page starts at top on load/reload
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -166,7 +171,7 @@ function App() {
         <div className="scroll-reveal" style={{ transitionDelay: '0s' }}><ShortCoursesSection /></div>
         <div className="scroll-reveal" style={{ transitionDelay: '0.1s' }}><QASection /></div>
         <div className="scroll-reveal" style={{ transitionDelay: '0s' }}><CTABannerSection /></div>
-        <div className="scroll-reveal" style={{ transitionDelay: '0.1s' }}><Footer /></div>
+        <Footer />
       </div>
     </>
   );
