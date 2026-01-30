@@ -1,33 +1,100 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/navbar';
 import Footer from '../components/Footer';
 import CursorFollower from '../components/CursorFollower';
 import './CSS/PrivacyPolicy.css';
 
 const PrivacyPolicy: React.FC = () => {
+  const [activeSection, setActiveSection] = useState('introduction');
+  const [sidebarVisible, setSidebarVisible] = useState(true);
+
+  const sections = [
+    { id: 'introduction', label: 'Introduction' },
+    { id: 'information-collect', label: 'Information We Collect' },
+    { id: 'how-use', label: 'How We Use Your Information' },
+    { id: 'data-sharing', label: 'Data Sharing & Third Parties' },
+    { id: 'student-privacy', label: 'Student Privacy' },
+    { id: 'data-security', label: 'Data Security' },
+    { id: 'rights-choices', label: 'Your Rights & Choices' },
+    { id: 'cookies-tracking', label: 'Cookies & Tracking' },
+    { id: 'data-retention', label: 'Data Retention' },
+    { id: 'policy-updates', label: 'Policy Updates' },
+    { id: 'contact-us', label: 'Contact Us' }
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sectionElements = sections.map(section => ({
+        id: section.id,
+        element: document.getElementById(section.id)
+      }));
+
+      const scrollPosition = window.scrollY + 200;
+
+      // Update active section
+      for (let i = sectionElements.length - 1; i >= 0; i--) {
+        const section = sectionElements[i];
+        if (section.element && section.element.offsetTop <= scrollPosition) {
+          setActiveSection(section.id);
+          break;
+        }
+      }
+
+      // Check if footer is in view to hide sidebar
+      const footer = document.querySelector('footer');
+      if (footer) {
+        const footerRect = footer.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // Hide sidebar only when footer is much closer (more visible)
+        if (footerRect.top < windowHeight - 500) {
+          setSidebarVisible(false);
+        } else {
+          setSidebarVisible(true);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 150;
+      const elementPosition = element.offsetTop - offset;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <>
       <CursorFollower />
       <Navbar />
       
       <main className="privacy-policy-page">
-        {/* Sidebar Navigation */}
-        <aside className="privacy-sidebar">
-          <div className="sidebar-item active">Introduction</div>
-          <div className="sidebar-item">Information We Collect</div>
-          <div className="sidebar-item">How We Use Your Information</div>
-          <div className="sidebar-item">Data Sharing & Third Parties</div>
-          <div className="sidebar-item">Student Privacy</div>
-          <div className="sidebar-item">Data Security</div>
-          <div className="sidebar-item">Your Rights & Choices</div>
-          <div className="sidebar-item">Cookies & Tracking</div>
-          <div className="sidebar-item">Data Retention</div>
-          <div className="sidebar-item">Policy Updates</div>
-          <div className="sidebar-item">Contact Us</div>
-        </aside>
+        <div className="privacy-container">
+          {/* Sidebar Navigation */}
+          <aside className={`privacy-sidebar ${!sidebarVisible ? 'hidden' : ''}`}>
+            {sections.map((section) => (
+              <div
+                key={section.id}
+                className={`sidebar-item ${activeSection === section.id ? 'active' : ''}`}
+                onClick={() => scrollToSection(section.id)}
+              >
+                {section.label}
+              </div>
+            ))}
+          </aside>
 
-        {/* Main Content */}
-        <div className="privacy-content">
+          {/* Main Content */}
+          <div className="privacy-content">
           {/* Header Section */}
           <section className="privacy-header-section">
             <div className="privacy-main-header">
@@ -54,13 +121,13 @@ const PrivacyPolicy: React.FC = () => {
           <div className="divider-line"></div>
 
           {/* Introduction */}
-          <section className="content-section">
+          <section id="introduction" className="content-section">
             <h2 className="section-title">Introduction</h2>
             <p className="section-text">Welcome to Levelup. We are committed to protecting the privacy and security of our users, including students, educators, parents, and administrators. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our educational technology platform.</p>
           </section>
 
           {/* Information We Collect */}
-          <section className="content-section info-collect-section">
+          <section id="information-collect" className="content-section info-collect-section">
             <h2 className="section-title">Information We Collect</h2>
             <p className="section-subtitle">We collect the following types of information:</p>
             
@@ -83,7 +150,7 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           {/* How We Use Your Information */}
-          <section className="content-section">
+          <section id="how-use" className="content-section">
             <h2 className="section-title">How We Use Your Information</h2>
             <p className="section-subtitle">We use collected information to :</p>
             
@@ -98,7 +165,7 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           {/* Data Sharing & Third Parties */}
-          <section className="content-section">
+          <section id="data-sharing" className="content-section">
             <h2 className="section-title">Data Sharing & Third Parties</h2>
             <p className="section-subtitle">We do not sell, trade, or rent your personal information.</p>
             <p className="section-subtitle">We may share information only with:</p>
@@ -122,7 +189,7 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           {/* Student Privacy */}
-          <section className="content-section">
+          <section id="student-privacy" className="content-section">
             <h2 className="section-title">Student Privacy</h2>
             <p className="section-subtitle">We comply with FERPA (Family Educational Rights and Privacy Act) and COPPA (Children's Online Privacy Protection Act).</p>
             
@@ -140,7 +207,7 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           {/* Data Security */}
-          <section className="content-section">
+          <section id="data-security" className="content-section">
             <h2 className="section-title">Data Security</h2>
             <p className="section-subtitle">We implement industry-standard security measures:</p>
             
@@ -155,7 +222,7 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           {/* Your Rights & Choices */}
-          <section className="content-section">
+          <section id="rights-choices" className="content-section">
             <h2 className="section-title">Your Rights & Choices</h2>
             <p className="section-subtitle">You have the following rights regarding your personal information:</p>
             
@@ -184,7 +251,7 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           {/* Cookies & Tracking */}
-          <section className="content-section">
+          <section id="cookies-tracking" className="content-section">
             <h2 className="section-title">Cookies & Tracking</h2>
             <p className="section-subtitle">We use cookies and similar technologies for:</p>
             
@@ -206,19 +273,19 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           {/* Data Retention */}
-          <section className="content-section">
+          <section id="data-retention" className="content-section">
             <h2 className="section-title">Data Retention</h2>
             <p className="section-text">We retain information as long as necessary to provide services, comply with legal requirements, and support legitimate educational purposes. Upon account deletion, data is removed within 90 days unless retention is legally required.</p>
           </section>
 
           {/* Policy Updates */}
-          <section className="content-section">
+          <section id="policy-updates" className="content-section">
             <h2 className="section-title">Policy Updates</h2>
             <p className="section-text">We may update this Privacy Policy periodically. When material changes are made, we will notify you via email or platform notice and update the "Last Updated" date.</p>
           </section>
 
           {/* Contact Us */}
-          <section className="content-section">
+          <section id="contact-us" className="content-section">
             <h2 className="section-title">Contact Us</h2>
             <div className="contact-info">
               <p className="contact-text">For questions or requests regarding this Privacy Policy:</p>
@@ -231,6 +298,7 @@ const PrivacyPolicy: React.FC = () => {
           <div className="privacy-cta">
             <button className="enroll-button">Enroll Now</button>
           </div>
+        </div>
         </div>
       </main>
       

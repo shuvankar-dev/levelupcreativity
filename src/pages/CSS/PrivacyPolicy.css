@@ -6,27 +6,43 @@
   padding-top: 120px;
   padding-bottom: 80px;
   display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+/* Privacy Container - Wrapper for sidebar and content */
+.privacy-container {
+  width: 100%;
+  max-width: 1600px;
+  display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  position: relative;
-  padding-left: 80px;
   gap: 20px;
+  padding-left: 80px;
+  padding-right: 80px;
+  position: relative;
 }
 
 /* Sidebar Navigation */
 .privacy-sidebar {
-  position: sticky;
+  position: fixed;
   left: 80px;
-  top: 180px;
-  align-self: flex-start;
+  top: 100px;
   width: 321px;
-  max-height: calc(100vh - 280px);
+  max-height: calc(100vh - 200px);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
   z-index: 10;
   overflow-y: auto;
   padding-bottom: 40px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.privacy-sidebar.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .privacy-sidebar::-webkit-scrollbar {
@@ -74,18 +90,19 @@
 .privacy-content {
   width: 100%;
   max-width: 900px;
-  margin-left: 250px;
+  margin-left: 221px;
   padding: 0 40px;
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 30px;
+  flex: 1;
 }
 
 /* Header Section */
 .privacy-header-section {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 20px;
 }
 
 .privacy-main-header {
@@ -150,7 +167,7 @@
   width: 100%;
   height: 1px;
   background: linear-gradient(90deg, rgba(100, 67, 255, 0) 0%, rgba(100, 67, 255, 0.5) 50%, rgba(100, 67, 255, 0) 100%);
-  margin: 20px 0;
+  margin: 0;
 }
 
 /* Content Sections */
@@ -158,6 +175,10 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+.content-section:first-of-type {
+  margin-top: -40px;
 }
 
 .section-title {
@@ -505,30 +526,40 @@
 
 /* Responsive Design */
 @media (max-width: 1400px) {
+  .privacy-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  
   .privacy-sidebar {
     left: 40px;
     width: 280px;
   }
   
   .privacy-content {
-    margin-left: 340px;
+    margin-left: 360px;
     max-width: 800px;
   }
 }
 
 @media (max-width: 1200px) {
+  .privacy-container {
+    flex-direction: column;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  
   .privacy-sidebar {
     position: relative;
-    left: 0;
     top: 0;
     width: 100%;
     max-width: 900px;
     margin: 0 auto 40px;
-    padding: 0 40px;
+    max-height: none;
   }
   
   .privacy-content {
-    margin-left: auto;
+    margin-left: 0;
     margin-right: auto;
     max-width: 900px;
   }
@@ -555,8 +586,13 @@
     padding-top: 100px;
   }
   
+  .privacy-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  
   .privacy-sidebar {
-    padding: 0 24px;
+    padding: 0;
   }
   
   .privacy-content {
