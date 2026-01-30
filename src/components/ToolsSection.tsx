@@ -20,12 +20,20 @@ import photoshopLogo from '../assets/toolslogo/Adobe Photoshop.png';
 
 const ToolsSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'ux' | 'vfx'>('ux');
+  const [hasAnimated, setHasAnimated] = useState(false);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { 
     once: true,
-    amount: 0.4, // Need 40% visible before animating
+    amount: 0.4,
     margin: "0px 0px -50px 0px"
   });
+
+  // Track when initial animation completes
+  React.useEffect(() => {
+    if (isInView && !hasAnimated) {
+      setHasAnimated(true);
+    }
+  }, [isInView, hasAnimated]);
 
   const uxTools = [
     { name: 'Figma', logo: figmaLogo },
@@ -106,9 +114,9 @@ const ToolsSection: React.FC = () => {
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 1.2,
+        duration: 1.2, // Same as scroll animation
         ease: [0.16, 1, 0.3, 1] as const,
-        delay: 0.8 + (index * 0.15)
+        delay: hasAnimated ? index * 0.15 : 0.8 + (index * 0.15) // Same delay as scroll
       }
     })
   };

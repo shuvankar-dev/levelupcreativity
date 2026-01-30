@@ -10,28 +10,28 @@ function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      const heroHeight = window.innerHeight * 0.3; // Collapse after 30% of hero
+      const heroHeight = window.innerHeight; // Full hero height
+      const scrollDifference = currentScrollY - lastScrollY.current;
 
       // Clear any pending timeout
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current);
       }
 
-      // Collapse when scrolled past hero threshold
-      if (currentScrollY > heroHeight) {
-        // Scrolling down - collapse
-        if (currentScrollY > lastScrollY.current) {
+      // If at top (hero section), always show full navbar
+      if (currentScrollY <= heroHeight) {
+        setIsCollapsed(false);
+      } 
+      // If past hero section
+      else {
+        // Scrolling down (with threshold to avoid jitter)
+        if (scrollDifference > 5) {
           setIsCollapsed(true);
         } 
-        // Scrolling up - expand with slight delay for smooth feel
-        else if (currentScrollY < lastScrollY.current - 10) {
-          scrollTimeout.current = setTimeout(() => {
-            setIsCollapsed(false);
-          }, 50);
+        // Scrolling up (with threshold to avoid jitter)
+        else if (scrollDifference < -5) {
+          setIsCollapsed(false);
         }
-      } else {
-        // Above hero threshold - always expanded
-        setIsCollapsed(false);
       }
 
       lastScrollY.current = currentScrollY;
