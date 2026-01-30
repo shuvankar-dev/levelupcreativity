@@ -1,6 +1,7 @@
 import React from 'react';
 import './CSS/Footer.css';
 import { Instagram, Twitter, Linkedin, Youtube } from 'lucide-react';
+import levelupLogo from '../assets/levelupLogo.png';
 
 const Footer: React.FC = () => {
   return (
@@ -11,8 +12,7 @@ const Footer: React.FC = () => {
           {/* Logo + Description + Social */}
           <div className="footer-brand">
             <div className="footer-logo">
-              <span className="logo-text">levelup</span>
-              <span className="logo-dot">.</span>
+              <img src={levelupLogo} alt="LevelUp" className="logo-image" />
             </div>
             <p className="footer-description">
               Empowering creators withworld-class education in design and 3D

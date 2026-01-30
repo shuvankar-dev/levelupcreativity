@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import './CSS/navbar.css';
+import levelupLogo from '../assets/levelupLogo.png';
 
 function Navbar() {
   const [isCoursesOpen, setIsCoursesOpen] = useState(false);
@@ -52,7 +53,7 @@ function Navbar() {
     <nav className={`navbar ${isCollapsed ? 'navbar-collapsed' : ''}`}>
       <div className="navbar-inner">
         <div className="logo">
-          levelup<span className="dot"></span>
+          <img src={levelupLogo} alt="LevelUp" className="logo-image" />
         </div>
         
         {/* Navigation Menu - Fades out when collapsed */}

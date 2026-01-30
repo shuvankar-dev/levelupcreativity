@@ -39,35 +39,21 @@
 }
 
 .logo {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 1.5rem;
-  color: #fff;
-  letter-spacing: -0.5px;
   display: flex;
-  align-items: flex-end;
-  gap: 2px;
+  align-items: center;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   flex-shrink: 0;
 }
 
-.navbar-collapsed .logo {
-  font-size: 1.25rem;
-}
-
-.logo .dot {
-  background: #6841F7;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  display: inline-block;
-  margin-bottom: 2px;
+.logo-image {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.navbar-collapsed .logo .dot {
-  width: 6px;
-  height: 6px;
+.navbar-collapsed .logo-image {
+  height: 24px;
 }
 
 /* Navigation Menu */
