@@ -52,7 +52,13 @@ function Navbar() {
   return (
     <nav className={`navbar ${isCollapsed ? 'navbar-collapsed' : ''}`}>
       <div className="navbar-inner">
-        <div className="logo">
+        <div 
+          className="logo"
+          onClick={() => {
+            window.dispatchEvent(new CustomEvent('navigate', { detail: { page: 'home' } }));
+          }}
+          style={{ cursor: 'pointer' }}
+        >
           <img src={levelupLogo} alt="LevelUp" className="logo-image" />
         </div>
         
@@ -92,6 +98,19 @@ function Navbar() {
           <div className="nav-item">
             <div className="nav-item-content">
               <span className="nav-text">Contacts</span>
+            </div>
+          </div>
+
+          {/* Privacy Policy - No Arrow */}
+          <div 
+            className="nav-item"
+            onClick={() => {
+              window.dispatchEvent(new CustomEvent('navigate', { detail: { page: 'privacy-policy' } }));
+            }}
+            style={{ cursor: 'pointer' }}
+          >
+            <div className="nav-item-content">
+              <span className="nav-text">Privacy Policy</span>
             </div>
           </div>
         </div>
