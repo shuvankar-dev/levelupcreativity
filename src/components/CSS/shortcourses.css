@@ -56,11 +56,27 @@
   white-space: nowrap;
 }
 
-/* Block inner content animations only - keep section visible */
+/* Block ALL inner content animations and transitions */
 .short-courses-section .short-courses-header *,
-.short-courses-section .short-course-card-content * {
+.short-courses-section .short-course-card-content *,
+.short-courses-section .mode-badge,
+.short-courses-section .mode-text,
+.short-courses-section .short-course-title,
+.short-courses-section .trust-tagline,
+.short-courses-section .course-brief,
+.short-courses-section .course-meta,
+.short-courses-section .meta-item,
+.short-courses-section .meta-icon,
+.short-courses-section .meta-text,
+.short-courses-section .start-button,
+.short-courses-section .button-content,
+.short-courses-section .button-text,
+.short-courses-section .button-icon {
   animation: none !important;
   transition: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .carousel-wrapper {

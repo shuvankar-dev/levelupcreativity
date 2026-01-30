@@ -55,7 +55,16 @@ const ShortCoursesSection: React.FC = () => {
   ];
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(1); // Start with index 1 (second card)
+
+  // Scroll to index 1 on mount
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      scrollToCard(1);
+    }, 100); // Small delay to ensure DOM is ready
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // Detect center card on scroll
   useEffect(() => {
