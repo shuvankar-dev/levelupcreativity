@@ -74,7 +74,12 @@ const Contact: React.FC = () => {
                   </div>
                   <div className="card-content">
                     <p className="card-description">Let's collaborate on custom solutions or discuss product insights</p>
-                    <button className="enroll-button">Enroll Now</button>
+                    <button className="enroll-button">
+                      <span className="button-text">
+                        <span className="button-text-inner">Enroll Now</span>
+                        <span className="button-text-inner">Enroll Now</span>
+                      </span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -147,7 +152,12 @@ const Contact: React.FC = () => {
                   </div>
                 </div>
 
-                <button type="submit" className="submit-button">Enroll Now</button>
+                <button type="submit" className="submit-button">
+                  <span className="button-text">
+                    <span className="button-text-inner">Enroll Now</span>
+                    <span className="button-text-inner">Enroll Now</span>
+                  </span>
+                </button>
               </form>
             </div>
           </div>

@@ -23,7 +23,10 @@ function Hero() {
 
         {/* Button */}
         <button className="enroll-button">
-          <span>Enroll Now →</span>
+          <span className="button-text">
+            <span className="button-text-inner">Enroll Now →</span>
+            <span className="button-text-inner">Enroll Now →</span>
+          </span>
         </button>
       </div>
 
