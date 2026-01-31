@@ -101,7 +101,7 @@ const AdminAuth: React.FC = () => {
     checkUser();
     
     // Listen for auth changes
-    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session) {
         setIsAuthenticated(true);
       } else {
