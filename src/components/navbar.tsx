@@ -95,7 +95,13 @@ function Navbar() {
           </div>
 
           {/* Contacts - No Arrow */}
-          <div className="nav-item">
+          <div 
+            className="nav-item"
+            onClick={() => {
+              window.dispatchEvent(new CustomEvent('navigate', { detail: { page: 'contact' } }));
+            }}
+            style={{ cursor: 'pointer' }}
+          >
             <div className="nav-item-content">
               <span className="nav-text">Contacts</span>
             </div>
