@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CSS/navbar.css';
 import levelupLogo from '../assets/levelupLogo.png';
 
 function Navbar() {
-  const [isCoursesOpen, setIsCoursesOpen] = useState(false);
+  const navigate = useNavigate();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const lastScrollY = useRef(0);
   const scrollTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -19,20 +20,21 @@ function Navbar() {
         clearTimeout(scrollTimeout.current);
       }
 
-      // If at top (hero section), always show full navbar
-      if (currentScrollY <= heroHeight) {
+      // Always show full navbar in hero section
+      if (currentScrollY < heroHeight) {
         setIsCollapsed(false);
       } 
-      // If past hero section
+      // Past hero section - check scroll direction
       else {
-        // Scrolling down (with threshold to avoid jitter)
+        // Only collapse when actively scrolling down (with threshold)
         if (scrollDifference > 5) {
           setIsCollapsed(true);
         } 
-        // Scrolling up (with threshold to avoid jitter)
+        // Show navbar when scrolling up (with threshold)
         else if (scrollDifference < -5) {
           setIsCollapsed(false);
         }
+        // If user stops scrolling, keep current state
       }
 
       lastScrollY.current = currentScrollY;
@@ -54,9 +56,7 @@ function Navbar() {
       <div className="navbar-inner">
         <div 
           className="logo"
-          onClick={() => {
-            window.dispatchEvent(new CustomEvent('navigate', { detail: { page: 'home' } }));
-          }}
+          onClick={() => navigate('/')}
           style={{ cursor: 'pointer' }}
         >
           <img src={levelupLogo} alt="LevelUp" className="logo-image" />
@@ -65,11 +65,7 @@ function Navbar() {
         {/* Navigation Menu - Fades out when collapsed */}
         <div className={`nav-menu ${isCollapsed ? 'nav-menu-hidden' : ''}`}>
           {/* Courses with Dropdown Arrow */}
-          <div 
-            className="nav-item nav-item-dropdown"
-            onMouseEnter={() => setIsCoursesOpen(true)}
-            onMouseLeave={() => setIsCoursesOpen(false)}
-          >
+          <div className="nav-item nav-item-dropdown">
             <div className="nav-item-content">
               <span className="nav-text">Courses</span>
               <div className="nav-arrow-icon">
@@ -97,9 +93,7 @@ function Navbar() {
           {/* Contacts - No Arrow */}
           <div 
             className="nav-item"
-            onClick={() => {
-              window.dispatchEvent(new CustomEvent('navigate', { detail: { page: 'contact' } }));
-            }}
+            onClick={() => navigate('/contact')}
             style={{ cursor: 'pointer' }}
           >
             <div className="nav-item-content">
@@ -110,9 +104,7 @@ function Navbar() {
           {/* Privacy Policy - No Arrow */}
           <div 
             className="nav-item"
-            onClick={() => {
-              window.dispatchEvent(new CustomEvent('navigate', { detail: { page: 'privacy-policy' } }));
-            }}
+            onClick={() => navigate('/privacy-policy')}
             style={{ cursor: 'pointer' }}
           >
             <div className="nav-item-content">

@@ -39,21 +39,35 @@
 }
 
 .logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #fff;
+  letter-spacing: -0.5px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  gap: 2px;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   flex-shrink: 0;
 }
 
-.logo-image {
-  height: 32px;
-  width: auto;
-  object-fit: contain;
+.navbar-collapsed .logo {
+  font-size: 1.25rem;
+}
+
+.logo .dot {
+  background: #6841F7;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-bottom: 2px;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.navbar-collapsed .logo-image {
-  height: 24px;
+.navbar-collapsed .logo .dot {
+  width: 6px;
+  height: 6px;
 }
 
 /* Navigation Menu */
@@ -67,7 +81,7 @@
   opacity: 1;
   visibility: visible;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  max-width: 900px; /* Increased to fit 5 items */
+  max-width: 850px;
   flex: 1;
   transform: translateY(0);
   overflow: hidden;

@@ -535,38 +535,42 @@
 .enroll-button .button-text {
   display: block;
   position: relative;
-  height: 24px;
-  line-height: 24px;
+  height: 27px;
+  line-height: 27px;
   overflow: hidden;
   width: 100%;
   text-align: center;
+  color: #140F1D !important;
 }
 
 .enroll-button .button-text-inner {
   display: block;
-  line-height: 24px;
+  line-height: 27px;
   white-space: nowrap;
   transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: #140F1D !important;
 }
 
 .enroll-button .button-text-inner:first-child {
   position: relative;
+  color: #140F1D !important;
 }
 
 .enroll-button .button-text-inner:last-child {
   position: absolute;
-  top: 24px;
+  top: 27px;
   left: 0;
   right: 0;
   text-align: center;
+  color: #140F1D !important;
 }
 
 .enroll-button:hover .button-text-inner:first-child {
-  transform: translateY(-24px);
+  transform: translateY(-27px);
 }
 
 .enroll-button:hover .button-text-inner:last-child {
-  transform: translateY(-24px);
+  transform: translateY(-27px);
 }
 
 /* Responsive Design */
