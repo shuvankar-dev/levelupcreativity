@@ -296,7 +296,7 @@ const PrivacyPolicy: React.FC = () => {
 
           {/* CTA Button */}
           <div className="privacy-cta">
-            <button className="enroll-button">
+            <button className="privacy-enroll-button">
               <span className="button-text">
                 <span className="button-text-inner">Enroll Now</span>
                 <span className="button-text-inner">Enroll Now</span>

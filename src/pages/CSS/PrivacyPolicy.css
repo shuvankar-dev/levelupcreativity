@@ -500,7 +500,7 @@
   border-top: 1px solid rgba(100, 67, 255, 0.2);
 }
 
-.enroll-button {
+.privacy-enroll-button {
   font-family: 'DM Sans', sans-serif;
   font-weight: 600;
   font-size: 18px;
@@ -522,17 +522,17 @@
   justify-content: center;
 }
 
-.enroll-button:hover {
+.privacy-enroll-button:hover {
   transform: translateY(-2px);
   box-shadow: 0px 8px 30px rgba(255, 255, 255, 0.4);
 }
 
-.enroll-button:active {
+.privacy-enroll-button:active {
   transform: translateY(0);
 }
 
 /* Privacy Button Text Animation */
-.enroll-button .button-text {
+.privacy-enroll-button .button-text {
   display: block;
   position: relative;
   height: 27px;
@@ -543,7 +543,7 @@
   color: #140F1D !important;
 }
 
-.enroll-button .button-text-inner {
+.privacy-enroll-button .button-text-inner {
   display: block;
   line-height: 27px;
   white-space: nowrap;
@@ -551,12 +551,12 @@
   color: #140F1D !important;
 }
 
-.enroll-button .button-text-inner:first-child {
+.privacy-enroll-button .button-text-inner:first-child {
   position: relative;
   color: #140F1D !important;
 }
 
-.enroll-button .button-text-inner:last-child {
+.privacy-enroll-button .button-text-inner:last-child {
   position: absolute;
   top: 27px;
   left: 0;
@@ -565,11 +565,11 @@
   color: #140F1D !important;
 }
 
-.enroll-button:hover .button-text-inner:first-child {
+.privacy-enroll-button:hover .button-text-inner:first-child {
   transform: translateY(-27px);
 }
 
-.enroll-button:hover .button-text-inner:last-child {
+.privacy-enroll-button:hover .button-text-inner:last-child {
   transform: translateY(-27px);
 }
 

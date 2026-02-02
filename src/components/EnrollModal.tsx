@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './CSS/EnrollModal.css';
+import { submitEnrollment } from '../actions/enrollmentActions';
+import type { EnrollmentData } from '../actions/enrollmentActions';
 
 interface EnrollModalProps {
   isOpen: boolean;
@@ -14,6 +16,8 @@ const EnrollModal: React.FC<EnrollModalProps> = ({ isOpen, onClose }) => {
     track: ''
   });
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   const trackOptions = [
     { value: 'ui-ux', label: 'UI/UX Design' },
@@ -41,11 +45,34 @@ const EnrollModal: React.FC<EnrollModalProps> = ({ isOpen, onClose }) => {
     return selected ? selected.label : '';
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Enrollment form submitted:', formData);
-    // Backend integration will be added later
-    onClose();
+    setIsSubmitting(true);
+    setMessage(null);
+
+    const enrollmentData: EnrollmentData = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      track: formData.track as 'ui-ux' | 'vfx'
+    };
+
+    const response = await submitEnrollment(enrollmentData);
+
+    if (response.success) {
+      setMessage({ type: 'success', text: response.message });
+      // Reset form
+      setFormData({ name: '', email: '', phone: '', track: '' });
+      // Close modal after 2 seconds
+      setTimeout(() => {
+        onClose();
+        setMessage(null);
+      }, 2000);
+    } else {
+      setMessage({ type: 'error', text: response.message });
+    }
+
+    setIsSubmitting(false);
   };
 
   if (!isOpen) return null;
@@ -192,9 +219,16 @@ const EnrollModal: React.FC<EnrollModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
+          {/* Message Display */}
+          {message && (
+            <div className={`enroll-message ${message.type}`}>
+              {message.text}
+            </div>
+          )}
+
           {/* Submit Button */}
-          <button type="submit" className="enroll-submit-button">
-            Enroll Now
+          <button type="submit" className="enroll-submit-button" disabled={isSubmitting}>
+            {isSubmitting ? 'Submitting...' : 'Enroll Now'}
           </button>
         </form>
       </div>

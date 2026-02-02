@@ -57,7 +57,7 @@ const AdminDashboard: React.FC<{ onSignOut: () => void }> = ({ onSignOut }) => {
         <div className="dashboard-container">
           {/* Stats Grid - 3 Cards in a Row */}
           <div className="stats-grid">
-            {/* Registered Users Card */}
+            {/* Enroll Users Card */}
             <div className="stat-card">
               <div className="stat-card-inner">
                 <div className="stat-icon-wrapper">
@@ -69,7 +69,7 @@ const AdminDashboard: React.FC<{ onSignOut: () => void }> = ({ onSignOut }) => {
                   </svg>
                 </div>
                 <div className="stat-content">
-                  <p className="stat-label">Registered Users</p>
+                  <p className="stat-label">Enroll Users</p>
                   <p className="stat-value">0</p>
                   <p className="stat-description">Users from enrollment forms</p>
                 </div>
