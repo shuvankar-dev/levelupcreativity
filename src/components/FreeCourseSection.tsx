@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import './CSS/FreeCourseSection.css';
 import figmaLogo from '../assets/toolslogo/Figma.png';
 import lookIcon from '../assets/look.png';
+import { submitFreeCourse, type FreeCourseData } from '../actions/freeCourseActions';
 
 const FreeCourseSection: React.FC = () => {
   const [selectedTrack, setSelectedTrack] = useState<'ux' | 'vfx'>('ux');
@@ -11,6 +12,8 @@ const FreeCourseSection: React.FC = () => {
     email: '',
     mobile: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { 
@@ -27,9 +30,45 @@ const FreeCourseSection: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', { ...formData, track: selectedTrack });
+    setIsSubmitting(true);
+    setMessage(null);
+
+    const freeCourseData: FreeCourseData = {
+      email: formData.email,
+      fullName: formData.fullName,
+      mobile: formData.mobile,
+      track: selectedTrack
+    };
+
+    const response = await submitFreeCourse(freeCourseData);
+
+    if (response.success) {
+      setMessage({ type: 'success', text: response.message });
+      
+      // Show toast notification for admin
+      const event = new CustomEvent('showToast', {
+        detail: {
+          message: 'New free course lead received!',
+          type: 'success'
+        }
+      });
+      window.dispatchEvent(event);
+      
+      // Reset form
+      setFormData({ fullName: '', email: '', mobile: '' });
+      setSelectedTrack('ux');
+      
+      // Clear message after 3 seconds
+      setTimeout(() => {
+        setMessage(null);
+      }, 3000);
+    } else {
+      setMessage({ type: 'error', text: response.message });
+    }
+
+    setIsSubmitting(false);
   };
 
   // Animation variants - smooth like ToolsSection
@@ -192,9 +231,16 @@ const FreeCourseSection: React.FC = () => {
             </div>
 
             {/* Submit Button */}
-            <button type="submit" className="submit-button">
-              Claim your free mini course
+            <button type="submit" className="submit-button" disabled={isSubmitting}>
+              {isSubmitting ? 'Submitting...' : 'Claim your free mini course'}
             </button>
+
+            {/* Message Display */}
+            {message && (
+              <div className={`free-course-message free-course-message-${message.type}`}>
+                {message.text}
+              </div>
+            )}
 
             {/* Security Info */}
             <div className="security-info">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { getAllEnrollments, getEnrollmentCount, updateEnrollmentStatus } from '../actions/enrollmentActions';
+import { getAllFreeCourseLeads, getFreeCourseCount, updateFreeCourseStatus } from '../actions/freeCourseActions';
 import './CSS/AdminAuth.css';
 
 // Enrollment interface
@@ -9,6 +10,17 @@ interface Enrollment {
   name: string;
   email: string;
   phone: string;
+  track: string;
+  status: 'pending' | 'contacted';
+  created_at: string;
+}
+
+// Free Course Lead interface
+interface FreeCourseLead {
+  id: string;
+  full_name: string;
+  email: string;
+  mobile: string;
   track: string;
   status: 'pending' | 'contacted';
   created_at: string;
@@ -220,15 +232,198 @@ const EnrollmentLeadsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   );
 };
 
+// Free Course Leads Page Component
+const FreeCourseLeadsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
+  const [leads, setLeads] = useState<FreeCourseLead[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [updatingId, setUpdatingId] = useState<string | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+
+  useEffect(() => {
+    fetchLeads();
+    
+    const handleToast = (event: any) => {
+      setToast({
+        message: event.detail.message,
+        type: event.detail.type
+      });
+      fetchLeads();
+    };
+    
+    window.addEventListener('showToast', handleToast);
+    return () => window.removeEventListener('showToast', handleToast);
+  }, []);
+
+  const fetchLeads = async () => {
+    setLoading(true);
+    const response = await getAllFreeCourseLeads();
+    if (response.success && response.data) {
+      setLeads(response.data);
+    }
+    setLoading(false);
+  };
+
+  const handleStatusChange = async (id: string, newStatus: 'pending' | 'contacted') => {
+    setUpdatingId(id);
+    const response = await updateFreeCourseStatus(id, newStatus);
+    if (response.success) {
+      setLeads(prev =>
+        prev.map(lead =>
+          lead.id === id ? { ...lead, status: newStatus } : lead
+        )
+      );
+    }
+    setUpdatingId(null);
+  };
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
+  const totalLeads = leads.length;
+  const pendingCount = leads.filter(l => l.status === 'pending').length;
+  const contactedCount = leads.filter(l => l.status === 'contacted').length;
+
+  return (
+    <div className="enrollment-leads-page">
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
+      
+      <div className="enrollment-leads-header">
+        <div className="enrollment-leads-header-content">
+          <div className="enrollment-leads-title-section">
+            <button onClick={onBack} className="back-button">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              Back to Dashboard
+            </button>
+            <h1 className="enrollment-leads-title">Free Course Leads</h1>
+            <p className="enrollment-leads-subtitle">Manage and track all free course submissions</p>
+          </div>
+          <div className="enrollment-leads-stats">
+            <div className="leads-stat-item">
+              <span className="leads-stat-label">Total Leads</span>
+              <span className="leads-stat-value">{totalLeads}</span>
+            </div>
+            <div className="leads-stat-item">
+              <span className="leads-stat-label">Pending</span>
+              <span className="leads-stat-value leads-stat-pending">{pendingCount}</span>
+            </div>
+            <div className="leads-stat-item">
+              <span className="leads-stat-label">Contacted</span>
+              <span className="leads-stat-value leads-stat-contacted">{contactedCount}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="enrollment-leads-content">
+        <div className="enrollment-leads-container">
+          {loading ? (
+            <div className="enrollment-loading">Loading free course leads...</div>
+          ) : leads.length === 0 ? (
+            <div className="enrollment-empty">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                <path d="M22 10V15C22 20 20 22 15 22H9C4 22 2 20 2 15V9C2 4 4 2 9 2H14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M22 10H18C15 10 14 9 14 6V2L22 10Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <p>No free course leads yet</p>
+            </div>
+          ) : (
+            <div className="enrollment-table-wrapper">
+              <table className="enrollment-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Track</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {leads.map((lead) => (
+                    <tr key={lead.id}>
+                      <td className="name-cell">{lead.full_name}</td>
+                      <td className="email-cell">{lead.email}</td>
+                      <td className="phone-cell">{lead.mobile}</td>
+                      <td>
+                        <span className={`track-badge track-${lead.track === 'ux' ? 'ui-ux' : 'vfx'}`}>
+                          {lead.track === 'ux' ? 'UX/UI Design' : 'VFX Animation'}
+                        </span>
+                      </td>
+                      <td>
+                        <div className="status-badge-container">
+                          <button
+                            onClick={() => handleStatusChange(lead.id, 'pending')}
+                            className={`status-badge ${lead.status === 'pending' ? 'status-badge-active status-badge-pending' : 'status-badge-inactive'}`}
+                            disabled={updatingId === lead.id}
+                          >
+                            Pending
+                          </button>
+                          <button
+                            onClick={() => handleStatusChange(lead.id, 'contacted')}
+                            className={`status-badge ${lead.status === 'contacted' ? 'status-badge-active status-badge-contacted' : 'status-badge-inactive'}`}
+                            disabled={updatingId === lead.id}
+                          >
+                            Contacted
+                          </button>
+                        </div>
+                      </td>
+                      <td className="date-cell">{formatDate(lead.created_at)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Admin Dashboard Component
 const AdminDashboard: React.FC<{ onSignOut: () => void }> = ({ onSignOut }) => {
   const [adminEmail, setAdminEmail] = useState<string>('');
   const [enrollmentCount, setEnrollmentCount] = useState<number>(0);
+  const [freeCourseCount, setFreeCourseCount] = useState<number>(0);
   const [showEnrollmentLeads, setShowEnrollmentLeads] = useState(false);
+  const [showFreeCourseLeads, setShowFreeCourseLeads] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
   useEffect(() => {
     fetchAdminInfo();
     fetchEnrollmentCount();
+    fetchFreeCourseCount();
+    
+    // Listen for toast notifications
+    const handleToast = (event: any) => {
+      setToast({
+        message: event.detail.message,
+        type: event.detail.type
+      });
+      // Refresh counts
+      fetchEnrollmentCount();
+      fetchFreeCourseCount();
+    };
+    
+    window.addEventListener('showToast', handleToast);
+    return () => window.removeEventListener('showToast', handleToast);
   }, []);
 
   const fetchAdminInfo = async () => {
@@ -247,13 +442,32 @@ const AdminDashboard: React.FC<{ onSignOut: () => void }> = ({ onSignOut }) => {
     setEnrollmentCount(count);
   };
 
+  const fetchFreeCourseCount = async () => {
+    const count = await getFreeCourseCount();
+    setFreeCourseCount(count);
+  };
+
   // Show enrollment leads page
   if (showEnrollmentLeads) {
     return <EnrollmentLeadsPage onBack={() => setShowEnrollmentLeads(false)} />;
   }
 
+  // Show free course leads page
+  if (showFreeCourseLeads) {
+    return <FreeCourseLeadsPage onBack={() => setShowFreeCourseLeads(false)} />;
+  }
+
   return (
     <div className="dashboard-page">
+      {/* Toast Notification */}
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
+      
       {/* Header */}
       <div className="dashboard-header">
         <div className="dashboard-header-content">
@@ -307,8 +521,8 @@ const AdminDashboard: React.FC<{ onSignOut: () => void }> = ({ onSignOut }) => {
               </div>
             </div>
 
-            {/* Free Course Leads Card */}
-            <div className="stat-card">
+            {/* Free Course Leads Card - Clickable */}
+            <div className="stat-card stat-card-clickable" onClick={() => setShowFreeCourseLeads(true)}>
               <div className="stat-card-inner">
                 <div className="stat-icon-wrapper stat-icon-green">
                   <svg className="stat-icon" viewBox="0 0 24 24" fill="none">
@@ -320,8 +534,8 @@ const AdminDashboard: React.FC<{ onSignOut: () => void }> = ({ onSignOut }) => {
                 </div>
                 <div className="stat-content">
                   <p className="stat-label">Free Course Leads</p>
-                  <p className="stat-value">0</p>
-                  <p className="stat-description">Users interested in free courses</p>
+                  <p className="stat-value">{freeCourseCount}</p>
+                  <p className="stat-description">Click to view all free course leads</p>
                 </div>
               </div>
             </div>
