@@ -83,7 +83,12 @@ const Footer: React.FC = () => {
               placeholder="Enter your email" 
               className="newsletter-input"
             />
-            <button className="newsletter-button">Get In Touch</button>
+            <button 
+              className="newsletter-button"
+              onClick={() => window.open('https://wa.me/919836841945?text=Hi%2C%20I%27m%20interested%20in%20learning%20more%20about%20your%20UI%2FUX%20and%20VFX%20courses.%20Can%20you%20provide%20more%20details%3F', '_blank')}
+            >
+              Get In Touch
+            </button>
           </div>
         </div>
 

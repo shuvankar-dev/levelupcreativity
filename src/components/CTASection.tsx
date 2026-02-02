@@ -46,7 +46,10 @@ const CTASection: React.FC = () => {
             <h2 className="cta-title cta-text-animate">
               Not sure which course fits your goals?
             </h2>
-            <button className="cta-button cta-button-animate">
+            <button 
+              className="cta-button cta-button-animate"
+              onClick={() => window.open('https://wa.me/919836841945?text=Hi%2C%20I%27m%20interested%20in%20learning%20more%20about%20your%20UI%2FUX%20and%20VFX%20courses.%20Can%20you%20provide%20more%20details%3F', '_blank')}
+            >
               Get in Touch
             </button>
           </div>
