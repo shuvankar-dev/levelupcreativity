@@ -1,0 +1,385 @@
+/* Modal Overlay */
+.enroll-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal Content */
+.enroll-modal-content {
+  width: 100%;
+  max-width: 580px;
+  background: linear-gradient(92.88deg, #18181B 1.31%, #000000 95.65%);
+  border-radius: 24px;
+  padding: 48px 40px;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: slideUp 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0px 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Close Button */
+.modal-close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.modal-close-button svg {
+  color: #A29AB1;
+  transition: color 0.3s ease;
+}
+
+.modal-close-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.modal-close-button:hover svg {
+  color: #EDECEE;
+}
+
+/* Modal Header */
+.modal-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.modal-title {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.5px;
+  background: linear-gradient(90deg, #EA4080 0%, #9F94F3 50%, #6B81E4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.modal-subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #A29AB1;
+  margin: 0;
+}
+
+/* Enrollment Form */
+.enroll-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.enroll-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.enroll-form-label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #EDECEE;
+  letter-spacing: 0.5px;
+}
+
+.required {
+  color: #f87171;
+}
+
+/* Input Container */
+.enroll-input-container {
+  position: relative;
+  width: 100%;
+}
+
+.enroll-form-input {
+  width: 100%;
+  height: 56px;
+  padding: 0 20px;
+  background: linear-gradient(92.88deg, #18181B 1.31%, #000000 95.65%);
+  border: 1px solid #1F1D22;
+  border-radius: 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #EDECEE;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.enroll-form-input::placeholder {
+  color: transparent;
+}
+
+.enroll-form-input:focus {
+  outline: none;
+  border-color: #6443FF;
+}
+
+.enroll-form-input:focus + .enroll-input-placeholder {
+  display: none;
+}
+
+/* Input Placeholder with Icon */
+.enroll-input-placeholder {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.enroll-input-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.placeholder-text {
+  color: #6F677E;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+/* Custom Dropdown */
+.custom-dropdown-container {
+  position: relative;
+  width: 100%;
+}
+
+.custom-dropdown-trigger {
+  width: 100%;
+  height: 56px;
+  padding: 0 45px 0 20px;
+  background: linear-gradient(92.88deg, #18181B 1.31%, #000000 95.65%);
+  border: 1px solid #1F1D22;
+  border-radius: 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.custom-dropdown-trigger:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.custom-dropdown-trigger.open {
+  border-color: #6443FF;
+}
+
+.custom-dropdown-trigger .placeholder {
+  color: #6F677E;
+}
+
+.custom-dropdown-trigger .selected {
+  color: #EDECEE;
+}
+
+.dropdown-arrow {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.custom-dropdown-trigger.open .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+.custom-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: linear-gradient(92.88deg, #18181B 1.31%, #000000 95.65%);
+  border: 1px solid #1F1D22;
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 1000;
+  box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.5);
+  animation: dropdownSlide 0.2s ease;
+}
+
+@keyframes dropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-option {
+  padding: 16px 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: #EDECEE;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dropdown-option:last-child {
+  border-bottom: none;
+}
+
+.dropdown-option:hover {
+  background: rgba(100, 67, 255, 0.1);
+  color: #EDECEE;
+}
+
+.dropdown-option.selected {
+  background: rgba(100, 67, 255, 0.15);
+  color: #8868FF;
+}
+
+.dropdown-option svg {
+  flex-shrink: 0;
+}
+
+/* Submit Button */
+.enroll-submit-button {
+  width: 100%;
+  height: 56px;
+  margin-top: 8px;
+  background: linear-gradient(94.54deg, #6443FF 5.91%, #8838B9 95.53%);
+  border: 1px solid #B7A5D9;
+  border-radius: 56px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #EDECEE;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.enroll-submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 8px 30px rgba(100, 67, 255, 0.5);
+}
+
+.enroll-submit-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .enroll-modal-content {
+    padding: 32px 24px;
+    max-width: 100%;
+  }
+
+  .modal-title {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .modal-subtitle {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .enroll-form {
+    gap: 20px;
+  }
+
+  .enroll-form-input,
+  .enroll-form-select,
+  .enroll-submit-button {
+    height: 48px;
+    font-size: 14px;
+  }
+}
+
+/* Scrollbar Styling */
+.enroll-modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.enroll-modal-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.enroll-modal-content::-webkit-scrollbar-thumb {
+  background: rgba(100, 67, 255, 0.5);
+  border-radius: 4px;
+}
+
+.enroll-modal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 67, 255, 0.7);
+}
