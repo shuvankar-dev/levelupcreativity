@@ -3,7 +3,7 @@
   width: 100%;
   min-height: 100vh;
   background: #000000;
-  padding-top: 120px;
+  padding-top: 240px;
   padding-bottom: 80px;
   display: flex;
   justify-content: center;
@@ -17,7 +17,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 20px;
+  gap: 60px;
   padding-left: 80px;
   padding-right: 80px;
   position: relative;
@@ -27,9 +27,9 @@
 .privacy-sidebar {
   position: fixed;
   left: 80px;
-  top: 100px;
+  top: 280px;
   width: 321px;
-  max-height: calc(100vh - 200px);
+  max-height: calc(100vh - 320px);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -90,8 +90,8 @@
 .privacy-content {
   width: 100%;
   max-width: 900px;
-  margin-left: 221px;
-  padding: 0 40px;
+  margin-left: 381px;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 30px;
