@@ -3,7 +3,7 @@
   width: 100%;
   min-height: 100vh;
   background: #000000;
-  padding-top: 120px;
+  padding-top: 240px;
   padding-bottom: 80px;
   display: flex;
   justify-content: center;
@@ -31,15 +31,13 @@
 
 .contact-title {
   font-family: 'DM Sans', sans-serif;
+  font-style: normal;
   font-weight: 400;
   font-size: 88px;
   line-height: 106px;
-  letter-spacing: -1.76px;
-  background: linear-gradient(90deg, #EA4080 0%, #9F94F3 19.23%, #6B81E4 33.65%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   text-align: center;
+  letter-spacing: -1.76px;
+  color: #FFFFFF;
   margin: 0;
 }
 
@@ -181,78 +179,41 @@
   color: #6443FF;
 }
 
-.enroll-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  gap: 8px;
-  width: 175px;
-  height: 56px;
-  background: #FFFFFF;
-  border: 1px solid #FFFFFF;
-  border-radius: 56px;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
-  color: #140F1D;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  box-sizing: border-box;
-  overflow: hidden;
-  position: relative;
+.contact-enroll-button {
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 24px 32px !important;
+  gap: 8px !important;
+  width: 175px !important;
+  height: 56px !important;
+  background: linear-gradient(92.89deg, #6443FF 7.13%, #8838B9 95.65%) !important;
+  border: 1px solid #B7A5D9 !important;
+  border-radius: 56px !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 18px !important;
+  line-height: 27px !important;
+  color: #EDECEE !important;
+  cursor: pointer !important;
+  transition: all 0.4s ease !important;
+  flex: none !important;
+  order: 1 !important;
+  flex-grow: 0 !important;
+  white-space: nowrap !important;
+  box-shadow: none !important;
 }
 
-.enroll-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0px 8px 30px rgba(255, 255, 255, 0.4);
+.contact-enroll-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0px 8px 30px rgba(100, 67, 255, 0.4) !important;
 }
 
-.enroll-button:active {
-  transform: translateY(0);
-}
-
-/* Button Text Animation */
-.enroll-button .button-text {
-  display: block;
-  position: relative;
-  height: 27px;
-  line-height: 27px;
-  overflow: hidden;
-  width: 100%;
-  text-align: center;
-  color: #140F1D !important;
-}
-
-.enroll-button .button-text-inner {
-  display: block;
-  line-height: 27px;
-  white-space: nowrap;
-  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  color: #140F1D !important;
-}
-
-.enroll-button .button-text-inner:first-child {
-  position: relative;
-  color: #140F1D !important;
-}
-
-.enroll-button .button-text-inner:last-child {
-  position: absolute;
-  top: 27px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: #140F1D !important;
-}
-
-.enroll-button:hover .button-text-inner:first-child {
-  transform: translateY(-27px);
-}
-
-.enroll-button:hover .button-text-inner:last-child {
-  transform: translateY(-27px);
+.contact-enroll-button:active {
+  transform: translateY(0) !important;
 }
 
 /* Form Card */
@@ -271,6 +232,7 @@
   flex-grow: 1;
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
 }
 
 .contact-form-card::before {
@@ -346,8 +308,9 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  gap: 32px;
+  gap: 56px;
   width: 564px;
+  height: 625px;
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -360,6 +323,7 @@
   padding: 0px;
   gap: 16px;
   width: 564px;
+  height: 99px;
   flex: none;
   align-self: stretch;
   flex-grow: 0;
@@ -466,81 +430,40 @@
 }
 
 .submit-button {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  gap: 8px;
-  width: 198.5px;
-  height: 70px;
-  background: #FFFFFF;
-  border: 1px solid #FFFFFF;
-  border-radius: 56px;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
-  color: #140F1D;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  flex: none;
-  order: 4;
-  overflow: hidden;
-  position: relative;
-  white-space: nowrap;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 24px 32px !important;
+  gap: 8px !important;
+  width: 175px !important;
+  height: 56px !important;
+  background: linear-gradient(92.89deg, #6443FF 7.13%, #8838B9 95.65%) !important;
+  border: 1px solid #B7A5D9 !important;
+  border-radius: 56px !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 18px !important;
+  line-height: 27px !important;
+  color: #EDECEE !important;
+  cursor: pointer !important;
+  transition: all 0.4s ease !important;
+  flex: none !important;
+  order: 4 !important;
+  flex-grow: 0 !important;
+  white-space: nowrap !important;
+  box-shadow: none !important;
 }
 
 .submit-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0px 8px 30px rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px) !important;
+  box-shadow: 0px 8px 30px rgba(100, 67, 255, 0.4) !important;
 }
 
 .submit-button:active {
-  transform: translateY(0);
-}
-
-/* Submit Button Text Animation */
-.submit-button .button-text {
-  display: block;
-  position: relative;
-  height: 27px;
-  line-height: 27px;
-  overflow: hidden;
-  width: 100%;
-  text-align: center;
-  color: #140F1D !important;
-}
-
-.submit-button .button-text-inner {
-  display: block;
-  line-height: 27px;
-  white-space: nowrap;
-  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  color: #140F1D !important;
-}
-
-.submit-button .button-text-inner:first-child {
-  position: relative;
-  color: #140F1D !important;
-}
-
-.submit-button .button-text-inner:last-child {
-  position: absolute;
-  top: 27px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: #140F1D !important;
-}
-
-.submit-button:hover .button-text-inner:first-child {
-  transform: translateY(-27px);
-}
-
-.submit-button:hover .button-text-inner:last-child {
-  transform: translateY(-27px);
+  transform: translateY(0) !important;
 }
 
 /* Responsive Design */
