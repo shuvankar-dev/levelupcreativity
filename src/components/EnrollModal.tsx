@@ -61,6 +61,16 @@ const EnrollModal: React.FC<EnrollModalProps> = ({ isOpen, onClose }) => {
 
     if (response.success) {
       setMessage({ type: 'success', text: response.message });
+      
+      // Show toast notification
+      const event = new CustomEvent('showToast', {
+        detail: {
+          message: 'New enrollment received!',
+          type: 'success'
+        }
+      });
+      window.dispatchEvent(event);
+      
       // Reset form
       setFormData({ name: '', email: '', phone: '', track: '' });
       // Close modal after 2 seconds

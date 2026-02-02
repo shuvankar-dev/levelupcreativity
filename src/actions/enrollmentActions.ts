@@ -149,3 +149,41 @@ export const getEnrollmentCount = async (): Promise<number> => {
     return 0;
   }
 };
+
+/**
+ * Update enrollment status (for admin)
+ */
+export const updateEnrollmentStatus = async (
+  id: string,
+  status: 'pending' | 'contacted'
+): Promise<EnrollmentResponse> => {
+  try {
+    const { data, error } = await supabase
+      .from('enrollments')
+      .update({ status })
+      .eq('id', id)
+      .select();
+
+    if (error) {
+      console.error('Supabase error:', error);
+      return {
+        success: false,
+        message: 'Failed to update status',
+        error: error.message
+      };
+    }
+
+    return {
+      success: true,
+      message: 'Status updated successfully',
+      data: data
+    };
+  } catch (error: any) {
+    console.error('Update status error:', error);
+    return {
+      success: false,
+      message: 'An unexpected error occurred',
+      error: error.message
+    };
+  }
+};
