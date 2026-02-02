@@ -4,26 +4,20 @@ import './CSS/AdminAuth.css';
 
 // Admin Dashboard Component
 const AdminDashboard: React.FC<{ onSignOut: () => void }> = ({ onSignOut }) => {
-  const [userCount, setUserCount] = useState<number>(0);
-  const [loading, setLoading] = useState(true);
+  const [adminEmail, setAdminEmail] = useState<string>('');
 
   useEffect(() => {
-    fetchUserCount();
+    fetchAdminInfo();
   }, []);
 
-  const fetchUserCount = async () => {
+  const fetchAdminInfo = async () => {
     try {
-      // Get current user's metadata or use a public function
-      // For now, we'll show a placeholder since we need admin access to count all users
-      // In production, you'd create a Supabase Edge Function or use RLS policies
-      
-      // Temporary: Just show that the feature is ready
-      setUserCount(3); // This will be dynamic once we set up proper access
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user?.email) {
+        setAdminEmail(user.email);
+      }
     } catch (error) {
-      console.error('Error fetching user count:', error);
-      setUserCount(0);
-    } finally {
-      setLoading(false);
+      console.error('Error fetching admin info:', error);
     }
   };
 
@@ -34,7 +28,13 @@ const AdminDashboard: React.FC<{ onSignOut: () => void }> = ({ onSignOut }) => {
         <div className="dashboard-header-content">
           <div className="dashboard-title-section">
             <h1 className="dashboard-title">Admin Dashboard</h1>
-            <p className="dashboard-subtitle">Welcome back! Here's your overview</p>
+            <p className="dashboard-subtitle">
+              {adminEmail ? (
+                <>Welcome back, <span className="admin-email">{adminEmail}</span></>
+              ) : (
+                'Welcome back! Here\'s your overview'
+              )}
+            </p>
           </div>
           <div className="dashboard-actions">
             <button
@@ -55,8 +55,9 @@ const AdminDashboard: React.FC<{ onSignOut: () => void }> = ({ onSignOut }) => {
       {/* Main Content */}
       <div className="dashboard-content">
         <div className="dashboard-container">
-          {/* Stats Card */}
+          {/* Stats Grid - 3 Cards in a Row */}
           <div className="stats-grid">
+            {/* Registered Users Card */}
             <div className="stat-card">
               <div className="stat-card-inner">
                 <div className="stat-icon-wrapper">
@@ -69,14 +70,46 @@ const AdminDashboard: React.FC<{ onSignOut: () => void }> = ({ onSignOut }) => {
                 </div>
                 <div className="stat-content">
                   <p className="stat-label">Registered Users</p>
-                  <p className="stat-value">
-                    {loading ? (
-                      <span className="stat-loading">...</span>
-                    ) : (
-                      userCount
-                    )}
-                  </p>
-                  <p className="stat-description">Total users in the system</p>
+                  <p className="stat-value">0</p>
+                  <p className="stat-description">Users from enrollment forms</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Free Course Leads Card */}
+            <div className="stat-card">
+              <div className="stat-card-inner">
+                <div className="stat-icon-wrapper stat-icon-green">
+                  <svg className="stat-icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M22 10V15C22 20 20 22 15 22H9C4 22 2 20 2 15V9C2 4 4 2 9 2H14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M22 10H18C15 10 14 9 14 6V2L22 10Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M7 13H13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M7 17H11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <div className="stat-content">
+                  <p className="stat-label">Free Course Leads</p>
+                  <p className="stat-value">0</p>
+                  <p className="stat-description">Users interested in free courses</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Add Blog Card */}
+            <div className="stat-card stat-card-action">
+              <div className="stat-card-inner">
+                <div className="stat-icon-wrapper stat-icon-orange">
+                  <svg className="stat-icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 5V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <div className="stat-content">
+                  <p className="stat-label">Add Blog</p>
+                  <p className="stat-description">Create and publish new blog posts</p>
+                  <button className="stat-action-button">
+                    Create New Post
+                  </button>
                 </div>
               </div>
             </div>
