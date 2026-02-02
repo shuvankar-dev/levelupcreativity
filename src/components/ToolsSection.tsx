@@ -36,23 +36,23 @@ const ToolsSection: React.FC = () => {
   }, [isInView, hasAnimated]);
 
   const uxTools = [
-    { name: 'Figma', logo: figmaLogo },
-    { name: 'Photopea', logo: photopeaLogo },
-    { name: 'Freepik AI', logo: freepikLogo },
-    { name: 'Zeplin', logo: zeplinLogo },
-    { name: 'Jitter', logo: jitterLogo },
-    { name: 'Lottie files', logo: lottieLogo },
+    { name: 'Figma', logo: figmaLogo, description: 'UI Design Tool' },
+    { name: 'Photopea', logo: photopeaLogo, description: 'Online Photo Editor' },
+    { name: 'Freepik AI', logo: freepikLogo, description: 'AI Design Generator' },
+    { name: 'Zeplin', logo: zeplinLogo, description: 'Design Handoff Tool' },
+    { name: 'Jitter', logo: jitterLogo, description: 'Motion Design Tool' },
+    { name: 'Lottie files', logo: lottieLogo, description: 'Animation Platform' },
   ];
 
   const vfxTools = [
-    { name: 'Maya', logo: mayaLogo },
-    { name: 'Mocha', logo: mochaLogo },
-    { name: 'Blender', logo: blenderLogo },
-    { name: 'Unreal Engine', logo: unrealLogo },
-    { name: 'Nuke', logo: nukeLogo },
-    { name: 'ZBrush', logo: zbrushLogo },
-    { name: 'Substance 3D Painter', logo: substanceLogo },
-    { name: 'Adobe Photoshop', logo: photoshopLogo },
+    { name: 'Maya', logo: mayaLogo, description: '3D Animation Software' },
+    { name: 'Mocha', logo: mochaLogo, description: 'Motion Tracking Tool' },
+    { name: 'Blender', logo: blenderLogo, description: '3D Creation Suite' },
+    { name: 'Unreal Engine', logo: unrealLogo, description: 'Real-time 3D Engine' },
+    { name: 'Nuke', logo: nukeLogo, description: 'Compositing Software' },
+    { name: 'ZBrush', logo: zbrushLogo, description: 'Digital Sculpting Tool' },
+    { name: 'Substance 3D Painter', logo: substanceLogo, description: '3D Texture Painting' },
+    { name: 'Adobe Photoshop', logo: photoshopLogo, description: 'Image Editing Software' },
   ];
 
   const displayTools = activeTab === 'ux' ? uxTools : vfxTools;
@@ -181,6 +181,7 @@ const ToolsSection: React.FC = () => {
                   <img src={tool.logo} alt={tool.name} />
                 </div>
                 <p className="tool-name">{tool.name}</p>
+                <div className="tool-tooltip">{tool.description}</div>
               </div>
             </motion.div>
           ))}
