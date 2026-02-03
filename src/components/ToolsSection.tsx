@@ -181,7 +181,7 @@ const ToolsSection: React.FC = () => {
                   <img src={tool.logo} alt={tool.name} />
                 </div>
                 <p className="tool-name">{tool.name}</p>
-                <div className="tool-tooltip">{tool.description}</div>
+                <span className="tool-tooltip" data-tooltip={tool.description}></span>
               </div>
             </motion.div>
           ))}
