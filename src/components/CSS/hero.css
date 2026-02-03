@@ -11,6 +11,11 @@
   justify-content: center;
 }
 
+/* Particle Background */
+.hero-particles {
+  opacity: 0.4;
+}
+
 /* Hero Content Container */
 .hero-content {
   position: relative;

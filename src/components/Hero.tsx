@@ -1,6 +1,7 @@
 import './CSS/hero.css';
 import { useState } from 'react';
 import EnrollModal from './EnrollModal';
+import Particles from './Particles';
 
 function Hero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -8,6 +9,23 @@ function Hero() {
   return (
     <>
       <main className="hero-section">
+        {/* Particle Background */}
+        <Particles
+          particleCount={120}
+          particleSpread={15}
+          speed={0.08}
+          particleColors={['#FFFFFF', '#FFFFFF', '#FFFFFF']}
+          moveParticlesOnHover={true}
+          particleHoverFactor={0.8}
+          alphaParticles={true}
+          particleBaseSize={400}
+          sizeRandomness={2}
+          cameraDistance={12}
+          disableRotation={false}
+          pixelRatio={Math.min(window.devicePixelRatio, 2)}
+          className="hero-particles"
+        />
+        
         {/* Hero Content */}
         <div className="hero-content">
           {/* Badge */}
