@@ -109,6 +109,11 @@ function Home() {
           <motion.div 
             className="course-card"
             variants={cardVariants}
+            onClick={() => {
+              const event = new CustomEvent('navigate', { detail: { page: 'ux-design' } });
+              window.dispatchEvent(event);
+            }}
+            style={{ cursor: 'pointer' }}
           >
             <div className="course-image-wrapper">
               <img 

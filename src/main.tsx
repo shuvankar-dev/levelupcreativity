@@ -6,6 +6,7 @@ import App from './App.tsx'
 import PrivacyPolicy from './pages/PrivacyPolicy.tsx'
 import Contact from './pages/Contact.tsx'
 import AdminAuth from './pages/AdminAuth.tsx'
+import UXDesignCourse from './pages/UXDesignCourse.tsx'
 
 function Root() {
   const navigate = useNavigate();
@@ -22,6 +23,8 @@ function Root() {
         navigate('/contact');
       } else if (page === 'admin') {
         navigate('/admin');
+      } else if (page === 'ux-design') {
+        navigate('/ux-design');
       }
     };
 
@@ -38,6 +41,7 @@ function Root() {
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/admin" element={<AdminAuth />} />
+      <Route path="/ux-design" element={<UXDesignCourse />} />
     </Routes>
   );
 }
