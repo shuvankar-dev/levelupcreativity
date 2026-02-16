@@ -2,7 +2,12 @@ import { useState, useEffect, useRef } from 'react';
 import './CSS/navbar.css';
 import levelupLogo from '../assets/levelupLogo.png';
 
-function Navbar() {
+interface NavbarProps {
+  variant?: 'default' | 'course-page';
+  courseName?: string;
+}
+
+function Navbar({ variant = 'default', courseName }: NavbarProps) {
   const [isCoursesOpen, setIsCoursesOpen] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const lastScrollY = useRef(0);
@@ -45,7 +50,7 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className={`navbar ${isCollapsed ? 'navbar-collapsed' : ''}`}>
+    <nav className={`navbar ${isCollapsed ? 'navbar-collapsed' : ''} ${variant === 'course-page' ? 'navbar-course-page' : ''}`}>
       <div className="navbar-inner">
         <div 
           className="logo"
@@ -64,7 +69,7 @@ function Navbar() {
             onMouseLeave={() => setIsCoursesOpen(false)}
           >
             <div className="nav-item-content">
-              <span className="nav-text">Courses</span>
+              <span className="nav-text">{courseName || 'Courses'}</span>
               <div className="nav-arrow-icon">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

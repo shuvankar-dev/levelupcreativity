@@ -268,3 +268,41 @@
     max-width: 260px;
   }
 }
+
+
+/* Course Page Navbar Variant */
+.navbar-course-page {
+  background: transparent;
+}
+
+.navbar-course-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: -1;
+}
+
+.navbar-course-page .navbar-inner {
+  background: transparent;
+  border-radius: 0;
+}
+
+/* Keep navbar always expanded on course page */
+.navbar-course-page.navbar-collapsed .navbar-inner {
+  max-width: 100%;
+  background: transparent;
+  border-radius: 0;
+}
+
+.navbar-course-page.navbar-collapsed .nav-menu {
+  opacity: 1;
+  visibility: visible;
+}
