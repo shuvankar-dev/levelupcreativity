@@ -3,6 +3,7 @@ import Navbar from '../components/navbar';
 import EnrollModal from '../components/EnrollModal';
 import './CSS/UXDesignCourse.css';
 import './CSS/UXDesignCourse-why-choose.css';
+import './CSS/UXDesignCourse-create.css';
 import uxHeroImage from '../assets/UIUX Design/Frame 1056.png';
 import maskBox from '../assets/UIUX Design/Why Choose/Mask box.png';
 import maskGroup from '../assets/UIUX Design/Why Choose/Mask Group.png';
@@ -13,13 +14,72 @@ import paperPlane from '../assets/UIUX Design/Why Choose/PaperPlane.png';
 import firstLayer from '../assets/UIUX Design/Why Choose/First_layer.png';
 import secondLayer from '../assets/UIUX Design/Why Choose/Second_layer.png';
 import theirdLayer from '../assets/UIUX Design/Why Choose/Theird_layer.png';
+import create1 from '../assets/WhatYou\'llCreate/1.png';
+import create2 from '../assets/WhatYou\'llCreate/2.png';
+import create3 from '../assets/WhatYou\'llCreate/3.png';
+import create4 from '../assets/WhatYou\'llCreate/4.png';
+import create5 from '../assets/WhatYou\'llCreate/5.png';
 
 function UXDesignCourse() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeCard, setActiveCard] = useState(0);
+  const totalCards = 5;
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Handle card click - bring clicked card to front
+  const handleCardClick = (index: number) => {
+    if (index !== activeCard) {
+      setActiveCard(index);
+    }
+  };
+
+  // Handle indicator click
+  const handleIndicatorClick = (index: number) => {
+    setActiveCard(index);
+  };
+
+  // Get the stack order for each card (0 = front, 1 = first behind, etc.)
+  const getStackPosition = (index: number): number => {
+    // Calculate position in circular stack
+    let position = index - activeCard;
+    if (position < 0) {
+      position += totalCards;
+    }
+    return position;
+  };
+
+  // Calculate style for each card based on its stack position
+  const getCardStyle = (index: number): React.CSSProperties => {
+    const stackPosition = getStackPosition(index);
+    
+    // Front card
+    if (stackPosition === 0) {
+      return {
+        transform: `translateX(-50%) translateY(0) scale(1)`,
+        opacity: 1,
+        filter: 'none',
+        zIndex: totalCards + 10,
+        pointerEvents: 'auto' as const,
+        cursor: 'default',
+      };
+    }
+    
+    // Back cards - stacked with tops peeking
+    const stackOffset = stackPosition * -35; // Each card 35px higher
+    const stackScale = 1 - stackPosition * 0.015; // Very subtle scale
+    
+    return {
+      transform: `translateX(-50%) translateY(${stackOffset}px) scale(${stackScale})`,
+      opacity: 1,
+      filter: 'none',
+      zIndex: totalCards - stackPosition,
+      pointerEvents: 'auto' as const,
+      cursor: 'pointer',
+    };
+  };
 
   return (
     <div className="ux-design-course-page">
@@ -247,6 +307,103 @@ function UXDesignCourse() {
                     <span className="ux-feedback-text">Feedback time</span>
                     <img src={paperPlane} alt="Send" className="ux-feedback-icon" />
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* What You'll Create Section */}
+        <section className="ux-create-section" id="what-youll-create">
+          <div className="ux-create-container">
+            {/* Header - Frame 519 */}
+            <div className="ux-create-header">
+              <h2 className="ux-create-title">What You'll Create</h2>
+              <p className="ux-create-subtitle">Everything you need to start your creative journey</p>
+            </div>
+
+            {/* Frames Stack - Stacked card animation */}
+            <div className="ux-create-frames">
+              <div className="ux-create-stack-container">
+                {/* Frame 1 */}
+                <div 
+                  className="ux-create-frame ux-create-frame-stacked"
+                  style={getCardStyle(0)}
+                  onClick={() => handleCardClick(0)}
+                >
+                  <div className="ux-frame-dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div className="ux-frame-inner">
+                    <img src={create1} alt="Project 1" className="ux-frame-image" />
+                  </div>
+                </div>
+
+                {/* Frame 2 */}
+                <div 
+                  className="ux-create-frame ux-create-frame-stacked"
+                  style={getCardStyle(1)}
+                  onClick={() => handleCardClick(1)}
+                >
+                  <div className="ux-frame-dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div className="ux-frame-inner">
+                    <img src={create2} alt="Project 2" className="ux-frame-image" />
+                  </div>
+                </div>
+
+                {/* Frame 3 */}
+                <div 
+                  className="ux-create-frame ux-create-frame-stacked"
+                  style={getCardStyle(2)}
+                  onClick={() => handleCardClick(2)}
+                >
+                  <div className="ux-frame-dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div className="ux-frame-inner">
+                    <img src={create3} alt="Project 3" className="ux-frame-image" />
+                  </div>
+                </div>
+
+                {/* Frame 4 */}
+                <div 
+                  className="ux-create-frame ux-create-frame-stacked"
+                  style={getCardStyle(3)}
+                  onClick={() => handleCardClick(3)}
+                >
+                  <div className="ux-frame-dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div className="ux-frame-inner">
+                    <img src={create4} alt="Project 4" className="ux-frame-image" />
+                  </div>
+                </div>
+
+                {/* Frame 5 */}
+                <div 
+                  className="ux-create-frame ux-create-frame-stacked"
+                  style={getCardStyle(4)}
+                  onClick={() => handleCardClick(4)}
+                >
+                  <div className="ux-frame-dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div className="ux-frame-inner">
+                    <img src={create5} alt="Project 5" className="ux-frame-image" />
+                  </div>
+                </div>
+
+                {/* Card Indicators */}
+                <div className="ux-card-indicators">
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <div 
+                      key={i} 
+                      className={`ux-card-indicator ${activeCard === i ? 'active' : ''}`}
+                      onClick={() => handleIndicatorClick(i)}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
