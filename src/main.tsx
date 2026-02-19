@@ -7,6 +7,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy.tsx'
 import Contact from './pages/Contact.tsx'
 import AdminAuth from './pages/AdminAuth.tsx'
 import UXDesignCourse from './pages/UXDesignCourse.tsx'
+import ComponentTest from './pages/ComponentTest.tsx'
 
 function Root() {
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ function Root() {
       <Route path="/contact" element={<Contact />} />
       <Route path="/admin" element={<AdminAuth />} />
       <Route path="/ux-design" element={<UXDesignCourse />} />
+      <Route path="/ComponentTest" element={<ComponentTest />} />
     </Routes>
   );
 }
