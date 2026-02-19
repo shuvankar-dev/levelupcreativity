@@ -43,14 +43,14 @@ const CTABannerSection: React.FC = () => {
         <div className="cta-banner-glow-bg"></div>
         <div className="cta-banner-content">
             <div className="cta-banner-tagline">
-                <span className="cta-banner-tagline-text">Build Solutions that change world</span>
+                <span className="cta-banner-tagline-text">Don't just design, build your site without code</span>
             </div>
             <h2 className="cta-banner-title">
-                Ready to Levelup Your Design
+                Build your own portfolio website without code
             </h2>
             <p className="cta-banner-subtitle">Get job ready, fast.</p>
             <button className="cta-banner-button">
-                Register Now
+                Talk to Career Counsellor
             </button>
             </div>
       </div>

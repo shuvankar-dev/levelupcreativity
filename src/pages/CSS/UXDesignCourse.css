@@ -386,3 +386,260 @@
   margin: 0;
   white-space: nowrap;
 }
+
+/* Short Courses Based On UI/UX Section */
+.ux-short-courses-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 128px 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.ux-short-courses-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  width: 100%;
+  max-width: 1440px;
+  padding: 0 32px;
+}
+
+.ux-short-courses-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.ux-short-courses-title {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 72px;
+  text-align: center;
+  letter-spacing: -1.2px;
+  color: #EDEDED;
+  margin: 0;
+}
+
+.ux-short-courses-subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  color: #A199B0;
+  margin: 0;
+}
+
+.ux-short-courses-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 1281px;
+}
+
+.ux-short-course-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 36px 24px;
+  gap: 24px;
+  width: 411px;
+  height: 590px;
+  background: #0C0911;
+  border-radius: 16px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  transition: transform 0.3s ease;
+}
+
+.ux-short-course-card:hover {
+  transform: translateY(-4px);
+}
+
+.ux-short-course-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+}
+
+.ux-short-course-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: linear-gradient(92.89deg, #6443FF 7.13%, #8838B9 95.65%);
+  border: 1px solid #B08BF6;
+  border-radius: 30px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.48px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+.ux-short-course-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.ux-short-course-title {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.64px;
+  color: #EDECEE;
+  margin: 0;
+}
+
+.ux-short-course-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.4px;
+  color: #EDECEE;
+  margin: 0;
+}
+
+.ux-short-course-points {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ux-short-course-points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #A29AB1;
+}
+
+.ux-short-course-points li img {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.ux-short-course-meta {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #EDECEE;
+}
+
+.ux-short-course-duration,
+.ux-short-course-timeline {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ux-short-course-duration svg,
+.ux-short-course-timeline svg {
+  flex-shrink: 0;
+  color: #EEEFF2;
+}
+
+.ux-short-course-btn {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 32px;
+  gap: 8px;
+  width: auto;
+  min-width: 175px;
+  height: 56px;
+  border: 1px solid #6F677E;
+  border-radius: 40px;
+  background: transparent;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ux-short-course-btn-text {
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: #EDECEE;
+  white-space: nowrap;
+}
+
+.ux-short-course-btn-arrow {
+  flex-shrink: 0;
+  color: #EDECEE;
+}
+
+.ux-short-course-btn:hover {
+  background: linear-gradient(92.89deg, #6443FF 7.13%, #8838B9 95.65%);
+  border-color: #B08BF6;
+  transform: translateY(-2px);
+}
+
+.ux-short-course-btn:hover .ux-short-course-btn-text,
+.ux-short-course-btn:hover .ux-short-course-btn-arrow {
+  color: #FFFFFF;
+}
+
+@media (max-width: 1400px) {
+  .ux-short-courses-grid {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .ux-short-courses-section {
+    padding: 80px 0;
+  }
+
+  .ux-short-courses-title {
+    font-size: 40px;
+    line-height: 48px;
+  }
+
+  .ux-short-courses-grid {
+    flex-direction: column;
+  }
+
+  .ux-short-course-card {
+    width: 100%;
+  }
+}

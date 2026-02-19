@@ -7,6 +7,9 @@ import CurriculumSection from '../components/CurriculumSection';
 import UXDesignCoursePricing from './UXDesignCoursePricing';
 import UXDesignCourseMentor from './UXDesignCourseMentor';
 import WhatWeCreateUI from '../components/WhatWeCreateUI';
+import QASection from '../components/QASection';
+import Footer from '../components/Footer';
+import { AlarmClock, Layers, ArrowRight } from 'lucide-react';
 import './CSS/UXDesignCourse.css';
 import './CSS/UXDesignCourse-why-choose.css';
 import uxHeroImage from '../assets/UIUX Design/Frame 1056.png';
@@ -19,6 +22,7 @@ import paperPlane from '../assets/UIUX Design/Why Choose/PaperPlane.png';
 import firstLayer from '../assets/UIUX Design/Why Choose/First_layer.png';
 import secondLayer from '../assets/UIUX Design/Why Choose/Second_layer.png';
 import theirdLayer from '../assets/UIUX Design/Why Choose/Theird_layer.png';
+import sealCheck from '../assets/SealCheck.png';
 
 function UXDesignCourse() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -276,6 +280,137 @@ function UXDesignCourse() {
 
         {/* Mentor Section */}
         <UXDesignCourseMentor />
+
+        {/* Short Courses Based On UI/UX Section */}
+        <section className="ux-short-courses-section">
+          <div className="ux-short-courses-container">
+            {/* Header */}
+            <div className="ux-short-courses-header">
+              <h2 className="ux-short-courses-title">Short Courses Based On UI/UX</h2>
+              <p className="ux-short-courses-subtitle">Start your learning journey with our comprehensive mini course</p>
+            </div>
+
+            {/* Cards Grid */}
+            <div className="ux-short-courses-grid">
+              {/* Card 1 - Dashboard UI/UX Design */}
+              <div className="ux-short-course-card">
+                <div className="ux-short-course-content">
+                  <div className="ux-short-course-badge">ONLINE/OFFLINE</div>
+                  
+                  <div className="ux-short-course-info">
+                    <h3 className="ux-short-course-title">DASHBOARD UI/UX DESIGN</h3>
+                    <p className="ux-short-course-desc">Get Expert Guidance In Portfolios</p>
+                  </div>
+
+                  <ul className="ux-short-course-points">
+                    <li><img src={sealCheck} alt="Check" />Learn basics of Dashboards</li>
+                    <li><img src={sealCheck} alt="Check" />Choose Dashboard Domains</li>
+                    <li><img src={sealCheck} alt="Check" />Decode Fundamentals of KPI and Metrics</li>
+                    <li><img src={sealCheck} alt="Check" />Learn about Guidelines and Grids</li>
+                    <li><img src={sealCheck} alt="Check" />Create your final dashboard</li>
+                  </ul>
+
+                  <div className="ux-short-course-meta">
+                    <span className="ux-short-course-duration">
+                      <AlarmClock size={28} />
+                      2 hours
+                    </span>
+                    <span className="ux-short-course-timeline">
+                      <Layers size={28} />
+                      3 Months
+                    </span>
+                  </div>
+                </div>
+
+                <button className="ux-short-course-btn">
+                  <span className="ux-short-course-btn-text">View Details</span>
+                  <ArrowRight size={28} className="ux-short-course-btn-arrow" />
+                </button>
+              </div>
+
+              {/* Card 2 - Build Design System */}
+              <div className="ux-short-course-card">
+                <div className="ux-short-course-content">
+                  <div className="ux-short-course-badge">ONLINE/OFFLINE</div>
+                  
+                  <div className="ux-short-course-info">
+                    <h3 className="ux-short-course-title">BUILD DESIGN SYSTEM WITH VARIABLES</h3>
+                    <p className="ux-short-course-desc">Get Expert Guidance In Portfolios</p>
+                  </div>
+
+                  <ul className="ux-short-course-points">
+                    <li><img src={sealCheck} alt="Check" />Understand the basics of Design System</li>
+                    <li><img src={sealCheck} alt="Check" />Learn Variable Types</li>
+                    <li><img src={sealCheck} alt="Check" />Understanding components and Autolayout</li>
+                    <li><img src={sealCheck} alt="Check" />Create Variables and apply them in designs</li>
+                    <li><img src={sealCheck} alt="Check" />Create your final design system</li>
+                  </ul>
+
+                  <div className="ux-short-course-meta">
+                    <span className="ux-short-course-duration">
+                      <AlarmClock size={28} />
+                      2 hours
+                    </span>
+                    <span className="ux-short-course-timeline">
+                      <Layers size={28} />
+                      3 Months
+                    </span>
+                  </div>
+                </div>
+
+                <button className="ux-short-course-btn">
+                  <span className="ux-short-course-btn-text">View Details</span>
+                  <ArrowRight size={28} className="ux-short-course-btn-arrow" />
+                </button>
+              </div>
+
+              {/* Card 3 - Blender Learning */}
+              <div className="ux-short-course-card">
+                <div className="ux-short-course-content">
+                  <div className="ux-short-course-badge">ONLINE/OFFLINE</div>
+                  
+                  <div className="ux-short-course-info">
+                    <h3 className="ux-short-course-title">BLENDER LEARNING COURSE</h3>
+                    <p className="ux-short-course-desc">Get Expert Guidance In Portfolios</p>
+                  </div>
+
+                  <ul className="ux-short-course-points">
+                    <li><img src={sealCheck} alt="Check" />Interface, basic modeling, sculpting</li>
+                    <li><img src={sealCheck} alt="Check" />Rigging & Skinning</li>
+                    <li><img src={sealCheck} alt="Check" />UV Mapping Texturing</li>
+                    <li><img src={sealCheck} alt="Check" />Animation & Motion Principle</li>
+                    <li><img src={sealCheck} alt="Check" />Lighting, Rendering & Camera Work</li>
+                  </ul>
+
+                  <div className="ux-short-course-meta">
+                    <span className="ux-short-course-duration">
+                      <AlarmClock size={28} />
+                      2 hours
+                    </span>
+                    <span className="ux-short-course-timeline">
+                      <Layers size={28} />
+                      3 Months
+                    </span>
+                  </div>
+                </div>
+
+                <button className="ux-short-course-btn">
+                  <span className="ux-short-course-btn-text">View Details</span>
+                  <ArrowRight size={28} className="ux-short-course-btn-arrow" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Your Questions Answered Section */}
+        <QASection />
+
+        {/* CTA Banner Section */}
+        <CTABannerSection />
+
+        {/* Footer */}
+        <Footer />
       </main>
 
       <EnrollModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
