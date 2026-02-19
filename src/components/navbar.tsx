@@ -122,7 +122,7 @@ function Navbar({ variant = 'default', courseName }: NavbarProps) {
                   className="dropdown-item"
                   onClick={(e) => {
                     e.stopPropagation();
-                    alert('VFX Animation page coming soon!');
+                    window.dispatchEvent(new CustomEvent('navigate', { detail: { page: 'vfx-animation' } }));
                     setIsCoursesOpen(false);
                   }}
                 >

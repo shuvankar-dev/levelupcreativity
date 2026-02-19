@@ -7,6 +7,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy.tsx'
 import Contact from './pages/Contact.tsx'
 import AdminAuth from './pages/AdminAuth.tsx'
 import UXDesignCourse from './pages/UXDesignCourse.tsx'
+import VFXAnimationCourse from './pages/VFXAnimationCourse.tsx'
 import ComponentTest from './pages/ComponentTest.tsx'
 
 function Root() {
@@ -26,6 +27,8 @@ function Root() {
         navigate('/admin');
       } else if (page === 'ux-design') {
         navigate('/ux-design');
+      } else if (page === 'vfx-animation') {
+        navigate('/vfx-animation');
       }
     };
 
@@ -43,6 +46,7 @@ function Root() {
       <Route path="/contact" element={<Contact />} />
       <Route path="/admin" element={<AdminAuth />} />
       <Route path="/ux-design" element={<UXDesignCourse />} />
+      <Route path="/vfx-animation" element={<VFXAnimationCourse />} />
       <Route path="/ComponentTest" element={<ComponentTest />} />
     </Routes>
   );
