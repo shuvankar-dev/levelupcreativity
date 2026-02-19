@@ -26,6 +26,7 @@
   border-radius: 60px;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   gap: 2rem;
+  overflow: visible;
 }
 
 /* Collapsed state - pill shape */
@@ -84,7 +85,7 @@
   max-width: 850px;
   flex: 1;
   transform: translateY(0);
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Hide navigation menu when collapsed */
@@ -114,6 +115,134 @@
   position: relative;
   background: transparent;
   border: 1.1px solid transparent;
+}
+
+/* Dropdown container needs to allow overflow */
+.nav-item-dropdown {
+  position: relative;
+  overflow: visible;
+}
+
+/* Extend hover area for dropdown trigger */
+.nav-item-dropdown::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: transparent;
+  pointer-events: auto;
+  z-index: -1;
+}
+
+/* Courses Dropdown Menu */
+.courses-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  background: linear-gradient(92.88deg, #18181B 1.31%, #000000 95.65%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 10000;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  animation: dropdownFadeIn 0.3s ease;
+  pointer-events: auto;
+}
+
+/* Add larger invisible bridge between nav item and dropdown */
+.courses-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  height: 24px;
+  background: transparent;
+  pointer-events: auto;
+}
+
+/* Triangle pointer at top of dropdown */
+.courses-dropdown::after {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #18181B;
+  pointer-events: none;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Dropdown Item */
+.dropdown-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 14px 16px;
+  gap: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+  position: relative;
+}
+
+.dropdown-item:hover {
+  background: rgba(100, 67, 255, 0.15);
+  transform: translateX(4px);
+}
+
+/* Dropdown Item Icon */
+.dropdown-item-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #A199B0;
+  transition: color 0.3s ease;
+}
+
+.dropdown-item:hover .dropdown-item-icon {
+  color: #6443FF;
+}
+
+/* Dropdown Item Text */
+.dropdown-item-text {
+  font-family: 'DM Sans', 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #D8D6DB;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.dropdown-item:hover .dropdown-item-text {
+  color: #FFFFFF;
 }
 
 /* Gradient border effect on hover */
@@ -218,6 +347,47 @@
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   flex-shrink: 0;
   white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Button text container for animation */
+.get-in-touch-btn .button-text {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+  color: #FFFFFF;
+}
+
+/* Inner text spans */
+.get-in-touch-btn .button-text-inner {
+  display: block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  color: #FFFFFF;
+}
+
+.get-in-touch-btn .button-text-inner:first-child {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.get-in-touch-btn .button-text-inner:last-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  opacity: 0;
+}
+
+/* Hover animation - slide up effect */
+.get-in-touch-btn:hover .button-text-inner:first-child {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.get-in-touch-btn:hover .button-text-inner:last-child {
+  transform: translate(-50%, -50%);
+  opacity: 1;
 }
 
 .navbar-collapsed .get-in-touch-btn {

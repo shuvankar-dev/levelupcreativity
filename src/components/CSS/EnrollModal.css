@@ -97,10 +97,7 @@
   font-size: 32px;
   line-height: 40px;
   letter-spacing: -0.5px;
-  background: linear-gradient(90deg, #EA4080 0%, #9F94F3 50%, #6B81E4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #FFFFFF;
   margin: 0;
 }
 
