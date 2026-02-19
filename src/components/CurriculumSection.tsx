@@ -8,6 +8,11 @@ interface Module {
   title: string;
   description: string;
   icon: string;
+  weeks?: Array<{
+    week: string;
+    topic: string;
+    tasks: string;
+  }>;
 }
 
 const CurriculumSection: React.FC = () => {
@@ -21,36 +26,66 @@ const CurriculumSection: React.FC = () => {
     margin: "0px 0px -50px 0px"
   });
 
-  const uxModules: Module[] = [
+  const uxModules = [
     {
       id: 1,
-      title: 'UX Research & Strategy',
+      title: 'Product Foundations and Research Setup',
       description: 'Become a UX thinker who solves real-world problems • 5 modules',
-      icon: '1'
+      icon: '1',
+      weeks: [
+        { week: 'Week 1', topic: 'Introduction to Product Design + Figma Basics', tasks: '2 Tasks' },
+        { week: 'Week 2', topic: 'Stakeholders & Business Thinking for Designers', tasks: '3 Tasks' },
+        { week: 'Week 3', topic: 'Problem Framing', tasks: '2 Tasks' },
+        { week: 'Week 4', topic: 'Research Fundamentals', tasks: '3 Tasks' },
+        { week: 'Week 5', topic: 'User Interviews- Deep Dive', tasks: '2 Tasks' }
+      ]
     },
     {
       id: 2,
-      title: 'UI Design Fundamentals',
+      title: 'Research Execution & UX Strategy',
       description: 'Learn visual design principles for real apps and websites • 4 modules',
-      icon: '2'
+      icon: '2',
+      weeks: [
+        { week: 'Week 6', topic: 'Stakeholder Interviews', tasks: '2 Tasks' },
+        { week: 'Week 7', topic: 'Insight Synthesis', tasks: '3 Tasks' },
+        { week: 'Week 8', topic: 'Decoding User Journey & Taskflow', tasks: '2 Tasks' },
+        { week: 'Week 9', topic: 'Userflow and Information Architecture', tasks: '3 Tasks' }
+      ]
     },
     {
       id: 3,
-      title: 'Advance UI & Systems',
+      title: 'UX Structure to UI system Thinking',
       description: 'Learn scalable design and cross-platform thinking • 4 modules',
-      icon: '3'
+      icon: '3',
+      weeks: [
+        { week: 'Week 10', topic: 'Wireframing with logic', tasks: '2 Tasks' },
+        { week: 'Week 11', topic: 'UI Foundations', tasks: '3 Tasks' },
+        { week: 'Week 12', topic: 'Typography & Color Systems', tasks: '2 Tasks' },
+        { week: 'Week 13', topic: 'Design systems in figma', tasks: '3 Tasks' }
+      ]
     },
     {
       id: 4,
-      title: 'Usability & Collaboration',
+      title: 'Interface Master & AI acceleration',
       description: 'Validate, refine & prepare for real-world teamwork • 3 modules',
-      icon: '4'
+      icon: '4',
+      weeks: [
+        { week: 'Week 14', topic: 'iOS App design & AI Acceleration', tasks: '2 Tasks' },
+        { week: 'Week 15', topic: 'Learning Guidelines for android', tasks: '3 Tasks' },
+        { week: 'Week 16', topic: 'Responsive Website Design', tasks: '2 Tasks' }
+      ]
     },
     {
       id: 5,
-      title: 'SaaS Design & Portfolio',
+      title: 'Portfolio Launch & Career Readiness',
       description: 'Build your professional portfolio with real projects • 4 modules',
-      icon: '5'
+      icon: '5',
+      weeks: [
+        { week: 'Week 17', topic: 'Case Study Writing', tasks: '2 Tasks' },
+        { week: 'Week 18', topic: 'Portfolio Website Planning', tasks: '3 Tasks' },
+        { week: 'Week 19', topic: 'Portfolio Build & Publish', tasks: '2 Tasks' },
+        { week: 'Week 20', topic: 'Career Preparation', tasks: '3 Tasks' }
+      ]
     }
   ];
 
@@ -270,9 +305,19 @@ const CurriculumSection: React.FC = () => {
                     />
                   </svg>
                 </button>
-                {expandedModule === module.id && (
+                {expandedModule === module.id && module.weeks && (
                   <div className="module-content">
-                    <p>Module content will be displayed here when expanded.</p>
+                    <div className="module-weeks">
+                      {module.weeks.map((weekData, idx) => (
+                        <div key={idx} className="week-row">
+                          <span className="week-label">{weekData.week}</span>
+                          <div className="week-details">
+                            <span className="week-topic">{weekData.topic}</span>
+                            <span className="week-tasks">{weekData.tasks}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
               </motion.div>
