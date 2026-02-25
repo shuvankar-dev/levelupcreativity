@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
 import './CSS/CTABannerForCourses.css';
 
 interface CTABannerForCoursesProps {
@@ -11,6 +12,12 @@ const CTABannerForCourses: React.FC<CTABannerForCoursesProps> = ({
   courseName = 'UI/UX' 
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { 
+    once: true,
+    amount: 0.4,
+    margin: "0px 0px -50px 0px"
+  });
 
   useEffect(() => {
     // Reset video to start when component mounts
@@ -49,8 +56,33 @@ const CTABannerForCourses: React.FC<CTABannerForCoursesProps> = ({
 
   const content = getContent();
 
+  // Animation variants
+  const taglineVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, y: 0,
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }
+    }
+  };
+
+  const titleVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { 
+      opacity: 1, y: 0,
+      transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const, delay: 0.15 }
+    }
+  };
+
+  const buttonVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: { 
+      opacity: 1, y: 0, scale: 1,
+      transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const, delay: 0.3 }
+    }
+  };
+
   return (
-    <section className="cta-course-banner-section">
+    <section className="cta-course-banner-section" ref={sectionRef}>
       {/* Video Background */}
       <video 
         ref={videoRef}
@@ -79,16 +111,40 @@ const CTABannerForCourses: React.FC<CTABannerForCoursesProps> = ({
       <div className="cta-course-banner-container">
         <div className="cta-course-banner-glow-bg"></div>
         <div className="cta-course-banner-content">
-          <div className={`cta-course-banner-tagline ${variant === 'portfolio' ? 'wide' : ''}`}>
+          <motion.div 
+            className={`cta-course-banner-tagline ${variant === 'portfolio' ? 'wide' : ''}`}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={taglineVariants}
+          >
             <span className="cta-course-banner-tagline-text">{content.badge}</span>
-          </div>
+          </motion.div>
           <div className="cta-course-banner-text-wrapper">
-            <h2 className="cta-course-banner-title">{content.title}</h2>
-            <p className="cta-course-banner-subtitle">{content.subtitle}</p>
+            <motion.h2 
+              className="cta-course-banner-title"
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              variants={titleVariants}
+            >
+              {content.title}
+            </motion.h2>
+            <motion.p 
+              className="cta-course-banner-subtitle"
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              variants={titleVariants}
+            >
+              {content.subtitle}
+            </motion.p>
           </div>
-          <button className={`cta-course-banner-button ${variant === 'portfolio' ? 'wide' : ''}`}>
+          <motion.button 
+            className={`cta-course-banner-button ${variant === 'portfolio' ? 'wide' : ''}`}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={buttonVariants}
+          >
             {content.buttonText}
-          </button>
+          </motion.button>
         </div>
       </div>
     </section>

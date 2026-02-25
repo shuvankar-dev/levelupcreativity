@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import Navbar from '../components/navbar';
 import EnrollModal from '../components/EnrollModal';
 import CTABannerForCourses from '../components/CTABannerForCourses';
@@ -24,8 +25,65 @@ import secondLayer from '../assets/UIUX Design/Why Choose/Second_layer.png';
 import theirdLayer from '../assets/UIUX Design/Why Choose/Theird_layer.png';
 import sealCheck from '../assets/SealCheck.png';
 
+// Shared animation variants
+const titleVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+  }
+};
+
+const descriptionVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const, delay: 0.15 }
+  }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (index: number) => ({ 
+    opacity: 1, y: 0,
+    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const, delay: 0.2 + (index * 0.1) }
+  })
+};
+
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { 
+    opacity: 1, y: 0,
+    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const, delay: 0.1 }
+  }
+};
+
+const buttonVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const, delay: 0.3 }
+  }
+};
+
 function UXDesignCourse() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Refs and inView hooks for each section
+  const heroRef = useRef(null);
+  const heroInView = useInView(heroRef, { once: true, amount: 0.3 });
+
+  const contentRef = useRef(null);
+  const contentInView = useInView(contentRef, { once: true, amount: 0.4 });
+
+  const infoRef = useRef(null);
+  const infoInView = useInView(infoRef, { once: true, amount: 0.3 });
+
+  const whyChooseRef = useRef(null);
+  const whyChooseInView = useInView(whyChooseRef, { once: true, amount: 0.2, margin: "0px 0px -50px 0px" });
+
+  const shortCoursesRef = useRef(null);
+  const shortCoursesInView = useInView(shortCoursesRef, { once: true, amount: 0.2, margin: "0px 0px -50px 0px" });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -37,27 +95,49 @@ function UXDesignCourse() {
       
       <main className="ux-course-content">
         {/* Hero Image */}
-        <section className="ux-hero-section">
-          <div className="ux-hero-container">
+        <section className="ux-hero-section" ref={heroRef}>
+          <motion.div 
+            className="ux-hero-container"
+            initial="hidden"
+            animate={heroInView ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+          >
             <div className="ux-hero-image">
               <img src={uxHeroImage} alt="UI/UX Design Course" />
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* Content Section */}
-        <section className="ux-content-section">
+        <section className="ux-content-section" ref={contentRef}>
           <div className="ux-content-container">
             {/* Frame 1053 - Text content */}
             <div className="ux-text-content">
-              <h1 className="ux-main-title">Levelup-UI/UX Design Course</h1>
-              <p className="ux-description">
+              <motion.h1 
+                className="ux-main-title"
+                initial="hidden"
+                animate={contentInView ? "visible" : "hidden"}
+                variants={titleVariants}
+              >
+                Levelup-UI/UX Design Course
+              </motion.h1>
+              <motion.p 
+                className="ux-description"
+                initial="hidden"
+                animate={contentInView ? "visible" : "hidden"}
+                variants={descriptionVariants}
+              >
                 Master UI/UX Design and 3D Creation with industry-
-              </p>
+              </motion.p>
             </div>
 
             {/* Frame 1002 - Buttons */}
-            <div className="ux-buttons-container">
+            <motion.div 
+              className="ux-buttons-container"
+              initial="hidden"
+              animate={contentInView ? "visible" : "hidden"}
+              variants={buttonVariants}
+            >
               <div className="ux-buttons-wrapper">
                 {/* Enroll Now Button */}
                 <button 
@@ -72,15 +152,21 @@ function UXDesignCourse() {
                   <span>View Curricullum</span>
                 </button>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* Info Cards Section - Frame 1084 */}
-        <section className="ux-info-section">
+        <section className="ux-info-section" ref={infoRef}>
           <div className="ux-info-cards">
             {/* Card 1 - Course Duration */}
-            <div className="ux-info-card-wrapper">
+            <motion.div 
+              className="ux-info-card-wrapper"
+              initial="hidden"
+              animate={infoInView ? "visible" : "hidden"}
+              variants={cardVariants}
+              custom={0}
+            >
               <div className="ux-info-card">
                 <div className="ux-card-content">
                   <div className="ux-card-icon">
@@ -94,10 +180,16 @@ function UXDesignCourse() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Card 2 - Price */}
-            <div className="ux-info-card-wrapper">
+            <motion.div 
+              className="ux-info-card-wrapper"
+              initial="hidden"
+              animate={infoInView ? "visible" : "hidden"}
+              variants={cardVariants}
+              custom={1}
+            >
               <div className="ux-info-card">
                 <div className="ux-card-content">
                   <div className="ux-card-icon">
@@ -111,10 +203,16 @@ function UXDesignCourse() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Card 3 - Class Mode */}
-            <div className="ux-info-card-wrapper">
+            <motion.div 
+              className="ux-info-card-wrapper"
+              initial="hidden"
+              animate={infoInView ? "visible" : "hidden"}
+              variants={cardVariants}
+              custom={2}
+            >
               <div className="ux-info-card">
                 <div className="ux-card-content">
                   <div className="ux-card-icon">
@@ -128,10 +226,16 @@ function UXDesignCourse() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Card 4 - Eligibility */}
-            <div className="ux-info-card-wrapper">
+            <motion.div 
+              className="ux-info-card-wrapper"
+              initial="hidden"
+              animate={infoInView ? "visible" : "hidden"}
+              variants={cardVariants}
+              custom={3}
+            >
               <div className="ux-info-card">
                 <div className="ux-card-content">
                   <div className="ux-card-icon">
@@ -145,23 +249,43 @@ function UXDesignCourse() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* Why Choose Levelup Section - Frame 592 */}
-        <section className="ux-why-choose-section">
+        <section className="ux-why-choose-section" ref={whyChooseRef}>
           <div className="ux-why-choose-container">
             {/* Header */}
             <div className="ux-why-choose-header">
-              <h2 className="ux-why-choose-title">Why Choose Levelup</h2>
-              <p className="ux-why-choose-subtitle">Comprehensive learning paths designed by industry</p>
+              <motion.h2 
+                className="ux-why-choose-title"
+                initial="hidden"
+                animate={whyChooseInView ? "visible" : "hidden"}
+                variants={titleVariants}
+              >
+                Why Choose Levelup
+              </motion.h2>
+              <motion.p 
+                className="ux-why-choose-subtitle"
+                initial="hidden"
+                animate={whyChooseInView ? "visible" : "hidden"}
+                variants={descriptionVariants}
+              >
+                Comprehensive learning paths designed by industry
+              </motion.p>
             </div>
 
             {/* Bento Grid */}
             <div className="ux-bento-grid">
               {/* First Row */}
-              <div className="ux-bento-row">
+              <motion.div 
+                className="ux-bento-row"
+                initial="hidden"
+                animate={whyChooseInView ? "visible" : "hidden"}
+                variants={cardVariants}
+                custom={0}
+              >
                 {/* Card 1 - Team-based activities */}
                 <div className="ux-bento-card">
                   <div className="ux-bento-content">
@@ -209,10 +333,16 @@ function UXDesignCourse() {
                   </div>
                   <img src={dome} alt="3D Shape" className="ux-bento-shape ux-shape-dome" />
                 </div>
-              </div>
+              </motion.div>
 
               {/* Second Row */}
-              <div className="ux-bento-row">
+              <motion.div 
+                className="ux-bento-row"
+                initial="hidden"
+                animate={whyChooseInView ? "visible" : "hidden"}
+                variants={cardVariants}
+                custom={1}
+              >
                 {/* Card 4 - Live sessions */}
                 <div className="ux-bento-card ux-bento-card-small">
                   <div className="ux-bento-content">
@@ -258,7 +388,7 @@ function UXDesignCourse() {
                     <img src={paperPlane} alt="Send" className="ux-feedback-icon" />
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -282,18 +412,44 @@ function UXDesignCourse() {
         <UXDesignCourseMentor />
 
         {/* Short Courses Based On UI/UX Section */}
-        <section className="ux-short-courses-section">
+        <section className="ux-short-courses-section" ref={shortCoursesRef}>
           <div className="ux-short-courses-container">
             {/* Header */}
             <div className="ux-short-courses-header">
-              <h2 className="ux-short-courses-title">Short Courses Based On UI/UX</h2>
-              <p className="ux-short-courses-subtitle">Start your learning journey with our comprehensive mini course</p>
+              <motion.h2 
+                className="ux-short-courses-title"
+                initial="hidden"
+                animate={shortCoursesInView ? "visible" : "hidden"}
+                variants={titleVariants}
+              >
+                Short Courses Based On UI/UX
+              </motion.h2>
+              <motion.p 
+                className="ux-short-courses-subtitle"
+                initial="hidden"
+                animate={shortCoursesInView ? "visible" : "hidden"}
+                variants={descriptionVariants}
+              >
+                Start your learning journey with our comprehensive mini course
+              </motion.p>
             </div>
 
             {/* Cards Grid */}
-            <div className="ux-short-courses-grid">
+            <motion.div 
+              className="ux-short-courses-grid"
+              initial="hidden"
+              animate={shortCoursesInView ? "visible" : "hidden"}
+              variants={{
+                hidden: { opacity: 1 },
+                visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.2 } }
+              }}
+            >
               {/* Card 1 - Dashboard UI/UX Design */}
-              <div className="ux-short-course-card">
+              <motion.div 
+                className="ux-short-course-card"
+                variants={cardVariants}
+                custom={0}
+              >
                 <div className="ux-short-course-content">
                   <div className="ux-short-course-badge">ONLINE/OFFLINE</div>
                   
@@ -326,10 +482,14 @@ function UXDesignCourse() {
                   <span className="ux-short-course-btn-text">View Details</span>
                   <ArrowRight size={28} className="ux-short-course-btn-arrow" />
                 </button>
-              </div>
+              </motion.div>
 
               {/* Card 2 - Build Design System */}
-              <div className="ux-short-course-card">
+              <motion.div 
+                className="ux-short-course-card"
+                variants={cardVariants}
+                custom={1}
+              >
                 <div className="ux-short-course-content">
                   <div className="ux-short-course-badge">ONLINE/OFFLINE</div>
                   
@@ -362,10 +522,14 @@ function UXDesignCourse() {
                   <span className="ux-short-course-btn-text">View Details</span>
                   <ArrowRight size={28} className="ux-short-course-btn-arrow" />
                 </button>
-              </div>
+              </motion.div>
 
               {/* Card 3 - Blender Learning */}
-              <div className="ux-short-course-card">
+              <motion.div 
+                className="ux-short-course-card"
+                variants={cardVariants}
+                custom={2}
+              >
                 <div className="ux-short-course-content">
                   <div className="ux-short-course-badge">ONLINE/OFFLINE</div>
                   
@@ -398,8 +562,8 @@ function UXDesignCourse() {
                   <span className="ux-short-course-btn-text">View Details</span>
                   <ArrowRight size={28} className="ux-short-course-btn-arrow" />
                 </button>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </section>
 

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
 import './CSS/shortcourses.css';
 
 interface Course {
@@ -55,8 +56,62 @@ const ShortCoursesSection: React.FC = () => {
   ];
 
   const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const [activeIndex, setActiveIndex] = useState(1); // Start with index 1 (second card)
   const hasScrolledToCenter = useRef(false);
+  const isInView = useInView(sectionRef, { 
+    once: true,
+    amount: 0.3,
+    margin: "0px 0px -50px 0px"
+  });
+
+  // Animation variants
+  const titleVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 30
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1] as const
+      }
+    }
+  };
+
+  const descriptionVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 30
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1] as const,
+        delay: 0.15
+      }
+    }
+  };
+
+  const carouselVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.9,
+        ease: [0.16, 1, 0.3, 1] as const,
+        delay: 0.3
+      }
+    }
+  };
 
   // Scroll to index 1 only when section comes into view
   useEffect(() => {
@@ -148,15 +203,32 @@ const ShortCoursesSection: React.FC = () => {
   };
 
   return (
-    <section className="short-courses-section">
+    <section className="short-courses-section" ref={sectionRef}>
       <div className="short-courses-header">
-        <h2 className="short-courses-title">Short Courses We Offer</h2>
-        <p className="short-courses-subtitle">
+        <motion.h2 
+          className="short-courses-title"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={titleVariants}
+        >
+          Short Courses We Offer
+        </motion.h2>
+        <motion.p 
+          className="short-courses-subtitle"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={descriptionVariants}
+        >
           Start your learning journey with our comprehensive mini course
-        </p>
+        </motion.p>
       </div>
       
-      <div className="carousel-wrapper">
+      <motion.div 
+        className="carousel-wrapper"
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={carouselVariants}
+      >
         <div ref={containerRef} className="carousel-track">
           {courses.map((course, index) => (
             <div
@@ -211,7 +283,7 @@ const ShortCoursesSection: React.FC = () => {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

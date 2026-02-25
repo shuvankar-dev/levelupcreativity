@@ -1,8 +1,15 @@
 import React, { useRef, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
 import './CSS/CTABannerSection.css';
 
 const CTABannerSection: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { 
+    once: true,
+    amount: 0.4,
+    margin: "0px 0px -50px 0px"
+  });
 
   useEffect(() => {
     // Reset video to start when component mounts
@@ -12,8 +19,58 @@ const CTABannerSection: React.FC = () => {
     }
   }, []);
 
+  // Animation variants
+  const taglineVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 30
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1] as const
+      }
+    }
+  };
+
+  const titleVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 40
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.9,
+        ease: [0.22, 1, 0.36, 1] as const,
+        delay: 0.15
+      }
+    }
+  };
+
+  const buttonVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 30,
+      scale: 0.95
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.9,
+        ease: [0.22, 1, 0.36, 1] as const,
+        delay: 0.3
+      }
+    }
+  };
+
   return (
-    <section className="cta-banner-section">
+    <section className="cta-banner-section" ref={sectionRef}>
       {/* Video Background */}
       <video 
         ref={videoRef}
@@ -42,16 +99,40 @@ const CTABannerSection: React.FC = () => {
       <div className="cta-banner-container">
         <div className="cta-banner-glow-bg"></div>
         <div className="cta-banner-content">
-          <div className="cta-banner-tagline">
+          <motion.div 
+            className="cta-banner-tagline"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={taglineVariants}
+          >
             <span className="cta-banner-tagline-text">Build Solutions that change world</span>
-          </div>
+          </motion.div>
           <div className="cta-banner-text-wrapper">
-            <h2 className="cta-banner-title">Ready to Levelup Your Design</h2>
-            <p className="cta-banner-subtitle">Get job ready, fast.</p>
+            <motion.h2 
+              className="cta-banner-title"
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              variants={titleVariants}
+            >
+              Ready to Levelup Your Design
+            </motion.h2>
+            <motion.p 
+              className="cta-banner-subtitle"
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              variants={titleVariants}
+            >
+              Get job ready, fast.
+            </motion.p>
           </div>
-          <button className="cta-banner-button">
+          <motion.button 
+            className="cta-banner-button"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={buttonVariants}
+          >
             Enroll Now
-          </button>
+          </motion.button>
         </div>
       </div>
     </section>
