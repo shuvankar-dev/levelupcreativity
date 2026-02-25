@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Navbar from '../components/navbar';
 import Footer from '../components/Footer';
 import EnrollModal from '../components/EnrollModal';
+import CTABannerForCourses from '../components/CTABannerForCourses';
 import CurriculumSection from '../components/CurriculumSection';
 import VFXAnimationCoursePricing from './VFXAnimationCoursePricing';
 import VFXAnimationCourseMentor from './VFXAnimationCourseMentor';
@@ -253,6 +254,9 @@ function VFXAnimationCourse() {
 
         {/* Short Courses Section */}
         <VFXShortCoursesSection />
+
+        {/* CTA Banner Section */}
+        <CTABannerForCourses courseName="VFX" />
       </main>
 
       <Footer />

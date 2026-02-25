@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../components/navbar';
 import EnrollModal from '../components/EnrollModal';
-import CTABannerSection from '../components/CTABannerSection';
+import CTABannerForCourses from '../components/CTABannerForCourses';
 import ToolsSection from '../components/ToolsSection';
 import CurriculumSection from '../components/CurriculumSection';
 import UXDesignCoursePricing from './UXDesignCoursePricing';
@@ -267,7 +267,7 @@ function UXDesignCourse() {
         <WhatWeCreateUI />
 
         {/* CTA Banner Section */}
-        <CTABannerSection />
+        <CTABannerForCourses variant="portfolio" />
 
         {/* Tools Section */}
         <ToolsSection />
@@ -407,7 +407,7 @@ function UXDesignCourse() {
         <QASection />
 
         {/* CTA Banner Section */}
-        <CTABannerSection />
+        <CTABannerForCourses courseName="UI/UX" />
 
         {/* Footer */}
         <Footer />
