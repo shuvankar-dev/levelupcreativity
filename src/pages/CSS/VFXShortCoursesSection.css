@@ -1,0 +1,327 @@
+/* VFX Short Courses Section */
+.vfx-short-courses-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 128px 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.vfx-short-courses-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 31px;
+  gap: 64px;
+  width: 100%;
+  max-width: 1440px;
+}
+
+/* Header */
+.vfx-short-courses-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  gap: 20px;
+  width: 100%;
+}
+
+.vfx-short-courses-title {
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 72px;
+  text-align: center;
+  letter-spacing: -1.2px;
+  color: #EDECEE;
+  margin: 0;
+}
+
+.vfx-short-courses-subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  color: #A29AB1;
+  margin: 0;
+}
+
+/* Cards Grid */
+.vfx-short-courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  width: 100%;
+  max-width: 1378px;
+}
+
+/* Short Course Card */
+.vfx-short-course-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px;
+  gap: 32px;
+  background: linear-gradient(92.88deg, #18181B 1.31%, #000000 95.65%);
+  border: 1px solid #322F37;
+  border-radius: 24px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.vfx-short-course-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: radial-gradient(50% 100% at 50% 0%, #8868FF 0%, #6F61DE 50%, rgba(111, 97, 222, 0) 100%);
+  border-radius: 24px 24px 0 0;
+  z-index: 1;
+}
+
+.vfx-short-course-card:hover {
+  border-color: rgba(100, 67, 255, 0.5);
+  transform: translateY(-4px);
+}
+
+/* Card Content */
+.vfx-short-course-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 24px;
+  width: 100%;
+  flex: 1;
+}
+
+/* Badge */
+.vfx-short-course-badge {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 8px;
+  background: linear-gradient(92.89deg, #6443FF 7.13%, #8838B9 95.65%);
+  border-radius: 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: #FFFFFF;
+  flex: none;
+}
+
+/* Course Info */
+.vfx-short-course-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 8px;
+  width: 100%;
+}
+
+.vfx-short-course-title {
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.48px;
+  color: #EDECEE;
+  margin: 0;
+}
+
+.vfx-short-course-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #A29AB1;
+  margin: 0;
+}
+
+/* Course Points */
+.vfx-short-course-points {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 16px;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+}
+
+.vfx-short-course-points li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #A29AB1;
+}
+
+.vfx-short-course-points li img {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* Course Meta */
+.vfx-short-course-meta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  gap: 24px;
+  width: 100%;
+}
+
+.vfx-short-course-duration,
+.vfx-short-course-timeline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #A29AB1;
+}
+
+.vfx-short-course-duration svg,
+.vfx-short-course-timeline svg {
+  width: 28px;
+  height: 28px;
+  color: #6443FF;
+}
+
+/* Course Button */
+.vfx-short-course-btn {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 32px;
+  gap: 8px;
+  width: 100%;
+  height: 56px;
+  background: transparent;
+  border: 1px solid #6F677E;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #EDECEE;
+}
+
+.vfx-short-course-btn:hover {
+  background: linear-gradient(94.54deg, #6443FF 5.91%, #8838B9 95.53%);
+  border-color: #B7A5D9;
+  transform: translateY(-2px);
+}
+
+.vfx-short-course-btn-text {
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.vfx-short-course-btn-arrow {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1280px) {
+  .vfx-short-courses-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .vfx-short-courses-section {
+    padding: 80px 0;
+  }
+
+  .vfx-short-courses-container {
+    padding: 0 20px;
+    gap: 48px;
+  }
+
+  .vfx-short-courses-title {
+    font-size: 40px;
+    line-height: 52px;
+  }
+
+  .vfx-short-courses-subtitle {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .vfx-short-courses-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .vfx-short-course-card {
+    padding: 24px;
+  }
+
+  .vfx-short-course-title {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .vfx-short-course-desc,
+  .vfx-short-course-points li {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .vfx-short-courses-section {
+    padding: 60px 0;
+  }
+
+  .vfx-short-courses-title {
+    font-size: 32px;
+    line-height: 42px;
+  }
+
+  .vfx-short-course-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}

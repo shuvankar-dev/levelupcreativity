@@ -1,0 +1,475 @@
+/* VFX Animation Course Pricing Section */
+.vfx-pricing-section {
+  position: relative;
+  width: 100vw;
+  margin: 120px 0 0 0;
+  padding: 80px 31px;
+  margin-left: calc(-50vw + 50%);
+  background: radial-gradient(69.98% 71.07% at 3.71% 24.46%, rgba(164, 75, 255, 0.12) 0%, rgba(110, 40, 201, 0.06) 25.1%, rgba(0, 0, 0, 0) 75%),
+              radial-gradient(53.16% 53.16% at 80.48% 11.46%, rgba(164, 75, 255, 0.12) 0%, rgba(110, 40, 201, 0.06) 40%, rgba(0, 0, 0, 0) 100%);
+}
+
+.vfx-pricing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+  width: 100%;
+}
+
+/* Header */
+.vfx-pricing-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.vfx-pricing-title {
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 72px;
+  text-align: center;
+  letter-spacing: -1.2px;
+  color: #EDECEE;
+  margin: 0;
+}
+
+.vfx-pricing-subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  color: #A29AB1;
+  margin: 0;
+}
+
+/* Pricing Cards */
+.vfx-pricing-cards {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  gap: 48px;
+  width: 100%;
+  justify-content: center;
+}
+
+.vfx-pricing-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px;
+  gap: 32px;
+  width: 628px;
+  height: 677px;
+  background: linear-gradient(92.88deg, #18181B 1.31%, #000000 95.65%);
+  border: 1px solid #322F37;
+  border-radius: 24px;
+  position: relative;
+  flex: none;
+}
+
+.vfx-pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 24px;
+  padding: 1px;
+  background: linear-gradient(0deg, #322F37, #322F37),
+              radial-gradient(37.26% 26.55% at 48.65% 0%, #8868FF 0%, rgba(111, 97, 222, 0) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Limited Offer Badge */
+.vfx-limited-offer-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 8px;
+  background: linear-gradient(92.89deg, #6443FF 7.13%, #8838B9 95.65%);
+  border-radius: 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #FFFFFF;
+  z-index: 1;
+}
+
+/* Card Header */
+.vfx-pricing-card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  gap: 24px;
+  width: 564px;
+  height: 59px;
+  flex: none;
+  align-self: stretch;
+}
+
+.vfx-course-icon {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 64px;
+  gap: 8px;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(94.54deg, #6443FF 5.91%, #8838B9 95.53%);
+  border: 1px solid #B08BF6;
+  border-radius: 56px;
+  flex: none;
+}
+
+.vfx-course-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.vfx-course-duration {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 24px;
+  gap: 8px;
+  width: 130px;
+  height: 59px;
+  background: #151417;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 40px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  line-height: 27px;
+  color: #EDECEE;
+  flex: none;
+}
+
+/* Course Title */
+.vfx-course-title {
+  width: 564px;
+  height: 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.4px;
+  color: #EDECEE;
+  margin: 0;
+  flex: none;
+  align-self: stretch;
+}
+
+/* Payment Type */
+.vfx-payment-type {
+  display: flex;
+  gap: 12px;
+}
+
+.vfx-payment-label {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  color: #EDECEE;
+}
+
+/* Payment Options */
+.vfx-payment-options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  gap: 20px;
+  width: 253px;
+  height: 40px;
+  flex: none;
+}
+
+.vfx-payment-option {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 10px;
+  height: 40px;
+  border: 1px solid #322F37;
+  border-radius: 42px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.4px;
+  color: #6F677E;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+  flex: none;
+}
+
+.vfx-payment-option.active {
+  background: linear-gradient(92.89deg, #6443FF 7.13%, #8838B9 95.65%);
+  border: 1px solid #EDECEE;
+  color: #EDECEE;
+}
+
+/* Pricing Breakdown */
+.vfx-pricing-breakdown {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 10px;
+  width: 564px;
+  flex: none;
+  align-self: stretch;
+}
+
+.vfx-price-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0;
+  gap: 10px;
+  width: 564px;
+  height: 32px;
+  flex: none;
+  align-self: stretch;
+}
+
+.vfx-price-label {
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.48px;
+  color: #8A8494;
+  flex: none;
+}
+
+.vfx-price-value {
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.48px;
+  color: #8A8494;
+  flex: none;
+}
+
+.vfx-discount {
+  color: #8A8494;
+}
+
+.vfx-total-row {
+  box-sizing: border-box;
+  padding: 0 0 20px;
+  border-bottom: 1px solid #322F37;
+  height: 52px;
+}
+
+.vfx-total-row .vfx-price-label,
+.vfx-total-row .vfx-price-value {
+  font-weight: 500;
+  font-size: 24px;
+  color: #8A8494;
+}
+
+/* Monthly Payment */
+.vfx-monthly-payment {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0;
+  gap: 10px;
+  width: 564px;
+  height: 32px;
+  flex: none;
+  align-self: stretch;
+}
+
+.vfx-monthly-label {
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.48px;
+  color: #EDECEE;
+  flex: none;
+}
+
+.vfx-monthly-value {
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.48px;
+  color: #EDECEE;
+  flex: none;
+}
+
+/* Card Buttons */
+.vfx-card-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  gap: 32px;
+  width: 564px;
+  height: 70px;
+  flex: none;
+  align-self: stretch;
+  margin-top: auto;
+}
+
+.vfx-btn-contact,
+.vfx-btn-enroll {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 32px;
+  gap: 8px;
+  height: 70px;
+  border-radius: 40px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  line-height: 27px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: none;
+}
+
+.vfx-btn-contact {
+  width: 290px;
+  background: transparent;
+  border: 1px solid #6F677E;
+  color: #EDECEE;
+}
+
+.vfx-btn-contact:hover {
+  border-color: #6443FF;
+  background: rgba(100, 67, 255, 0.1);
+}
+
+.vfx-btn-enroll {
+  width: 242px;
+  background: linear-gradient(94.54deg, #6443FF 5.91%, #8838B9 95.53%);
+  border: 1px solid #B7A5D9;
+  border-radius: 56px;
+  color: #EDECEE;
+  flex-grow: 1;
+}
+
+.vfx-btn-enroll:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(100, 67, 255, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 1280px) {
+  .vfx-pricing-cards {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .vfx-pricing-card {
+    width: 100%;
+    max-width: 628px;
+  }
+}
+
+@media (max-width: 768px) {
+  .vfx-pricing-section {
+    padding: 60px 20px;
+    margin: 80px 0 0 0;
+  }
+
+  .vfx-pricing-title {
+    font-size: 40px;
+    line-height: 52px;
+  }
+
+  .vfx-pricing-subtitle {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .vfx-pricing-card {
+    padding: 24px;
+    height: auto;
+  }
+
+  .vfx-pricing-card-header,
+  .vfx-course-title,
+  .vfx-pricing-breakdown,
+  .vfx-price-row,
+  .vfx-monthly-payment,
+  .vfx-card-buttons {
+    width: 100%;
+  }
+
+  .vfx-card-buttons {
+    flex-direction: column;
+    height: auto;
+    gap: 16px;
+  }
+
+  .vfx-btn-contact,
+  .vfx-btn-enroll {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .vfx-pricing-title {
+    font-size: 32px;
+    line-height: 42px;
+  }
+
+  .vfx-price-label,
+  .vfx-price-value,
+  .vfx-monthly-label,
+  .vfx-monthly-value {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .vfx-course-duration {
+    width: auto;
+    padding: 12px 20px;
+  }
+}
