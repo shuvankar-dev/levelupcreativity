@@ -450,6 +450,7 @@
 }
 
 .ux-short-course-card {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -459,15 +460,32 @@
   width: 411px;
   height: 590px;
   background: #0C0911;
+  border: 1px solid #322F37;
   border-radius: 16px;
   flex: none;
   order: 0;
   flex-grow: 0;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Purple gradient top glow */
+.ux-short-course-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: radial-gradient(50% 100% at 50% 0%, #8868FF 0%, #6F61DE 50%, rgba(111, 97, 222, 0) 100%);
+  border-radius: 16px 16px 0 0;
+  z-index: 1;
 }
 
 .ux-short-course-card:hover {
   transform: translateY(-4px);
+  border-color: rgba(100, 67, 255, 0.5);
 }
 
 .ux-short-course-content {
