@@ -6,7 +6,13 @@ import create3 from '../assets/WhatYou\'llCreate/3.png';
 import create4 from '../assets/WhatYou\'llCreate/4.png';
 import create5 from '../assets/WhatYou\'llCreate/5.png';
 
-const WhatWeCreateUI: React.FC = () => {
+interface WhatWeCreateUIProps {
+  images?: string[];
+}
+
+const WhatWeCreateUI: React.FC<WhatWeCreateUIProps> = ({ images }) => {
+  const defaultImages = [create1, create2, create3, create4, create5];
+  const displayImages = images && images.length === 5 ? images : defaultImages;
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isInView, setIsInView] = useState(false);
   const [headerOpacity, setHeaderOpacity] = useState(0);
@@ -112,11 +118,11 @@ const WhatWeCreateUI: React.FC = () => {
   }, []);
 
   const cards = [
-    { id: 1, image: create1, alt: 'Project 1' },
-    { id: 2, image: create2, alt: 'Project 2' },
-    { id: 3, image: create3, alt: 'Project 3' },
-    { id: 4, image: create4, alt: 'Project 4' },
-    { id: 5, image: create5, alt: 'Project 5' },
+    { id: 1, image: displayImages[0], alt: 'Project 1' },
+    { id: 2, image: displayImages[1], alt: 'Project 2' },
+    { id: 3, image: displayImages[2], alt: 'Project 3' },
+    { id: 4, image: displayImages[3], alt: 'Project 4' },
+    { id: 5, image: displayImages[4], alt: 'Project 5' },
   ];
 
   const getCardStyle = (index: number): React.CSSProperties => {

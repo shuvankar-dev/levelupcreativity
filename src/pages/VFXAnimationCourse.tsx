@@ -7,6 +7,7 @@ import CurriculumSection from '../components/CurriculumSection';
 import VFXAnimationCoursePricing from './VFXAnimationCoursePricing';
 import VFXAnimationCourseMentor from './VFXAnimationCourseMentor';
 import VFXShortCoursesSection from './VFXShortCoursesSection';
+import WhatWeCreateUI from '../components/WhatWeCreateUI';
 import './CSS/VFXAnimationCourse.css';
 import heroImage from '../assets/VFX Design/hero.png';
 import maskBox from '../assets/UIUX Design/Why Choose/Mask box.png';
@@ -18,6 +19,13 @@ import paperPlane from '../assets/UIUX Design/Why Choose/PaperPlane.png';
 import firstLayer from '../assets/UIUX Design/Why Choose/First_layer.png';
 import secondLayer from '../assets/UIUX Design/Why Choose/Second_layer.png';
 import theirdLayer from '../assets/UIUX Design/Why Choose/Theird_layer.png';
+import vfxCreate1 from '../assets/WhatYou\'llCreateVfx/1.png';
+import vfxCreate2 from '../assets/WhatYou\'llCreateVfx/2.png';
+import vfxCreate3 from '../assets/WhatYou\'llCreateVfx/3.png';
+import vfxCreate4 from '../assets/WhatYou\'llCreateVfx/4.png';
+import vfxCreate5 from '../assets/WhatYou\'llCreateVfx/5.png';
+
+const vfxImages = [vfxCreate1, vfxCreate2, vfxCreate3, vfxCreate4, vfxCreate5];
 
 function VFXAnimationCourse() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -242,6 +250,9 @@ function VFXAnimationCourse() {
             </div>
           </div>
         </section>
+
+        {/* What You'll Create Section */}
+        <WhatWeCreateUI images={vfxImages} />
 
         {/* Curriculum Section */}
         <CurriculumSection />
