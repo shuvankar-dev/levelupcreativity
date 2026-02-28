@@ -15,14 +15,34 @@ import './CSS/VFXShortCourses.css';
 
 const VFXShortCourses: React.FC = () => {
   const [selectedCourses, setSelectedCourses] = useState<string[]>(['ai-animation']);
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+  const [openFAQ, setOpenFAQ] = useState<number | null>(1);
 
   const faqs = [
-    { id: 1, question: 'Do I need prior animation experience?', answer: 'No prior experience is required. Our course is designed for beginners and will guide you through all the fundamentals.' },
-    { id: 2, question: 'What software and system requirements are needed?', answer: 'You will need a computer with at least 8GB RAM, and we will guide you through installing the necessary free and paid software.' },
-    { id: 3, question: 'Will I create a full AI animated short film?', answer: 'Yes! By the end of the course, you will have created your own AI-powered animated short film from start to finish.' },
-    { id: 4, question: 'How is AI animation different from traditional animation?', answer: 'AI animation uses machine learning tools to automate and enhance the animation process, making it faster and more accessible than traditional frame-by-frame animation.' },
-    { id: 5, question: 'What career opportunities will I get?', answer: 'You will be prepared for roles in animation studios, game development, VFX companies, and freelance opportunities in the growing AI animation industry.' }
+    { 
+      id: 1, 
+      question: 'Do I need prior animation experience?', 
+      answer: 'No. Beginners can join. Basic computer knowledge is enough.' 
+    },
+    { 
+      id: 2, 
+      question: 'What software and system requirements are needed?', 
+      answer: 'You\'ll learn Luma AI, Mixamo, Move.AI, and Audio2Face. A mid-range PC with a GPU is recommended. Guidance will be provided.' 
+    },
+    { 
+      id: 3, 
+      question: 'Will I create a full AI animated short film?', 
+      answer: 'Yes. You will complete one portfolio-ready AI animated short film.' 
+    },
+    { 
+      id: 4, 
+      question: 'How is AI animation different from traditional animation?', 
+      answer: 'AI animation is faster, automated, and production-ready while still creative.' 
+    },
+    { 
+      id: 5, 
+      question: 'What career opportunities will I get?', 
+      answer: 'You can work as an AI Animator, Mocap Artist, Content Creator, or Freelancer.' 
+    }
   ];
 
   const toggleFAQ = (id: number) => {
