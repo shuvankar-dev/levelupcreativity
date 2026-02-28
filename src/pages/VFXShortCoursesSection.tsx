@@ -1,22 +1,80 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import './CSS/VFXShortCoursesSection.css';
 import { AlarmClock, Layers, ArrowRight } from 'lucide-react';
 import sealCheck from '../assets/SealCheck.png';
 
+const titleVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1, y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+  }
+};
+
+const descriptionVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1, y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const, delay: 0.15 }
+  }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (index: number) => ({
+    opacity: 1, y: 0,
+    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const, delay: 0.2 + (index * 0.15) }
+  })
+};
+
 const VFXShortCoursesSection: React.FC = () => {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, {
+    once: true,
+    amount: 0.2,
+    margin: '0px 0px -50px 0px'
+  });
+
   return (
-    <section className="vfx-short-courses-section">
+    <section className="vfx-short-courses-section" ref={sectionRef}>
       <div className="vfx-short-courses-container">
         {/* Header */}
         <div className="vfx-short-courses-header">
-          <h2 className="vfx-short-courses-title">Short Courses Based On AI & 3D Softwares</h2>
-          <p className="vfx-short-courses-subtitle">Start your learning journey with our comprehensive mini course</p>
+          <motion.h2
+            className="vfx-short-courses-title"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={titleVariants}
+          >
+            Short Courses Based On AI & 3D Softwares
+          </motion.h2>
+          <motion.p
+            className="vfx-short-courses-subtitle"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={descriptionVariants}
+          >
+            Start your learning journey with our comprehensive mini course
+          </motion.p>
         </div>
 
         {/* Cards Grid */}
-        <div className="vfx-short-courses-grid">
+        <motion.div
+          className="vfx-short-courses-grid"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={{
+            hidden: { opacity: 1 },
+            visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.2 } }
+          }}
+        >
           {/* Card 1 - AI Animation Course */}
-          <div className="vfx-short-course-card">
+          <motion.div
+            className="vfx-short-course-card"
+            variants={cardVariants}
+            custom={0}
+          >
             <div className="vfx-short-course-content">
               <div className="vfx-short-course-badge">ONLINE/OFFLINE</div>
               
@@ -49,10 +107,14 @@ const VFXShortCoursesSection: React.FC = () => {
               <span className="vfx-short-course-btn-text">View Details</span>
               <ArrowRight size={28} className="vfx-short-course-btn-arrow" />
             </button>
-          </div>
+          </motion.div>
 
           {/* Card 2 - Unreal Engine Course */}
-          <div className="vfx-short-course-card">
+          <motion.div
+            className="vfx-short-course-card"
+            variants={cardVariants}
+            custom={1}
+          >
             <div className="vfx-short-course-content">
               <div className="vfx-short-course-badge">ONLINE/OFFLINE</div>
               
@@ -85,10 +147,14 @@ const VFXShortCoursesSection: React.FC = () => {
               <span className="vfx-short-course-btn-text">View Details</span>
               <ArrowRight size={28} className="vfx-short-course-btn-arrow" />
             </button>
-          </div>
+          </motion.div>
 
           {/* Card 3 - Blender Learning Course */}
-          <div className="vfx-short-course-card">
+          <motion.div
+            className="vfx-short-course-card"
+            variants={cardVariants}
+            custom={2}
+          >
             <div className="vfx-short-course-content">
               <div className="vfx-short-course-badge">ONLINE/OFFLINE</div>
               
@@ -121,8 +187,8 @@ const VFXShortCoursesSection: React.FC = () => {
               <span className="vfx-short-course-btn-text">View Details</span>
               <ArrowRight size={28} className="vfx-short-course-btn-arrow" />
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

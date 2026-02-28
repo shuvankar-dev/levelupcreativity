@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import Navbar from '../components/navbar';
 import Footer from '../components/Footer';
 import EnrollModal from '../components/EnrollModal';
@@ -27,8 +28,59 @@ import vfxCreate5 from '../assets/WhatYou\'llCreateVfx/5.png';
 
 const vfxImages = [vfxCreate1, vfxCreate2, vfxCreate3, vfxCreate4, vfxCreate5];
 
+// Shared animation variants
+const titleVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1, y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+  }
+};
+
+const descriptionVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1, y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const, delay: 0.15 }
+  }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (index: number) => ({
+    opacity: 1, y: 0,
+    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const, delay: 0.2 + (index * 0.1) }
+  })
+};
+
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1, y: 0,
+    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const, delay: 0.1 }
+  }
+};
+
+const buttonVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1, y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const, delay: 0.3 }
+  }
+};
+
 function VFXAnimationCourse() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Refs and inView hooks for each section
+  const heroRef = useRef(null);
+  const heroInView = useInView(heroRef, { once: true, amount: 0.3 });
+
+  const infoRef = useRef(null);
+  const infoInView = useInView(infoRef, { once: true, amount: 0.3 });
+
+  const whyChooseRef = useRef(null);
+  const whyChooseInView = useInView(whyChooseRef, { once: true, amount: 0.2, margin: "0px 0px -50px 0px" });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -40,35 +92,63 @@ function VFXAnimationCourse() {
       
       <main className="vfx-course-content">
         {/* Hero Section */}
-        <section className="vfx-hero-section">
-          <div className="vfx-hero-background">
+        <section className="vfx-hero-section" ref={heroRef}>
+          <motion.div
+            className="vfx-hero-background"
+            initial="hidden"
+            animate={heroInView ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+          >
             <img src={heroImage} alt="VFX Animation" className="vfx-hero-image" />
-          </div>
+          </motion.div>
           
           <div className="vfx-hero-container">
             <div className="vfx-hero-text-container">
-              <h1 className="vfx-hero-title">Levelup Your VFX Career</h1>
-              <p className="vfx-hero-subtitle">
+              <motion.h1
+                className="vfx-hero-title"
+                initial="hidden"
+                animate={heroInView ? "visible" : "hidden"}
+                variants={titleVariants}
+              >
+                Levelup Your VFX Career
+              </motion.h1>
+              <motion.p
+                className="vfx-hero-subtitle"
+                initial="hidden"
+                animate={heroInView ? "visible" : "hidden"}
+                variants={descriptionVariants}
+              >
                 Industry-focused vfx training with job-ready portfolio
-              </p>
+              </motion.p>
             </div>
             
-            <div className="vfx-hero-button-container">
+            <motion.div
+              className="vfx-hero-button-container"
+              initial="hidden"
+              animate={heroInView ? "visible" : "hidden"}
+              variants={buttonVariants}
+            >
               <button className="vfx-enroll-button" onClick={() => setIsModalOpen(true)}>
                 <span className="vfx-button-text">
                   <span className="vfx-button-text-inner">Enroll Now</span>
                   <span className="vfx-button-text-inner">Enroll Now</span>
                 </span>
               </button>
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* Info Cards Section */}
-        <section className="vfx-info-section">
+        <section className="vfx-info-section" ref={infoRef}>
           <div className="vfx-info-cards">
             {/* Card 1 - Course Duration */}
-            <div className="vfx-info-card-wrapper">
+            <motion.div
+              className="vfx-info-card-wrapper"
+              initial="hidden"
+              animate={infoInView ? "visible" : "hidden"}
+              variants={cardVariants}
+              custom={0}
+            >
               <div className="vfx-info-card">
                 <div className="vfx-card-content">
                   <div className="vfx-card-icon">
@@ -82,10 +162,16 @@ function VFXAnimationCourse() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Card 2 - Price */}
-            <div className="vfx-info-card-wrapper">
+            <motion.div
+              className="vfx-info-card-wrapper"
+              initial="hidden"
+              animate={infoInView ? "visible" : "hidden"}
+              variants={cardVariants}
+              custom={1}
+            >
               <div className="vfx-info-card">
                 <div className="vfx-card-content">
                   <div className="vfx-card-icon">
@@ -99,10 +185,16 @@ function VFXAnimationCourse() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Card 3 - Class Mode */}
-            <div className="vfx-info-card-wrapper">
+            <motion.div
+              className="vfx-info-card-wrapper"
+              initial="hidden"
+              animate={infoInView ? "visible" : "hidden"}
+              variants={cardVariants}
+              custom={2}
+            >
               <div className="vfx-info-card">
                 <div className="vfx-card-content">
                   <div className="vfx-card-icon">
@@ -116,10 +208,16 @@ function VFXAnimationCourse() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Card 4 - Eligibility */}
-            <div className="vfx-info-card-wrapper">
+            <motion.div
+              className="vfx-info-card-wrapper"
+              initial="hidden"
+              animate={infoInView ? "visible" : "hidden"}
+              variants={cardVariants}
+              custom={3}
+            >
               <div className="vfx-info-card">
                 <div className="vfx-card-content">
                   <div className="vfx-card-icon">
@@ -133,23 +231,43 @@ function VFXAnimationCourse() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* Why Choose Levelup Section */}
-        <section className="vfx-why-choose-section">
+        <section className="vfx-why-choose-section" ref={whyChooseRef}>
           <div className="vfx-why-choose-container">
             {/* Header */}
             <div className="vfx-why-choose-header">
-              <h2 className="vfx-why-choose-title">Why Choose Levelup</h2>
-              <p className="vfx-why-choose-subtitle">Comprehensive learning paths designed by industry</p>
+              <motion.h2
+                className="vfx-why-choose-title"
+                initial="hidden"
+                animate={whyChooseInView ? "visible" : "hidden"}
+                variants={titleVariants}
+              >
+                Why Choose Levelup
+              </motion.h2>
+              <motion.p
+                className="vfx-why-choose-subtitle"
+                initial="hidden"
+                animate={whyChooseInView ? "visible" : "hidden"}
+                variants={descriptionVariants}
+              >
+                Comprehensive learning paths designed by industry
+              </motion.p>
             </div>
 
             {/* Bento Grid */}
             <div className="vfx-bento-grid">
               {/* First Row */}
-              <div className="vfx-bento-row">
+              <motion.div
+                className="vfx-bento-row"
+                initial="hidden"
+                animate={whyChooseInView ? "visible" : "hidden"}
+                variants={cardVariants}
+                custom={0}
+              >
                 {/* Card 1 - Team-based activities */}
                 <div className="vfx-bento-card">
                   <div className="vfx-bento-content">
@@ -197,10 +315,16 @@ function VFXAnimationCourse() {
                   </div>
                   <img src={dome} alt="3D Shape" className="vfx-bento-shape vfx-shape-dome" />
                 </div>
-              </div>
+              </motion.div>
 
               {/* Second Row */}
-              <div className="vfx-bento-row">
+              <motion.div
+                className="vfx-bento-row"
+                initial="hidden"
+                animate={whyChooseInView ? "visible" : "hidden"}
+                variants={cardVariants}
+                custom={1}
+              >
                 {/* Card 4 - Live sessions */}
                 <div className="vfx-bento-card vfx-bento-card-small">
                   <div className="vfx-bento-content">
@@ -246,7 +370,7 @@ function VFXAnimationCourse() {
                     <img src={paperPlane} alt="Send" className="vfx-feedback-icon" />
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>

@@ -1,0 +1,246 @@
+/* Tools We Offer VFX Section - Semicircle Carousel */
+.tools-vfx-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 1087px;
+  padding: 80px 32px 158px 32px;
+  background-color: #000000;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Header */
+.tools-vfx-title {
+  font-family: 'DM Sans', 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 72px;
+  text-align: center;
+  letter-spacing: -1.2px;
+  color: #EDEDED;
+  margin: 0 0 12px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.tools-vfx-subtitle {
+  font-family: 'DM Sans', 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  letter-spacing: 0%;
+  color: #A199B0;
+  margin: 0 0 80px 0;
+  max-width: 600px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Carousel Container */
+.tools-vfx-carousel {
+  position: relative;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+/* Tool Item */
+.tools-vfx-item {
+  position: absolute;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Outer Frame - Placeholder for now, will add 2 layers later */
+.tools-vfx-outer-frame {
+  position: relative;
+  width: 138.63px;
+  height: 152.22px;
+  transition: all 0.3s ease;
+}
+
+/* Active/Center Frame - Just container for now */
+.tools-vfx-outer-frame.active {
+  width: 277px;
+  height: 360px;
+}
+
+/* Inner Container - Dark gradient background (Main frame) */
+.tools-vfx-inner-container {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(92.88deg, #27272A 1.31%, #18181B 95.65%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* Active/Center Inner Container - Exact Figma specs */
+.tools-vfx-outer-frame.active .tools-vfx-inner-container {
+  width: 243.55px;
+  height: 243.55px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 40px;
+}
+
+/* Logo Wrapper - Frame 450 */
+.tools-vfx-logo-wrapper {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Active/Center Logo Wrapper - Exact Figma specs */
+.tools-vfx-outer-frame.active .tools-vfx-logo-wrapper {
+  width: 162.01px;
+  height: 162.01px;
+}
+
+/* Logo Image */
+.tools-vfx-logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Tool Name */
+.tools-vfx-name {
+  font-family: 'DM Sans', 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 24px;
+  text-align: center;
+  color: #FFFFFF;
+  margin-top: 8px;
+}
+
+/* Hint Text */
+.tools-vfx-hint {
+  font-family: 'DM Sans', 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: center;
+  color: #A199B0;
+  margin-top: 40px;
+  max-width: 400px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Navigation Buttons */
+.tools-vfx-nav-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.tools-vfx-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: #140F1D;
+  border: 1px solid #322F37;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #A199B0;
+}
+
+.tools-vfx-nav-btn:hover {
+  background: linear-gradient(92.89deg, #6443FF 7.13%, #8838B9 95.65%);
+  border-color: #6443FF;
+  color: #FFFFFF;
+  transform: scale(1.05);
+}
+
+.tools-vfx-nav-btn:active {
+  transform: scale(0.95);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .tools-vfx-section {
+    padding: 100px 32px;
+  }
+  
+  .tools-vfx-title {
+    font-size: 48px;
+    line-height: 56px;
+  }
+  
+  .tools-vfx-subtitle {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tools-vfx-section {
+    padding: 80px 24px;
+  }
+  
+  .tools-vfx-title {
+    font-size: 36px;
+    line-height: 44px;
+  }
+  
+  .tools-vfx-subtitle {
+    font-size: 14px;
+    line-height: 21px;
+    margin-bottom: 40px;
+  }
+  
+  .tools-vfx-carousel {
+    transform: scale(0.8);
+  }
+}
+
+@media (max-width: 480px) {
+  .tools-vfx-section {
+    padding: 60px 16px;
+  }
+  
+  .tools-vfx-title {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  
+  .tools-vfx-subtitle {
+    font-size: 13px;
+    line-height: 19px;
+  }
+  
+  .tools-vfx-carousel {
+    transform: scale(0.6);
+  }
+}

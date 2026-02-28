@@ -1,23 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import './CSS/VFXAnimationCoursePricing.css';
 import FigmaLogo from '../assets/FigmaLogo.png';
 
+const titleVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1, y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+  }
+};
+
+const descriptionVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1, y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const, delay: 0.15 }
+  }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (index: number) => ({
+    opacity: 1, y: 0,
+    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const, delay: 0.2 + (index * 0.15) }
+  })
+};
+
 const VFXAnimationCoursePricing: React.FC = () => {
   const [rightPaymentType, setRightPaymentType] = useState<'3-months' | '6-months'>('3-months');
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, {
+    once: true,
+    amount: 0.2,
+    margin: '0px 0px -50px 0px'
+  });
 
   return (
-    <section className="vfx-pricing-section">
+    <section className="vfx-pricing-section" ref={sectionRef}>
       <div className="vfx-pricing-container">
         {/* Header */}
         <div className="vfx-pricing-header">
-          <h2 className="vfx-pricing-title">Our Pricing Plans</h2>
-          <p className="vfx-pricing-subtitle">Invest in your future with flexible learning options</p>
+          <motion.h2
+            className="vfx-pricing-title"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={titleVariants}
+          >
+            Our Pricing Plans
+          </motion.h2>
+          <motion.p
+            className="vfx-pricing-subtitle"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={descriptionVariants}
+          >
+            Invest in your future with flexible learning options
+          </motion.p>
         </div>
 
         {/* Pricing Cards */}
         <div className="vfx-pricing-cards">
           {/* Card 1 - One-Time Pay */}
-          <div className="vfx-pricing-card">
+          <motion.div
+            className="vfx-pricing-card"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={cardVariants}
+            custom={0}
+          >
             <div className="vfx-limited-offer-badge">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M8 2L9.5 6.5L14 8L9.5 9.5L8 14L6.5 9.5L2 8L6.5 6.5L8 2Z" fill="white"/>
@@ -66,10 +117,16 @@ const VFXAnimationCoursePricing: React.FC = () => {
               <button className="vfx-btn-contact">Contact Us</button>
               <button className="vfx-btn-enroll">Enroll Now</button>
             </div>
-          </div>
+            </motion.div>
 
           {/* Card 2 - Installment Options */}
-          <div className="vfx-pricing-card">
+          <motion.div
+            className="vfx-pricing-card"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={cardVariants}
+            custom={1}
+          >
             <div className="vfx-pricing-card-header">
               <div className="vfx-course-icon">
                 <img src={FigmaLogo} alt="VFX Animation" />
@@ -124,7 +181,7 @@ const VFXAnimationCoursePricing: React.FC = () => {
               <button className="vfx-btn-contact">Contact Us</button>
               <button className="vfx-btn-enroll">Enroll Now</button>
             </div>
-          </div>
+            </motion.div>
         </div>
       </div>
     </section>

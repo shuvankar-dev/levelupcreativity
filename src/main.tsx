@@ -9,6 +9,9 @@ import AdminAuth from './pages/AdminAuth.tsx'
 import UXDesignCourse from './pages/UXDesignCourse.tsx'
 import VFXAnimationCourse from './pages/VFXAnimationCourse.tsx'
 import ComponentTest from './pages/ComponentTest.tsx'
+import ToolsWeOfferVFX from './components/ToolsWeOfferVFX.tsx'
+import Blog from './pages/Blog.tsx'
+import VFXShortCourses from './pages/VFXShortCourses.tsx'
 
 function Root() {
   const navigate = useNavigate();
@@ -29,6 +32,8 @@ function Root() {
         navigate('/ux-design');
       } else if (page === 'vfx-animation') {
         navigate('/vfx-animation');
+      } else if (page === 'blog') {
+        navigate('/blog');
       }
     };
 
@@ -48,6 +53,9 @@ function Root() {
       <Route path="/ux-design" element={<UXDesignCourse />} />
       <Route path="/vfx-animation" element={<VFXAnimationCourse />} />
       <Route path="/ComponentTest" element={<ComponentTest />} />
+      <Route path="/ToolsWeOfferVFX" element={<ToolsWeOfferVFX />} />
+      <Route path="/blog" element={<Blog />} />
+      <Route path="/vfx-short-courses" element={<VFXShortCourses />} />
     </Routes>
   );
 }

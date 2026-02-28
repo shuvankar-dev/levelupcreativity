@@ -142,7 +142,11 @@ function Navbar({ variant = 'default', courseName }: NavbarProps) {
           </div>
 
           {/* Blogs - No Arrow */}
-          <div className="nav-item">
+          <div 
+            className="nav-item"
+            onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: { page: 'blog' } }))}
+            style={{ cursor: 'pointer' }}
+          >
             <div className="nav-item-content">
               <span className="nav-text">Blogs</span>
             </div>
