@@ -12,6 +12,7 @@ import ComponentTest from './pages/ComponentTest.tsx'
 import ToolsWeOfferVFX from './components/ToolsWeOfferVFX.tsx'
 import Blog from './pages/Blog.tsx'
 import VFXShortCourses from './pages/VFXShortCourses.tsx'
+import DashboardFundamental from './pages/DashboardFundamental.tsx'
 
 function Root() {
   const navigate = useNavigate();
@@ -56,6 +57,7 @@ function Root() {
       <Route path="/ToolsWeOfferVFX" element={<ToolsWeOfferVFX />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/vfx-short-courses" element={<VFXShortCourses />} />
+      <Route path="/dashboard-fundamental" element={<DashboardFundamental />} />
     </Routes>
   );
 }
