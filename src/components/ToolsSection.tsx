@@ -155,13 +155,13 @@ const ToolsSection: React.FC = () => {
             className={`toggle-button ${activeTab === 'ux' ? 'active' : ''}`}
             onClick={() => setActiveTab('ux')}
           >
-            UX/UI Design
+            UX/UI Design Tools
           </button>
           <button
             className={`toggle-button ${activeTab === 'vfx' ? 'active' : ''}`}
             onClick={() => setActiveTab('vfx')}
           >
-            VFX Animation
+            AI Tools
           </button>
         </motion.div>
 

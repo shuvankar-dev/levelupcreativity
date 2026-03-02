@@ -495,10 +495,8 @@
   width: 640px;
   height: 88px;
   background: #0C0911;
-  border-left: 1px solid #322F37;
-  border-right: 1px solid #322F37;
-  border-bottom: 1px solid #322F37;
-  border-top: 2px solid transparent;
+  border: 1px solid #322F37;
+  border-radius: 0;
   flex: none;
   flex-grow: 1;
   box-sizing: border-box;
@@ -509,12 +507,13 @@
 .vfx-sc-learn-item::before {
   content: '';
   position: absolute;
-  top: -2px;
-  left: -1px;
-  right: -1px;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 2px;
-  background: radial-gradient(ellipse 37.26% 26.55% at 48.65% 0%, #8868FF 0%, rgba(136, 104, 255, 0) 100%);
+  background: radial-gradient(50% 100% at 50% 0%, #8868FF 0%, rgba(136, 104, 255, 0) 100%);
   pointer-events: none;
+  z-index: 1;
 }
 
 /* Add solid border fallback - REMOVED, not needed */

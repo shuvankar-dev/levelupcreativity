@@ -17,14 +17,18 @@ function Navbar({ variant = 'default', courseName }: NavbarProps) {
   const handleMouseEnter = () => {
     if (dropdownTimeout.current) {
       clearTimeout(dropdownTimeout.current);
+      dropdownTimeout.current = null;
     }
     setIsCoursesOpen(true);
   };
 
   const handleMouseLeave = () => {
+    if (dropdownTimeout.current) {
+      clearTimeout(dropdownTimeout.current);
+    }
     dropdownTimeout.current = setTimeout(() => {
       setIsCoursesOpen(false);
-    }, 200); // Increased from 100ms to 200ms for more stability
+    }, 400); // Increased to 400ms for much better stability
   };
 
   useEffect(() => {

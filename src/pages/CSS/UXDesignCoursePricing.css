@@ -3,10 +3,24 @@
   position: relative;
   width: 100vw;
   margin: 120px 0 0 0;
-  padding: 80px 31px;
+  padding: 100px 32px;
   margin-left: calc(-50vw + 50%);
   background: radial-gradient(69.98% 71.07% at 3.71% 24.46%, rgba(164, 75, 255, 0.12) 0%, rgba(110, 40, 201, 0.06) 25.1%, rgba(0, 0, 0, 0) 75%),
               radial-gradient(53.16% 53.16% at 80.48% 11.46%, rgba(164, 75, 255, 0.12) 0%, rgba(110, 40, 201, 0.06) 40%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* Full-width top border with gradient */
+.ux-pricing-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(41, 41, 41, 0) 0%, #292929 50%, rgba(41, 41, 41, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .ux-pricing-container {

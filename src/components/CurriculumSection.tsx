@@ -13,11 +13,25 @@ interface Module {
     topic: string;
     tasks: string;
   }>;
+  specializations?: Array<{
+    id: string;
+    name: string;
+    title: string;
+    description: string;
+    modules: Array<{
+      module: string;
+      topic: string;
+    }>;
+  }>;
 }
 
-const CurriculumSection: React.FC = () => {
-  const [selectedTrack, setSelectedTrack] = useState<'ux' | 'vfx'>('ux');
+interface CurriculumSectionProps {
+  defaultTrack?: 'ux' | 'vfx';
+}
+
+const CurriculumSection: React.FC<CurriculumSectionProps> = ({ defaultTrack = 'ux' }) => {
   const [expandedModule, setExpandedModule] = useState<number | null>(null);
+  const [selectedSpecialization, setSelectedSpecialization] = useState<string>('modelling');
   
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { 
@@ -66,7 +80,7 @@ const CurriculumSection: React.FC = () => {
     },
     {
       id: 4,
-      title: 'Interface Master & AI acceleration',
+      title: 'Advance UI & Systems',
       description: 'Validate, refine & prepare for real-world teamwork • 3 modules',
       icon: '4',
       weeks: [
@@ -77,14 +91,25 @@ const CurriculumSection: React.FC = () => {
     },
     {
       id: 5,
-      title: 'Portfolio Launch & Career Readiness',
+      title: 'Usability & Collaboration',
       description: 'Build your professional portfolio with real projects • 4 modules',
       icon: '5',
       weeks: [
-        { week: 'Week 17', topic: 'Case Study Writing', tasks: '2 Tasks' },
-        { week: 'Week 18', topic: 'Portfolio Website Planning', tasks: '3 Tasks' },
-        { week: 'Week 19', topic: 'Portfolio Build & Publish', tasks: '2 Tasks' },
-        { week: 'Week 20', topic: 'Career Preparation', tasks: '3 Tasks' }
+        { week: 'Week 17', topic: 'Usability Testing Fundamentals', tasks: '2 Tasks' },
+        { week: 'Week 18', topic: 'Prototyping & Interaction Design', tasks: '3 Tasks' },
+        { week: 'Week 19', topic: 'Design Handoff & Developer Collaboration', tasks: '2 Tasks' }
+      ]
+    },
+    {
+      id: 6,
+      title: 'SaaS Design & Portfolio',
+      description: 'Build your professional portfolio with real projects • 4 modules',
+      icon: '6',
+      weeks: [
+        { week: 'Week 20', topic: 'Case Study Writing', tasks: '2 Tasks' },
+        { week: 'Week 21', topic: 'Portfolio Website Planning', tasks: '3 Tasks' },
+        { week: 'Week 22', topic: 'Portfolio Build & Publish', tasks: '2 Tasks' },
+        { week: 'Week 23', topic: 'Career Preparation', tasks: '3 Tasks' }
       ]
     }
   ];
@@ -124,11 +149,78 @@ const CurriculumSection: React.FC = () => {
       id: 6,
       title: 'Specialization Course',
       description: 'Choose your preferred specialization • 20 weeks',
-      icon: '6'
+      icon: '6',
+      specializations: [
+        {
+          id: 'modelling',
+          name: 'Modelling',
+          title: 'Advance 3D Modelling Course',
+          description: 'Advanced techniques for creating detailed, optimized, industry-standard 3D models • 5 months',
+          modules: [
+            { module: 'Module 1', topic: 'Advance Modelling Principle & Pipeline setup' },
+            { module: 'Module 2', topic: 'Organic & Character Modelling' },
+            { module: 'Module 3', topic: 'Hard Surface & Environment Modelling' },
+            { module: 'Module 4', topic: 'Retopology, UV & Asset Preparation' },
+            { module: 'Module 5', topic: 'Final Project & Portfolio Development' }
+          ]
+        },
+        {
+          id: 'rigging',
+          name: 'Rigging',
+          title: 'Advanced Rigging Course',
+          description: 'Master character rigging, facial rigs, and complex deformation systems • 5 months',
+          modules: [
+            { module: 'Module 1', topic: 'Rigging Fundamentals & Joint Systems' },
+            { module: 'Module 2', topic: 'Character Rigging & Control Systems' },
+            { module: 'Module 3', topic: 'Facial Rigging & Blend Shapes' },
+            { module: 'Module 4', topic: 'Advanced Deformers & Constraints' },
+            { module: 'Module 5', topic: 'Final Rigging Project & Portfolio' }
+          ]
+        },
+        {
+          id: 'animation',
+          name: 'Animation',
+          title: 'Advanced Animation Course',
+          description: 'Master character animation, performance, and cinematic storytelling • 5 months',
+          modules: [
+            { module: 'Module 1', topic: 'Animation Principles & Workflow' },
+            { module: 'Module 2', topic: 'Character Performance & Acting' },
+            { module: 'Module 3', topic: 'Creature & Quadruped Animation' },
+            { module: 'Module 4', topic: 'Cinematic Animation & Camera Work' },
+            { module: 'Module 5', topic: 'Final Animation Reel & Portfolio' }
+          ]
+        },
+        {
+          id: 'lighting',
+          name: 'Lighting and Rendering',
+          title: 'Advanced Lighting & Rendering Course',
+          description: 'Master cinematic lighting, photorealistic rendering, and look development • 5 months',
+          modules: [
+            { module: 'Module 1', topic: 'Lighting Fundamentals & Theory' },
+            { module: 'Module 2', topic: 'Advanced Shading & Materials' },
+            { module: 'Module 3', topic: 'Rendering Techniques & Optimization' },
+            { module: 'Module 4', topic: 'Look Development & Shot Lighting' },
+            { module: 'Module 5', topic: 'Final Lighting Project & Portfolio' }
+          ]
+        },
+        {
+          id: 'compositing',
+          name: 'Compositing',
+          title: 'Advanced Compositing Course',
+          description: 'Master node-based compositing, VFX integration, and final shot assembly • 5 months',
+          modules: [
+            { module: 'Module 1', topic: 'Compositing Fundamentals & Nuke Basics' },
+            { module: 'Module 2', topic: 'Keying, Rotoscoping & Clean Plates' },
+            { module: 'Module 3', topic: 'CG Integration & Match Moving' },
+            { module: 'Module 4', topic: 'Color Grading & Final Polish' },
+            { module: 'Module 5', topic: 'Final Compositing Reel & Portfolio' }
+          ]
+        }
+      ]
     }
   ];
 
-  const currentModules = selectedTrack === 'ux' ? uxModules : vfxModules;
+  const currentModules = defaultTrack === 'ux' ? uxModules : vfxModules;
 
   const toggleModule = (id: number) => {
     setExpandedModule(expandedModule === id ? null : id);
@@ -221,22 +313,6 @@ const CurriculumSection: React.FC = () => {
           </motion.p>
         </div>
 
-        {/* Track Toggle Buttons */}
-        <div className="track-toggle">
-          <button
-            className={`track-toggle-btn ${selectedTrack === 'ux' ? 'active' : ''}`}
-            onClick={() => setSelectedTrack('ux')}
-          >
-            UX/UI Design
-          </button>
-          <button
-            className={`track-toggle-btn ${selectedTrack === 'vfx' ? 'active' : ''}`}
-            onClick={() => setSelectedTrack('vfx')}
-          >
-            VFX Animation
-          </button>
-        </div>
-
         {/* Modules Container */}
         <div className="modules-container">
           {/* Header Card */}
@@ -252,10 +328,10 @@ const CurriculumSection: React.FC = () => {
               </div>
               <div className="modules-header-text">
                 <h3 className="modules-count">
-                  {currentModules.length === 5 ? '20' : '20'} Comprehensive Modules
+                  {currentModules.length === 6 ? '20' : '20'} Comprehensive Modules
                 </h3>
                 <p className="modules-phases">
-                  Structured in {currentModules.length === 5 ? '4' : '6'} progressive phases
+                  Structured in {currentModules.length === 6 ? '4' : '6'} progressive phases
                 </p>
               </div>
             </div>
@@ -318,6 +394,47 @@ const CurriculumSection: React.FC = () => {
                         </div>
                       ))}
                     </div>
+                  </div>
+                )}
+                {expandedModule === module.id && module.specializations && (
+                  <div className="module-content specialization-content">
+                    {/* Specialization Tabs */}
+                    <div className="specialization-tabs">
+                      {module.specializations.map((spec) => (
+                        <button
+                          key={spec.id}
+                          className={`specialization-tab ${selectedSpecialization === spec.id ? 'active' : ''}`}
+                          onClick={() => setSelectedSpecialization(spec.id)}
+                        >
+                          {spec.name}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Selected Specialization Content */}
+                    {module.specializations
+                      .filter((spec) => spec.id === selectedSpecialization)
+                      .map((spec) => (
+                        <div key={spec.id} className="specialization-details">
+                          <div className="specialization-header">
+                            <div className="specialization-icon">
+                              <img src={BookOpen} alt="Book Open" />
+                            </div>
+                            <div className="specialization-info">
+                              <h4 className="specialization-title">{spec.title}</h4>
+                              <p className="specialization-description">{spec.description}</p>
+                            </div>
+                          </div>
+                          <div className="specialization-modules">
+                            {spec.modules.map((modData, idx) => (
+                              <div key={idx} className="specialization-module-row">
+                                <span className="specialization-module-label">{modData.module}</span>
+                                <span className="specialization-module-topic">{modData.topic}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
                   </div>
                 )}
               </motion.div>

@@ -379,7 +379,7 @@ function VFXAnimationCourse() {
         <WhatWeCreateUI images={vfxImages} />
 
         {/* Curriculum Section */}
-        <CurriculumSection />
+        <CurriculumSection defaultTrack="vfx" />
 
         {/* Pricing Section */}
         <VFXAnimationCoursePricing />
