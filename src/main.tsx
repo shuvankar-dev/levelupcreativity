@@ -13,6 +13,7 @@ import ToolsWeOfferVFX from './components/ToolsWeOfferVFX.tsx'
 import Blog from './pages/Blog.tsx'
 import VFXShortCourses from './pages/VFXShortCourses.tsx'
 import DashboardFundamental from './pages/DashboardFundamental.tsx'
+import AdminBlogEditor from './pages/AdminBlogEditor.tsx'
 
 function Root() {
   const navigate = useNavigate();
@@ -35,6 +36,8 @@ function Root() {
         navigate('/vfx-animation');
       } else if (page === 'blog') {
         navigate('/blog');
+      } else if (page === 'admin-blog-editor') {
+        navigate('/admin/blog/new');
       }
     };
 
@@ -58,6 +61,7 @@ function Root() {
       <Route path="/blog" element={<Blog />} />
       <Route path="/vfx-short-courses" element={<VFXShortCourses />} />
       <Route path="/dashboard-fundamental" element={<DashboardFundamental />} />
+      <Route path="/admin/blog/new" element={<AdminBlogEditor />} />
     </Routes>
   );
 }

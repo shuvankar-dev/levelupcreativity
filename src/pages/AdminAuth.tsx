@@ -552,7 +552,10 @@ const AdminDashboard: React.FC<{ onSignOut: () => void }> = ({ onSignOut }) => {
                 <div className="stat-content">
                   <p className="stat-label">Add Blog</p>
                   <p className="stat-description">Create and publish new blog posts</p>
-                  <button className="stat-action-button">
+                  <button 
+                    className="stat-action-button"
+                    onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: { page: 'admin-blog-editor' } }))}
+                  >
                     Create New Post
                   </button>
                 </div>
