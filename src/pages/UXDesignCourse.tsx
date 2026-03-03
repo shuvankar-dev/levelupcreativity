@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/navbar';
 import EnrollModal from '../components/EnrollModal';
 import CTABannerForCourses from '../components/CTABannerForCourses';
@@ -68,6 +69,7 @@ const buttonVariants = {
 
 function UXDesignCourse() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   // Refs and inView hooks for each section
   const heroRef = useRef(null);
@@ -85,9 +87,15 @@ function UXDesignCourse() {
   const shortCoursesRef = useRef(null);
   const shortCoursesInView = useInView(shortCoursesRef, { once: true, amount: 0.2, margin: "0px 0px -50px 0px" });
 
+  const curriculumRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const scrollToCurriculum = () => {
+    curriculumRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   return (
     <div className="ux-design-course-page">
@@ -144,12 +152,18 @@ function UXDesignCourse() {
                   className="ux-button ux-button-primary"
                   onClick={() => setIsModalOpen(true)}
                 >
-                  <span>Enroll Now</span>
+                  <span className="button-text">
+                    <span className="button-text-inner">Enroll Now</span>
+                    <span className="button-text-inner">Enroll Now</span>
+                  </span>
                 </button>
 
-                {/* Download Brochure Button */}
-                <button className="ux-button ux-button-secondary">
-                  <span>View Curricullum</span>
+                {/* View Curriculum Button */}
+                <button 
+                  className="ux-button ux-button-secondary"
+                  onClick={scrollToCurriculum}
+                >
+                  <span>View Curriculum</span>
                 </button>
               </div>
             </motion.div>
@@ -403,7 +417,9 @@ function UXDesignCourse() {
         <ToolsSection uxLabel="UX/UI Design Tools" vfxLabel="AI Tools" />
 
         {/* Curriculum Section */}
-        <CurriculumSection defaultTrack="ux" />
+        <div ref={curriculumRef}>
+          <CurriculumSection defaultTrack="ux" />
+        </div>
 
         {/* Pricing Section */}
         <UXDesignCoursePricing />
@@ -478,7 +494,10 @@ function UXDesignCourse() {
                   </div>
                 </div>
 
-                <button className="ux-short-course-btn">
+                <button 
+                  className="ux-short-course-btn"
+                  onClick={() => navigate('/dashboard-fundamental')}
+                >
                   <span className="ux-short-course-btn-text">View Details</span>
                   <ArrowRight size={28} className="ux-short-course-btn-arrow" />
                 </button>

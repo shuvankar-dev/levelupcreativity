@@ -157,7 +157,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   padding: 24px 64px;
   gap: 8px;
   width: 290px;
@@ -166,9 +166,56 @@
   border: 1px solid #B7A5D9;
   border-radius: 40px;
   order: 0;
+  position: relative;
+  overflow: hidden;
 }
 
-.ux-button-primary span {
+/* Button text container for animation */
+.ux-button-primary .button-text {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 27px;
+  overflow: hidden;
+}
+
+/* Inner text spans */
+.ux-button-primary .button-text-inner {
+  display: block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: #EDECEE;
+}
+
+.ux-button-primary .button-text-inner:first-child {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.ux-button-primary .button-text-inner:last-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  opacity: 0;
+}
+
+/* Hover animation - slide up effect */
+.ux-button-primary:hover .button-text-inner:first-child {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.ux-button-primary:hover .button-text-inner:last-child {
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+.ux-button-primary span:not(.button-text):not(.button-text-inner) {
   width: 87px;
   height: 27px;
   font-family: 'DM Sans', sans-serif;

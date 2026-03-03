@@ -406,6 +406,47 @@
   border-radius: 56px;
   color: #EDECEE;
   flex-grow: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Button text container for animation */
+.vfx-btn-enroll .button-text {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 27px;
+  overflow: hidden;
+}
+
+/* Inner text spans */
+.vfx-btn-enroll .button-text-inner {
+  display: block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.vfx-btn-enroll .button-text-inner:first-child {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.vfx-btn-enroll .button-text-inner:last-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  opacity: 0;
+}
+
+/* Hover animation - slide up effect */
+.vfx-btn-enroll:hover .button-text-inner:first-child {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.vfx-btn-enroll:hover .button-text-inner:last-child {
+  transform: translate(-50%, -50%);
+  opacity: 1;
 }
 
 .vfx-btn-enroll:hover {

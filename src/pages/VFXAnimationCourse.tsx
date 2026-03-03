@@ -82,9 +82,15 @@ function VFXAnimationCourse() {
   const whyChooseRef = useRef(null);
   const whyChooseInView = useInView(whyChooseRef, { once: true, amount: 0.2, margin: "0px 0px -50px 0px" });
 
+  const curriculumRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const scrollToCurriculum = () => {
+    curriculumRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   return (
     <div className="vfx-animation-course-page">
@@ -379,7 +385,9 @@ function VFXAnimationCourse() {
         <WhatWeCreateUI images={vfxImages} />
 
         {/* Curriculum Section */}
-        <CurriculumSection defaultTrack="vfx" />
+        <div ref={curriculumRef}>
+          <CurriculumSection defaultTrack="vfx" />
+        </div>
 
         {/* Pricing Section */}
         <VFXAnimationCoursePricing />

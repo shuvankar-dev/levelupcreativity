@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import './CSS/VFXAnimationCoursePricing.css';
 import FigmaLogo from '../assets/FigmaLogo.png';
+import EnrollModal from '../components/EnrollModal';
 
 const titleVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -29,12 +30,20 @@ const cardVariants = {
 
 const VFXAnimationCoursePricing: React.FC = () => {
   const [rightPaymentType, setRightPaymentType] = useState<'3-months' | '6-months'>('3-months');
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, {
     once: true,
     amount: 0.2,
     margin: '0px 0px -50px 0px'
   });
+
+  const handleWhatsAppClick = () => {
+    // WhatsApp number: +91 98368 41945
+    const phoneNumber = '919836841945'; // Format: country code + number (no + or spaces)
+    const message = encodeURIComponent('Hi, I would like to know more about the VFX Animation course pricing.');
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+  };
 
   return (
     <section className="vfx-pricing-section" ref={sectionRef}>
@@ -114,8 +123,13 @@ const VFXAnimationCoursePricing: React.FC = () => {
             </div>
 
             <div className="vfx-card-buttons">
-              <button className="vfx-btn-contact">Contact Us</button>
-              <button className="vfx-btn-enroll">Enroll Now</button>
+              <button className="vfx-btn-contact" onClick={handleWhatsAppClick}>Contact Us</button>
+              <button className="vfx-btn-enroll" onClick={() => setIsModalOpen(true)}>
+                <span className="button-text">
+                  <span className="button-text-inner">Enroll Now</span>
+                  <span className="button-text-inner">Enroll Now</span>
+                </span>
+              </button>
             </div>
             </motion.div>
 
@@ -178,12 +192,20 @@ const VFXAnimationCoursePricing: React.FC = () => {
             </div>
 
             <div className="vfx-card-buttons">
-              <button className="vfx-btn-contact">Contact Us</button>
-              <button className="vfx-btn-enroll">Enroll Now</button>
+              <button className="vfx-btn-contact" onClick={handleWhatsAppClick}>Contact Us</button>
+              <button className="vfx-btn-enroll" onClick={() => setIsModalOpen(true)}>
+                <span className="button-text">
+                  <span className="button-text-inner">Enroll Now</span>
+                  <span className="button-text-inner">Enroll Now</span>
+                </span>
+              </button>
             </div>
             </motion.div>
         </div>
       </div>
+
+      {/* Enroll Modal */}
+      <EnrollModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 };

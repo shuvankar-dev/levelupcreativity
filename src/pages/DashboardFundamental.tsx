@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/navbar';
 import Footer from '../components/Footer';
 import { Phone, Check, Square, Plus, Minus } from 'lucide-react';
@@ -16,6 +16,10 @@ import './CSS/DashboardFundamental.css';
 const DashboardFundamental: React.FC = () => {
   const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
   const [openFAQ, setOpenFAQ] = useState<number | null>(1);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const faqs = [
     { 
