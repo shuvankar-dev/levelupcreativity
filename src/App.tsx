@@ -165,7 +165,7 @@ function App() {
         <div className="scroll-reveal" style={{ transitionDelay: '0s' }}><ToolsSection /></div>
         <div className="scroll-reveal" style={{ transitionDelay: '0.1s' }}><FreeCourseSection /></div>
         <div className="scroll-reveal" style={{ transitionDelay: '0s' }}><PricingSection /></div>
-        <CurriculumSection />
+        <CurriculumSection showToggle={true} />
         <div className="scroll-reveal" style={{ transitionDelay: '0s' }}><PrerequisitesSection /></div>
         <div className="scroll-reveal" style={{ transitionDelay: '0.1s' }}><WhyLevelUpSection /></div>
         <div className="scroll-reveal" style={{ transitionDelay: '0s' }}><ShortCoursesSection /></div>

@@ -55,6 +55,57 @@
   margin: 0;
 }
 
+/* Toggle Buttons - Segmented Control */
+.curriculum-toggle {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  gap: 0px;
+  width: 348px;
+  height: 64px;
+  background: #140F1D;
+  border: 1px solid #2E1E4C;
+  border-radius: 80px;
+  margin-top: 32px;
+}
+
+.toggle-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 32px;
+  gap: 24px;
+  height: 48px;
+  background: transparent;
+  border: none;
+  border-radius: 80px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  
+  font-family: 'DM Sans', 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #A29AB1;
+  white-space: nowrap;
+}
+
+.toggle-btn:hover:not(.active) {
+  color: #EDECEE;
+}
+
+.toggle-btn.active {
+  background: linear-gradient(92.89deg, #6443FF 7.13%, #8838B9 95.65%);
+  border-radius: 80px;
+  color: #EDECEE;
+}
+
 /* Modules Container */
 .modules-container {
   display: flex;
@@ -491,6 +542,20 @@
     font-size: 16px;
   }
 
+  .curriculum-toggle {
+    width: 100%;
+    max-width: 348px;
+    gap: 0px;
+    padding: 8px;
+    height: 64px;
+  }
+
+  .toggle-btn {
+    padding: 20px 24px;
+    font-size: 14px;
+    height: 48px;
+  }
+
   .modules-header-card {
     padding: 24px;
   }
@@ -531,6 +596,22 @@
 
   .curriculum-title {
     font-size: 28px;
+  }
+
+  .curriculum-toggle {
+    width: 100%;
+    max-width: 320px;
+    gap: 0px;
+    padding: 6px;
+    height: 56px;
+    margin-top: 20px;
+  }
+
+  .toggle-btn {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 14px;
+    height: 44px;
   }
 
   .modules-count {

@@ -27,11 +27,13 @@ interface Module {
 
 interface CurriculumSectionProps {
   defaultTrack?: 'ux' | 'vfx';
+  showToggle?: boolean;
 }
 
-const CurriculumSection: React.FC<CurriculumSectionProps> = ({ defaultTrack = 'ux' }) => {
+const CurriculumSection: React.FC<CurriculumSectionProps> = ({ defaultTrack = 'ux', showToggle = false }) => {
   const [expandedModule, setExpandedModule] = useState<number | null>(null);
   const [selectedSpecialization, setSelectedSpecialization] = useState<string>('modelling');
+  const [selectedTrack, setSelectedTrack] = useState<'ux' | 'vfx'>(defaultTrack);
   
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { 
@@ -40,7 +42,7 @@ const CurriculumSection: React.FC<CurriculumSectionProps> = ({ defaultTrack = 'u
     margin: "0px 0px -50px 0px"
   });
 
-  const uxModules = [
+  const uxModules: Module[] = [
     {
       id: 1,
       title: 'Product Foundations and Research Setup',
@@ -220,7 +222,7 @@ const CurriculumSection: React.FC<CurriculumSectionProps> = ({ defaultTrack = 'u
     }
   ];
 
-  const currentModules = defaultTrack === 'ux' ? uxModules : vfxModules;
+  const currentModules = showToggle ? (selectedTrack === 'ux' ? uxModules : vfxModules) : (defaultTrack === 'ux' ? uxModules : vfxModules);
 
   const toggleModule = (id: number) => {
     setExpandedModule(expandedModule === id ? null : id);
@@ -311,6 +313,29 @@ const CurriculumSection: React.FC<CurriculumSectionProps> = ({ defaultTrack = 'u
           >
             Comprehensive learning paths designed by industry experts
           </motion.p>
+
+          {/* Toggle Buttons - Only show when showToggle is true */}
+          {showToggle && (
+            <motion.div 
+              className="curriculum-toggle"
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              variants={descriptionVariants}
+            >
+              <button
+                className={`toggle-btn ${selectedTrack === 'ux' ? 'active' : ''}`}
+                onClick={() => setSelectedTrack('ux')}
+              >
+                UX/UI Design
+              </button>
+              <button
+                className={`toggle-btn ${selectedTrack === 'vfx' ? 'active' : ''}`}
+                onClick={() => setSelectedTrack('vfx')}
+              >
+                VFX Animation
+              </button>
+            </motion.div>
+          )}
         </div>
 
         {/* Modules Container */}

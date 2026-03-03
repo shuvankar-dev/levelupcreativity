@@ -403,7 +403,7 @@ function UXDesignCourse() {
         <ToolsSection />
 
         {/* Curriculum Section */}
-        <CurriculumSection />
+        <CurriculumSection defaultTrack="ux" />
 
         {/* Pricing Section */}
         <UXDesignCoursePricing />
