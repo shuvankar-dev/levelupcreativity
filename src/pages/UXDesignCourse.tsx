@@ -400,7 +400,7 @@ function UXDesignCourse() {
         <CTABannerForCourses variant="portfolio" />
 
         {/* Tools Section */}
-        <ToolsSection />
+        <ToolsSection uxLabel="UX/UI Design Tools" vfxLabel="AI Tools" />
 
         {/* Curriculum Section */}
         <CurriculumSection defaultTrack="ux" />

@@ -18,7 +18,15 @@ import zbrushLogo from '../assets/toolslogo/ZBrush.png';
 import substanceLogo from '../assets/toolslogo/Substance 3D Painter.png';
 import photoshopLogo from '../assets/toolslogo/Adobe Photoshop.png';
 
-const ToolsSection: React.FC = () => {
+interface ToolsSectionProps {
+  uxLabel?: string;
+  vfxLabel?: string;
+}
+
+const ToolsSection: React.FC<ToolsSectionProps> = ({ 
+  uxLabel = 'UX/UI Design', 
+  vfxLabel = 'VFX Animation' 
+}) => {
   const [activeTab, setActiveTab] = useState<'ux' | 'vfx'>('ux');
   const [hasAnimated, setHasAnimated] = useState(false);
   const sectionRef = useRef(null);
@@ -155,13 +163,13 @@ const ToolsSection: React.FC = () => {
             className={`toggle-button ${activeTab === 'ux' ? 'active' : ''}`}
             onClick={() => setActiveTab('ux')}
           >
-            UX/UI Design Tools
+            {uxLabel}
           </button>
           <button
             className={`toggle-button ${activeTab === 'vfx' ? 'active' : ''}`}
             onClick={() => setActiveTab('vfx')}
           >
-            AI Tools
+            {vfxLabel}
           </button>
         </motion.div>
 
