@@ -6,8 +6,7 @@
   margin: 0;
   padding: 0;
   margin-left: calc(-50vw + 50%);
-  border-bottom: 1px solid #322F37;
-  background: linear-gradient(180deg, #000000 6.16%, #11081C 40.47%, #11081C 83.87%, rgba(0, 0, 0, 0) 111.12%), 
+  background: linear-gradient(180deg, #000000 6.16%, #11081C 40.47%, #11081C 83.87%, rgba(0, 0, 0, 0) 111.12%),
               radial-gradient(110.73% 110.73% at 44.83% -10.73%, rgba(164, 75, 255, 0.12) 2.08%, rgba(110, 40, 201, 0.06) 61.06%, rgba(0, 0, 0, 0) 100%);
   display: flex;
   align-items: center;
