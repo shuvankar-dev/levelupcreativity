@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import Navbar from '../components/navbar';
 import Footer from '../components/Footer';
 import { Phone, Check, Square, Plus, Minus } from 'lucide-react';
@@ -7,11 +8,65 @@ import alaramIcon from '../assets/VFXShortCources/alaram.png';
 import rsIcon from '../assets/VFXShortCources/rs.png';
 import dateIcon from '../assets/VFXShortCources/date.png';
 import dashboardImage from '../assets/VFXShortCources/dashbord_fundamental.png';
-import figmaIcon from '../assets/toolslogo/Figma.png';
+import figmaIcon from '../assets/fundamentalIcon/figma.png';
+import excalidrawIcon from '../assets/fundamentalIcon/Excalidraw.png';
+import base44Icon from '../assets/fundamentalIcon/Base44.png';
 import clockIcon from '../assets/whylevelupicon/Vector.png';
 import calendarIcon from '../assets/whylevelupicon/Hands-on Project.png';
 import arrowRightIcon from '../assets/whylevelupicon/ArrowRight.png';
 import './CSS/DashboardFundamental.css';
+
+// Animation variants
+const titleVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+  }
+};
+
+const descriptionVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const, delay: 0.15 }
+  }
+};
+
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { 
+    opacity: 1, y: 0,
+    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const, delay: 0.1 }
+  }
+};
+
+const buttonVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const, delay: 0.3 }
+  }
+};
+
+const staggerContainerVariants = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const staggerItemVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: {
+    opacity: 1, y: 0, scale: 1,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+  }
+};
 
 const DashboardFundamental: React.FC = () => {
   const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
@@ -61,186 +116,265 @@ const DashboardFundamental: React.FC = () => {
     );
   };
 
+  // Refs and inView hooks for each section
+  const heroRef = useRef(null);
+  const heroInView = useInView(heroRef, { once: true, amount: 0.3 });
+
+  const learnRef = useRef(null);
+  const learnInView = useInView(learnRef, { once: true, amount: 0.2, margin: "0px 0px -50px 0px" });
+
+  const toolsRef = useRef(null);
+  const toolsInView = useInView(toolsRef, { once: true, amount: 0.2, margin: "0px 0px -50px 0px" });
+
+  const recommendedRef = useRef(null);
+  const recommendedInView = useInView(recommendedRef, { once: true, amount: 0.15, margin: "0px 0px -50px 0px" });
+
+  const faqRef = useRef(null);
+  const faqInView = useInView(faqRef, { once: true, amount: 0.2, margin: "0px 0px -50px 0px" });
+
   return (
     <div className="dashboard-fundamental-page">
       <Navbar />
       
       <main className="dashboard-fundamental-main">
         {/* Hero Section */}
-        <section className="dashboard-hero">
+        <section className="dashboard-hero" ref={heroRef}>
           <div className="dashboard-hero-card">
             {/* Left Content */}
             <div className="dashboard-hero-content">
               {/* Title and Description */}
               <div className="dashboard-hero-header">
                 <div className="dashboard-hero-text">
-                  <h1 className="dashboard-hero-title">Dashboard UI/UX Design</h1>
-                  <p className="dashboard-hero-description">
+                  <motion.h1 
+                    className="dashboard-hero-title"
+                    initial="hidden"
+                    animate={heroInView ? "visible" : "hidden"}
+                    variants={titleVariants}
+                  >Dashboard UI/UX Design</motion.h1>
+                  <motion.p 
+                    className="dashboard-hero-description"
+                    initial="hidden"
+                    animate={heroInView ? "visible" : "hidden"}
+                    variants={descriptionVariants}
+                  >
                     Design professional dashboards with real-world practice in Figma
-                  </p>
+                  </motion.p>
                 </div>
 
                 {/* Requirement Badge */}
-                <div className="dashboard-requirement">
+                <motion.div 
+                  className="dashboard-requirement"
+                  initial="hidden"
+                  animate={heroInView ? "visible" : "hidden"}
+                  variants={descriptionVariants}
+                >
                   <img src={sealCheckIcon} alt="Check" className="dashboard-req-icon" />
                   <span>Basic understanding of Figma is required</span>
-                </div>
+                </motion.div>
               </div>
 
               {/* Info Cards */}
-              <div className="dashboard-hero-info">
-                <div className="dashboard-info-item">
+              <motion.div 
+                className="dashboard-hero-info"
+                initial="hidden"
+                animate={heroInView ? "visible" : "hidden"}
+                variants={staggerContainerVariants}
+              >
+                <motion.div className="dashboard-info-item" variants={staggerItemVariants}>
                   <img src={rsIcon} alt="Price" className="dashboard-info-icon" />
                   <span className="dashboard-info-text">₹8000</span>
-                </div>
-                <div className="dashboard-info-item">
+                </motion.div>
+                <motion.div className="dashboard-info-item" variants={staggerItemVariants}>
                   <img src={alaramIcon} alt="Duration" className="dashboard-info-icon" />
                   <span className="dashboard-info-text">2 hrs</span>
-                </div>
-                <div className="dashboard-info-item">
+                </motion.div>
+                <motion.div className="dashboard-info-item" variants={staggerItemVariants}>
                   <img src={dateIcon} alt="Timeline" className="dashboard-info-icon-date" />
                   <span className="dashboard-info-text">2 months</span>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
 
               {/* Buttons */}
-              <div className="dashboard-hero-buttons">
+              <motion.div 
+                className="dashboard-hero-buttons"
+                initial="hidden"
+                animate={heroInView ? "visible" : "hidden"}
+                variants={buttonVariants}
+              >
                 <button className="dashboard-btn-primary">Enroll Now</button>
                 <button className="dashboard-btn-secondary">
                   <Phone size={24} />
                   Know More
                 </button>
-              </div>
+              </motion.div>
             </div>
 
             {/* Right Image */}
-            <div className="dashboard-hero-image">
+            <motion.div 
+              className="dashboard-hero-image"
+              initial="hidden"
+              animate={heroInView ? "visible" : "hidden"}
+              variants={fadeUpVariants}
+            >
               <img src={dashboardImage} alt="Dashboard UI/UX Design" />
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* What You'll Learn Section */}
-        <section className="dashboard-learn-section">
+        <section className="dashboard-learn-section" ref={learnRef}>
           <div className="dashboard-learn-container">
             {/* Header */}
             <div className="dashboard-learn-header">
-              <h2 className="dashboard-learn-title">What You'll learn</h2>
-              <p className="dashboard-learn-subtitle">
+              <motion.h2 
+                className="dashboard-learn-title"
+                initial="hidden"
+                animate={learnInView ? "visible" : "hidden"}
+                variants={titleVariants}
+              >What You'll learn</motion.h2>
+              <motion.p 
+                className="dashboard-learn-subtitle"
+                initial="hidden"
+                animate={learnInView ? "visible" : "hidden"}
+                variants={descriptionVariants}
+              >
                 Learn in-demand UI/UX and VFX skills through practical, mentor-led training
-              </p>
+              </motion.p>
             </div>
 
             {/* Learning Grid */}
-            <div className="dashboard-learn-grid">
+            <motion.div 
+              className="dashboard-learn-grid"
+              initial="hidden"
+              animate={learnInView ? "visible" : "hidden"}
+              variants={staggerContainerVariants}
+            >
               {/* Row 1 */}
               <div>
-                <div className="dashboard-learn-item">
+                <motion.div className="dashboard-learn-item" variants={staggerItemVariants}>
                   <img src={sealCheckIcon} alt="Check" className="dashboard-learn-icon" />
                   <h3 className="dashboard-learn-item-title">Anatomy Of Dashboard</h3>
-                </div>
-                <div className="dashboard-learn-item">
+                </motion.div>
+                <motion.div className="dashboard-learn-item" variants={staggerItemVariants}>
                   <img src={sealCheckIcon} alt="Check" className="dashboard-learn-icon" />
                   <h3 className="dashboard-learn-item-title">Dive into KPI's and Business Metrics</h3>
-                </div>
+                </motion.div>
               </div>
 
               {/* Row 2 */}
               <div>
-                <div className="dashboard-learn-item">
+                <motion.div className="dashboard-learn-item" variants={staggerItemVariants}>
                   <img src={sealCheckIcon} alt="Check" className="dashboard-learn-icon" />
                   <h3 className="dashboard-learn-item-title">User Research for Dashboard</h3>
-                </div>
-                <div className="dashboard-learn-item">
+                </motion.div>
+                <motion.div className="dashboard-learn-item" variants={staggerItemVariants}>
                   <img src={sealCheckIcon} alt="Check" className="dashboard-learn-icon" />
                   <h3 className="dashboard-learn-item-title">Decoding Data Visualizations</h3>
-                </div>
+                </motion.div>
               </div>
 
               {/* Row 3 */}
               <div>
-                <div className="dashboard-learn-item">
+                <motion.div className="dashboard-learn-item" variants={staggerItemVariants}>
                   <img src={sealCheckIcon} alt="Check" className="dashboard-learn-icon" />
                   <h3 className="dashboard-learn-item-title">Grid systems in Dashboards</h3>
-                </div>
-                <div className="dashboard-learn-item">
+                </motion.div>
+                <motion.div className="dashboard-learn-item" variants={staggerItemVariants}>
                   <img src={sealCheckIcon} alt="Check" className="dashboard-learn-icon" />
                   <h3 className="dashboard-learn-item-title">Designing Dashboard in Figma</h3>
-                </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* Tools You'll Learn Section */}
-        <section className="dashboard-tools-section">
+        <section className="dashboard-tools-section" ref={toolsRef}>
           <div className="dashboard-tools-container">
             {/* Header */}
             <div className="dashboard-tools-header">
-              <h2 className="dashboard-tools-title">Tools You'll Learn</h2>
-              <p className="dashboard-tools-subtitle">
+              <motion.h2 
+                className="dashboard-tools-title"
+                initial="hidden"
+                animate={toolsInView ? "visible" : "hidden"}
+                variants={titleVariants}
+              >Tools You'll Learn</motion.h2>
+              <motion.p 
+                className="dashboard-tools-subtitle"
+                initial="hidden"
+                animate={toolsInView ? "visible" : "hidden"}
+                variants={descriptionVariants}
+              >
                 Learn in-demand UI/UX skills through practical, mentor-led training
-              </p>
+              </motion.p>
             </div>
 
             {/* Tools Grid */}
-            <div className="dashboard-tools-grid">
+            <motion.div 
+              className="dashboard-tools-grid"
+              initial="hidden"
+              animate={toolsInView ? "visible" : "hidden"}
+              variants={staggerContainerVariants}
+            >
               {/* Figma */}
-              <div className="dashboard-tool-card">
+              <motion.div className="dashboard-tool-card" variants={staggerItemVariants}>
                 <div className="dashboard-tool-content">
-                  <div className="dashboard-tool-icon-wrapper">
-                    <img src={figmaIcon} alt="Figma" className="dashboard-tool-icon" />
-                  </div>
+                  <img src={figmaIcon} alt="Figma" className="dashboard-tool-icon" />
                   <span className="dashboard-tool-name">Figma</span>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Excalidraw */}
-              <div className="dashboard-tool-card">
+              <motion.div className="dashboard-tool-card" variants={staggerItemVariants}>
                 <div className="dashboard-tool-content">
-                  <div className="dashboard-tool-icon-wrapper">
-                    <svg className="dashboard-tool-icon-svg" viewBox="0 0 56 56" fill="none">
-                      <path d="M28 0L52 14V42L28 56L4 42V14L28 0Z" fill="#FEFEFE"/>
-                    </svg>
-                  </div>
+                  <img src={excalidrawIcon} alt="Excalidraw" className="dashboard-tool-icon" />
                   <span className="dashboard-tool-name">Excalidraw</span>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Base44 */}
-              <div className="dashboard-tool-card">
+              <motion.div className="dashboard-tool-card" variants={staggerItemVariants}>
                 <div className="dashboard-tool-content">
-                  <div className="dashboard-tool-icon-wrapper">
-                    <div className="dashboard-tool-base44">
-                      <div className="base44-circle"></div>
-                      <div className="base44-circle"></div>
-                      <div className="base44-circle"></div>
-                    </div>
-                  </div>
+                  <img src={base44Icon} alt="Base44" className="dashboard-tool-icon" />
                   <span className="dashboard-tool-name">Base44</span>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </section>
 
         {/* Recommended Short Courses Section */}
-        <section className="dashboard-recommended-section">
+        <section className="dashboard-recommended-section" ref={recommendedRef}>
           <div className="dashboard-recommended-container">
             {/* Header */}
             <div className="dashboard-recommended-header">
-              <h2 className="dashboard-recommended-title">Add Recommended Short Courses</h2>
-              <p className="dashboard-recommended-subtitle">
+              <motion.h2 
+                className="dashboard-recommended-title"
+                initial="hidden"
+                animate={recommendedInView ? "visible" : "hidden"}
+                variants={titleVariants}
+              >Add Recommended Short Courses</motion.h2>
+              <motion.p 
+                className="dashboard-recommended-subtitle"
+                initial="hidden"
+                animate={recommendedInView ? "visible" : "hidden"}
+                variants={descriptionVariants}
+              >
                 Learn in-demand UI/UX and VFX skills through practical, mentor-led training
-              </p>
+              </motion.p>
             </div>
 
             {/* Content Grid */}
-            <div className="dashboard-recommended-content">
+            <motion.div 
+              className="dashboard-recommended-content"
+              initial="hidden"
+              animate={recommendedInView ? "visible" : "hidden"}
+              variants={staggerContainerVariants}
+            >
               {/* Left Side - Course Cards */}
               <div className="dashboard-courses-grid">
                 {/* Dashboard Fundamentals */}
-                <div className="dashboard-course-card">
+                <motion.div className="dashboard-course-card" variants={staggerItemVariants}>
                   <div className="dashboard-course-info">
                     <div className="dashboard-course-header">
                       <span className="dashboard-course-mode">ONLINE/OFFLINE</span>
@@ -267,10 +401,10 @@ const DashboardFundamental: React.FC = () => {
                   >
                     {selectedCourses.includes('dashboard-fundamentals') ? <Check size={40} /> : <Square size={32} />}
                   </button>
-                </div>
+                </motion.div>
 
                 {/* Full UI/UX Course */}
-                <div className="dashboard-course-card">
+                <motion.div className="dashboard-course-card" variants={staggerItemVariants}>
                   <div className="dashboard-course-info">
                     <div className="dashboard-course-header">
                       <span className="dashboard-course-mode">ONLINE/OFFLINE</span>
@@ -297,10 +431,10 @@ const DashboardFundamental: React.FC = () => {
                   >
                     {selectedCourses.includes('full-uiux') ? <Check size={40} /> : <Square size={32} />}
                   </button>
-                </div>
+                </motion.div>
 
                 {/* Design System Course */}
-                <div className="dashboard-course-card">
+                <motion.div className="dashboard-course-card" variants={staggerItemVariants}>
                   <div className="dashboard-course-info">
                     <div className="dashboard-course-header">
                       <span className="dashboard-course-mode">ONLINE/OFFLINE</span>
@@ -327,10 +461,10 @@ const DashboardFundamental: React.FC = () => {
                   >
                     {selectedCourses.includes('design-system') ? <Check size={40} /> : <Square size={32} />}
                   </button>
-                </div>
+                </motion.div>
 
                 {/* UI/UX Design with AI */}
-                <div className="dashboard-course-card">
+                <motion.div className="dashboard-course-card" variants={staggerItemVariants}>
                   <div className="dashboard-course-info">
                     <div className="dashboard-course-header">
                       <span className="dashboard-course-mode">ONLINE/OFFLINE</span>
@@ -357,11 +491,11 @@ const DashboardFundamental: React.FC = () => {
                   >
                     {selectedCourses.includes('uiux-ai') ? <Check size={40} /> : <Square size={32} />}
                   </button>
-                </div>
+                </motion.div>
               </div>
 
               {/* Right Side - Pricing Panel */}
-              <div className="dashboard-pricing-panel">
+              <motion.div className="dashboard-pricing-panel" variants={staggerItemVariants}>
                 <div className="dashboard-pricing-badge">Total Price</div>
                 
                 <h3 className="dashboard-pricing-package">
@@ -392,26 +526,41 @@ const DashboardFundamental: React.FC = () => {
                 </div>
 
                 <button className="dashboard-pricing-btn">Make Payment</button>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </section>
 
         {/* FAQ Section */}
-        <section className="dashboard-faq-section">
+        <section className="dashboard-faq-section" ref={faqRef}>
           <div className="dashboard-faq-container">
             {/* Header */}
             <div className="dashboard-faq-header">
-              <h2 className="dashboard-faq-title">Your Questions Answered</h2>
-              <p className="dashboard-faq-subtitle">
+              <motion.h2 
+                className="dashboard-faq-title"
+                initial="hidden"
+                animate={faqInView ? "visible" : "hidden"}
+                variants={titleVariants}
+              >Your Questions Answered</motion.h2>
+              <motion.p 
+                className="dashboard-faq-subtitle"
+                initial="hidden"
+                animate={faqInView ? "visible" : "hidden"}
+                variants={descriptionVariants}
+              >
                 Learn in-demand UI/UX skills through practical, mentor-led training
-              </p>
+              </motion.p>
             </div>
 
             {/* FAQ List */}
-            <div className="dashboard-faq-list">
+            <motion.div 
+              className="dashboard-faq-list"
+              initial="hidden"
+              animate={faqInView ? "visible" : "hidden"}
+              variants={staggerContainerVariants}
+            >
               {faqs.map((faq) => (
-                <div key={faq.id} className="dashboard-faq-item">
+                <motion.div key={faq.id} className="dashboard-faq-item" variants={staggerItemVariants}>
                   <button 
                     className="dashboard-faq-question"
                     onClick={() => toggleFAQ(faq.id)}
@@ -424,9 +573,9 @@ const DashboardFundamental: React.FC = () => {
                       <p>{faq.answer}</p>
                     </div>
                   )}
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
       </main>

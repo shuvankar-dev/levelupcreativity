@@ -66,7 +66,7 @@ const VFXAnimationCourseMentor: React.FC = () => {
             variants={cardVariants}
             custom={0}
           >
-            <p className="vfx-mentor-card-text">Senior Animator at Assemblage Entertainment Pvt.Ltd</p>
+            <p className="vfx-mentor-card-text">Senior VFX Artist at leading studios</p>
           </motion.div>
           
           <motion.div
@@ -76,7 +76,7 @@ const VFXAnimationCourseMentor: React.FC = () => {
             variants={cardVariants}
             custom={1}
           >
-            <p className="vfx-mentor-card-text">Senior Compositing Artist at Dneg</p>
+            <p className="vfx-mentor-card-text">Worked on major film and commercial projects</p>
           </motion.div>
           
           <motion.div
@@ -86,7 +86,7 @@ const VFXAnimationCourseMentor: React.FC = () => {
             variants={cardVariants}
             custom={2}
           >
-            <p className="vfx-mentor-card-text">Worked on hollywood animated movies</p>
+            <p className="vfx-mentor-card-text">Mentored 300+ students in VFX animation over the last 5 years</p>
           </motion.div>
           
           <motion.div
@@ -96,7 +96,7 @@ const VFXAnimationCourseMentor: React.FC = () => {
             variants={cardVariants}
             custom={3}
           >
-            <p className="vfx-mentor-card-text">Worked on gaming projects</p>
+            <p className="vfx-mentor-card-text">Specialized in production-ready workflows and techniques</p>
           </motion.div>
         </div>
       </div>

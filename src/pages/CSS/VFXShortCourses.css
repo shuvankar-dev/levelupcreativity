@@ -215,7 +215,7 @@
   width: 290px;
   height: 70px;
   background: transparent;
-  border: 1px solid #322F37;
+  border: 1px solid transparent;
   border-radius: 40px;
   font-family: 'DM Sans';
   font-style: normal;
@@ -228,10 +228,27 @@
   flex: none;
   order: 1;
   flex-grow: 0;
+  position: relative;
+  background-clip: padding-box;
+}
+
+.vfx-sc-btn-secondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 40px;
+  padding: 1px;
+  background: linear-gradient(96.48deg, #6443FF 7.31%, #BC35E2 94.87%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .vfx-sc-btn-secondary:hover {
-  border-color: #6443FF;
   transform: translateY(-2px);
 }
 

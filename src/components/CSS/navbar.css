@@ -139,7 +139,7 @@
 /* Courses Dropdown Menu */
 .courses-dropdown {
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 4px);
   left: 50%;
   transform: translateX(-50%);
   width: 240px;
@@ -160,10 +160,10 @@
 .courses-dropdown::before {
   content: '';
   position: absolute;
-  top: -30px;
-  left: -30px;
-  right: -30px;
-  height: 38px;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  height: 24px;
   background: transparent;
   pointer-events: auto;
 }

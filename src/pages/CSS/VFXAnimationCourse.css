@@ -98,12 +98,15 @@
 /* Button Container */
 .vfx-hero-button-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
   padding: 0px;
-  gap: 48px;
-  width: 654px;
-  max-width: 100%;
+  gap: 24px;
+  width: 290px;
+  height: 70px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }
 
 /* Enroll Button */

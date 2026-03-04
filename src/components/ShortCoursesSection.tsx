@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import './CSS/shortcourses.css';
 
 interface Course {
@@ -10,22 +9,10 @@ interface Course {
   courseBrief: string;
   learnTime: string;
   numberOfLessons: string;
-  link?: string;
 }
 
 const ShortCoursesSection: React.FC = () => {
-  const navigate = useNavigate();
-  
   const courses: Course[] = [
-    {
-      mode: "ONLINE/OFFLINE",
-      title: "DASHBOARD UI/UX DESIGN",
-      trustTagline: "Get Expert Guidance In Portfolios",
-      courseBrief: "Learn to create professional dashboards",
-      learnTime: "2 hours",
-      numberOfLessons: "3 Months",
-      link: "/dashboard-fundamental",
-    },
     {
       mode: "ONLINE",
       title: "FIGMA BASICS",
@@ -282,12 +269,6 @@ const ShortCoursesSection: React.FC = () => {
                 <button 
                   className="start-button"
                   disabled={index !== activeIndex}
-                  onClick={(e) => {
-                    if (course.link && index === activeIndex) {
-                      e.stopPropagation();
-                      navigate(course.link);
-                    }
-                  }}
                 >
                   <div className="button-content">
                     <span className="button-text">Start</span>

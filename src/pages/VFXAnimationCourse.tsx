@@ -69,6 +69,36 @@ const buttonVariants = {
   }
 };
 
+// Stagger variants for Why Choose bento grid - one by one animation
+const staggerContainerVariants = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.35,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const staggerRowVariants = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const staggerItemVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: {
+    opacity: 1, y: 0, scale: 1,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+  }
+};
+
 function VFXAnimationCourse() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -82,15 +112,9 @@ function VFXAnimationCourse() {
   const whyChooseRef = useRef(null);
   const whyChooseInView = useInView(whyChooseRef, { once: true, amount: 0.2, margin: "0px 0px -50px 0px" });
 
-  const curriculumRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const scrollToCurriculum = () => {
-    curriculumRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
 
   return (
     <div className="vfx-animation-course-page">
@@ -265,17 +289,19 @@ function VFXAnimationCourse() {
             </div>
 
             {/* Bento Grid */}
-            <div className="vfx-bento-grid">
+            <motion.div 
+              className="vfx-bento-grid"
+              initial="hidden"
+              animate={whyChooseInView ? "visible" : "hidden"}
+              variants={staggerContainerVariants}
+            >
               {/* First Row */}
               <motion.div
                 className="vfx-bento-row"
-                initial="hidden"
-                animate={whyChooseInView ? "visible" : "hidden"}
-                variants={cardVariants}
-                custom={0}
+                variants={staggerRowVariants}
               >
                 {/* Card 1 - Team-based activities */}
-                <div className="vfx-bento-card">
+                <motion.div className="vfx-bento-card" variants={staggerItemVariants}>
                   <div className="vfx-bento-content">
                     <div className="vfx-bento-icon">
                       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -288,10 +314,10 @@ function VFXAnimationCourse() {
                     </div>
                   </div>
                   <img src={maskGroup} alt="3D Shape" className="vfx-bento-shape vfx-shape-mobius" />
-                </div>
+                </motion.div>
 
                 {/* Card 2 - Weekly assignments */}
-                <div className="vfx-bento-card">
+                <motion.div className="vfx-bento-card" variants={staggerItemVariants}>
                   <div className="vfx-bento-content">
                     <div className="vfx-bento-icon">
                       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -304,10 +330,10 @@ function VFXAnimationCourse() {
                     </div>
                   </div>
                   <img src={maskBox} alt="3D Shape" className="vfx-bento-shape vfx-shape-cube" />
-                </div>
+                </motion.div>
 
                 {/* Card 3 - Placement Assistance */}
-                <div className="vfx-bento-card">
+                <motion.div className="vfx-bento-card" variants={staggerItemVariants}>
                   <div className="vfx-bento-content">
                     <div className="vfx-bento-icon">
                       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -320,19 +346,16 @@ function VFXAnimationCourse() {
                     </div>
                   </div>
                   <img src={dome} alt="3D Shape" className="vfx-bento-shape vfx-shape-dome" />
-                </div>
+                </motion.div>
               </motion.div>
 
               {/* Second Row */}
               <motion.div
                 className="vfx-bento-row"
-                initial="hidden"
-                animate={whyChooseInView ? "visible" : "hidden"}
-                variants={cardVariants}
-                custom={1}
+                variants={staggerRowVariants}
               >
                 {/* Card 4 - Live sessions */}
-                <div className="vfx-bento-card vfx-bento-card-small">
+                <motion.div className="vfx-bento-card vfx-bento-card-small" variants={staggerItemVariants}>
                   <div className="vfx-bento-content">
                     <div className="vfx-bento-icon">
                       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -345,15 +368,15 @@ function VFXAnimationCourse() {
                     </div>
                   </div>
                   <img src={frame587} alt="Student Avatars" className="vfx-bento-avatars-img" />
-                </div>
+                </motion.div>
 
                 {/* Card 5 - Image card */}
-                <div className="vfx-bento-card vfx-bento-card-image">
+                <motion.div className="vfx-bento-card vfx-bento-card-image" variants={staggerItemVariants}>
                   <img src={frameImage} alt="Mentor Session" className="vfx-bento-image" />
-                </div>
+                </motion.div>
 
                 {/* Card 6 - Mentor feedback */}
-                <div className="vfx-bento-card vfx-bento-card-small">
+                <motion.div className="vfx-bento-card vfx-bento-card-small" variants={staggerItemVariants}>
                   <div className="vfx-bento-content">
                     <div className="vfx-bento-icon">
                       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -375,9 +398,9 @@ function VFXAnimationCourse() {
                     <span className="vfx-feedback-text">Feedback time</span>
                     <img src={paperPlane} alt="Send" className="vfx-feedback-icon" />
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -385,9 +408,7 @@ function VFXAnimationCourse() {
         <WhatWeCreateUI images={vfxImages} />
 
         {/* Curriculum Section */}
-        <div ref={curriculumRef}>
-          <CurriculumSection defaultTrack="vfx" />
-        </div>
+        <CurriculumSection />
 
         {/* Pricing Section */}
         <VFXAnimationCoursePricing />

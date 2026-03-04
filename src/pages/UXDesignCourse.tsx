@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/navbar';
 import EnrollModal from '../components/EnrollModal';
 import CTABannerForCourses from '../components/CTABannerForCourses';
@@ -67,9 +66,38 @@ const buttonVariants = {
   }
 };
 
+// Stagger variants for Why Choose bento grid - one by one animation
+const staggerContainerVariants = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.35,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const staggerRowVariants = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const staggerItemVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: {
+    opacity: 1, y: 0, scale: 1,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+  }
+};
+
 function UXDesignCourse() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const navigate = useNavigate();
 
   // Refs and inView hooks for each section
   const heroRef = useRef(null);
@@ -87,15 +115,9 @@ function UXDesignCourse() {
   const shortCoursesRef = useRef(null);
   const shortCoursesInView = useInView(shortCoursesRef, { once: true, amount: 0.2, margin: "0px 0px -50px 0px" });
 
-  const curriculumRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const scrollToCurriculum = () => {
-    curriculumRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
 
   return (
     <div className="ux-design-course-page">
@@ -158,12 +180,9 @@ function UXDesignCourse() {
                   </span>
                 </button>
 
-                {/* View Curriculum Button */}
-                <button 
-                  className="ux-button ux-button-secondary"
-                  onClick={scrollToCurriculum}
-                >
-                  <span>View Curriculum</span>
+                {/* Download Brochure Button */}
+                <button className="ux-button ux-button-secondary">
+                  <span>View Curricullum</span>
                 </button>
               </div>
             </motion.div>
@@ -291,17 +310,19 @@ function UXDesignCourse() {
             </div>
 
             {/* Bento Grid */}
-            <div className="ux-bento-grid">
+            <motion.div 
+              className="ux-bento-grid"
+              initial="hidden"
+              animate={whyChooseInView ? "visible" : "hidden"}
+              variants={staggerContainerVariants}
+            >
               {/* First Row */}
               <motion.div 
                 className="ux-bento-row"
-                initial="hidden"
-                animate={whyChooseInView ? "visible" : "hidden"}
-                variants={cardVariants}
-                custom={0}
+                variants={staggerRowVariants}
               >
                 {/* Card 1 - Team-based activities */}
-                <div className="ux-bento-card">
+                <motion.div className="ux-bento-card" variants={staggerItemVariants}>
                   <div className="ux-bento-content">
                     <div className="ux-bento-icon">
                       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -314,10 +335,10 @@ function UXDesignCourse() {
                     </div>
                   </div>
                   <img src={maskGroup} alt="3D Shape" className="ux-bento-shape ux-shape-mobius" />
-                </div>
+                </motion.div>
 
                 {/* Card 2 - Weekly assignments */}
-                <div className="ux-bento-card">
+                <motion.div className="ux-bento-card" variants={staggerItemVariants}>
                   <div className="ux-bento-content">
                     <div className="ux-bento-icon">
                       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -330,10 +351,10 @@ function UXDesignCourse() {
                     </div>
                   </div>
                   <img src={maskBox} alt="3D Shape" className="ux-bento-shape ux-shape-cube" />
-                </div>
+                </motion.div>
 
                 {/* Card 3 - Placement Assistance */}
-                <div className="ux-bento-card">
+                <motion.div className="ux-bento-card" variants={staggerItemVariants}>
                   <div className="ux-bento-content">
                     <div className="ux-bento-icon">
                       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -346,19 +367,16 @@ function UXDesignCourse() {
                     </div>
                   </div>
                   <img src={dome} alt="3D Shape" className="ux-bento-shape ux-shape-dome" />
-                </div>
+                </motion.div>
               </motion.div>
 
               {/* Second Row */}
               <motion.div 
                 className="ux-bento-row"
-                initial="hidden"
-                animate={whyChooseInView ? "visible" : "hidden"}
-                variants={cardVariants}
-                custom={1}
+                variants={staggerRowVariants}
               >
                 {/* Card 4 - Live sessions */}
-                <div className="ux-bento-card ux-bento-card-small">
+                <motion.div className="ux-bento-card ux-bento-card-small" variants={staggerItemVariants}>
                   <div className="ux-bento-content">
                     <div className="ux-bento-icon">
                       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -371,15 +389,15 @@ function UXDesignCourse() {
                     </div>
                   </div>
                   <img src={frame587} alt="Student Avatars" className="ux-bento-avatars-img" />
-                </div>
+                </motion.div>
 
                 {/* Card 5 - Image card */}
-                <div className="ux-bento-card ux-bento-card-image">
+                <motion.div className="ux-bento-card ux-bento-card-image" variants={staggerItemVariants}>
                   <img src={frameImage} alt="Mentor Session" className="ux-bento-image" />
-                </div>
+                </motion.div>
 
                 {/* Card 6 - Mentor feedback */}
-                <div className="ux-bento-card ux-bento-card-small">
+                <motion.div className="ux-bento-card ux-bento-card-small" variants={staggerItemVariants}>
                   <div className="ux-bento-content">
                     <div className="ux-bento-icon">
                       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -401,9 +419,9 @@ function UXDesignCourse() {
                     <span className="ux-feedback-text">Feedback time</span>
                     <img src={paperPlane} alt="Send" className="ux-feedback-icon" />
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -414,12 +432,10 @@ function UXDesignCourse() {
         <CTABannerForCourses variant="portfolio" />
 
         {/* Tools Section */}
-        <ToolsSection uxLabel="UX/UI Design Tools" vfxLabel="AI Tools" />
+        <ToolsSection />
 
         {/* Curriculum Section */}
-        <div ref={curriculumRef}>
-          <CurriculumSection defaultTrack="ux" />
-        </div>
+        <CurriculumSection />
 
         {/* Pricing Section */}
         <UXDesignCoursePricing />
@@ -494,10 +510,7 @@ function UXDesignCourse() {
                   </div>
                 </div>
 
-                <button 
-                  className="ux-short-course-btn"
-                  onClick={() => navigate('/dashboard-fundamental')}
-                >
+                <button className="ux-short-course-btn">
                   <span className="ux-short-course-btn-text">View Details</span>
                   <ArrowRight size={28} className="ux-short-course-btn-arrow" />
                 </button>
