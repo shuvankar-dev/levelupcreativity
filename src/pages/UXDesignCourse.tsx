@@ -174,12 +174,10 @@ function UXDesignCourse() {
                   className="ux-button ux-button-primary"
                   onClick={() => setIsModalOpen(true)}
                 >
-                  <span>Enroll Now</span>
-                </button>
-
-                {/* Download Brochure Button */}
-                <button className="ux-button ux-button-secondary">
-                  <span>View Curricullum</span>
+                  <span className="ux-button-text">
+                    <span className="ux-button-text-inner">Enroll Now →</span>
+                    <span className="ux-button-text-inner">Enroll Now →</span>
+                  </span>
                 </button>
               </div>
             </motion.div>
@@ -429,10 +427,10 @@ function UXDesignCourse() {
         <CTABannerForCourses variant="portfolio" />
 
         {/* Tools Section */}
-        <ToolsSection />
+        <ToolsSection uxLabel="UX/UI Design Tools" vfxLabel="AI Tools" />
 
         {/* Curriculum Section */}
-        <CurriculumSection />
+        <CurriculumSection defaultTrack="ux" />
 
         {/* Pricing Section */}
         <UXDesignCoursePricing />

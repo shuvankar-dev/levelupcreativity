@@ -160,8 +160,8 @@ function VFXAnimationCourse() {
             >
               <button className="vfx-enroll-button" onClick={() => setIsModalOpen(true)}>
                 <span className="vfx-button-text">
-                  <span className="vfx-button-text-inner">Enroll Now</span>
-                  <span className="vfx-button-text-inner">Enroll Now</span>
+                  <span className="vfx-button-text-inner">Enroll Now →</span>
+                  <span className="vfx-button-text-inner">Enroll Now →</span>
                 </span>
               </button>
             </motion.div>
@@ -408,7 +408,7 @@ function VFXAnimationCourse() {
         <WhatWeCreateUI images={vfxImages} />
 
         {/* Curriculum Section */}
-        <CurriculumSection />
+        <CurriculumSection defaultTrack="vfx" />
 
         {/* Pricing Section */}
         <VFXAnimationCoursePricing />

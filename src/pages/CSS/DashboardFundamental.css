@@ -797,56 +797,15 @@
   flex-grow: 0;
 }
 
-/* Tool Icon Wrapper */
-.dashboard-tool-icon-wrapper {
-  box-sizing: border-box;
-  width: 120px;
-  height: 120px;
-  background: linear-gradient(92.88deg, #27272A 1.31%, #18181B 95.65%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 40px;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
 .dashboard-tool-icon {
   width: 120px;
   height: 120px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 40px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.dashboard-tool-icon-svg {
-  width: 56px;
-  height: 56px;
-}
-
-/* Base44 Icon */
-.dashboard-tool-base44 {
-  width: 80px;
-  height: 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.base44-circle {
-  width: 60px;
-  height: 12px;
-  background: linear-gradient(90deg, #FF6B35 0%, #FF8C42 100%);
-  border-radius: 6px;
-}
-
-.base44-circle:nth-child(2) {
-  width: 50px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }
 
 .base44-circle:nth-child(3) {

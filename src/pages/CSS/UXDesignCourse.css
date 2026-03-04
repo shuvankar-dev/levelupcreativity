@@ -157,10 +157,10 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-end;
-  padding: 24px 64px;
+  align-items: center;
+  padding: 24px 40px;
   gap: 8px;
-  width: 290px;
+  width: auto;
   height: 70px;
   background: linear-gradient(94.54deg, #6443FF 5.91%, #8838B9 95.53%);
   border: 1px solid #B7A5D9;
@@ -173,16 +173,19 @@
 }
 
 /* Button text container for animation */
-.ux-button-primary .button-text {
+.ux-button-text {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
   height: 27px;
   overflow: hidden;
+  width: auto;
 }
 
 /* Inner text spans */
-.ux-button-primary .button-text-inner {
+.ux-button-text-inner {
   display: block;
   transition: transform 0.3s ease, opacity 0.3s ease;
   font-family: 'DM Sans', sans-serif;
@@ -191,44 +194,32 @@
   font-size: 18px;
   line-height: 27px;
   color: #EDECEE;
+  white-space: nowrap;
+  text-align: center;
 }
 
-.ux-button-primary .button-text-inner:first-child {
+.ux-button-text-inner:first-child {
   transform: translateY(0);
   opacity: 1;
 }
 
-.ux-button-primary .button-text-inner:last-child {
+.ux-button-text-inner:last-child {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 50%);
+  top: 0;
+  left: 0;
+  transform: translateY(100%);
   opacity: 0;
 }
 
 /* Hover animation - slide up effect */
-.ux-button-primary:hover .button-text-inner:first-child {
+.ux-button-primary:hover .ux-button-text-inner:first-child {
   transform: translateY(-100%);
   opacity: 0;
 }
 
-.ux-button-primary:hover .button-text-inner:last-child {
-  transform: translate(-50%, -50%);
+.ux-button-primary:hover .ux-button-text-inner:last-child {
+  transform: translateY(0);
   opacity: 1;
-}
-
-.ux-button-primary span:not(.button-text):not(.button-text-inner) {
-  width: 87px;
-  height: 27px;
-  font-family: 'DM Sans', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
-  color: #EDECEE;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
 }
 
 .ux-button-primary:hover {

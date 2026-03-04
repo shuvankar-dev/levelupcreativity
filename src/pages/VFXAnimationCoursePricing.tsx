@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import './CSS/VFXAnimationCoursePricing.css';
 import FigmaLogo from '../assets/FigmaLogo.png';
+import EnrollModal from '../components/EnrollModal';
 
 const titleVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -29,12 +30,21 @@ const cardVariants = {
 
 const VFXAnimationCoursePricing: React.FC = () => {
   const [rightPaymentType, setRightPaymentType] = useState<'3-months' | '6-months'>('3-months');
+  const [isEnrollModalOpen, setIsEnrollModalOpen] = useState(false);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, {
     once: true,
     amount: 0.2,
     margin: '0px 0px -50px 0px'
   });
+
+  const handleWhatsAppClick = () => {
+    window.open('https://wa.me/919836841945', '_blank');
+  };
+
+  const handleEnrollClick = () => {
+    setIsEnrollModalOpen(true);
+  };
 
   return (
     <section className="vfx-pricing-section" ref={sectionRef}>
@@ -80,7 +90,7 @@ const VFXAnimationCoursePricing: React.FC = () => {
               <div className="vfx-course-icon">
                 <img src={FigmaLogo} alt="VFX Animation" />
               </div>
-              <div className="vfx-course-duration">11 Months</div>
+              <div className="vfx-course-duration">37 Weeks</div>
             </div>
 
             <h3 className="vfx-course-title">VFX Animation with Specialization + Portfolio</h3>
@@ -114,8 +124,10 @@ const VFXAnimationCoursePricing: React.FC = () => {
             </div>
 
             <div className="vfx-card-buttons">
-              <button className="vfx-btn-contact">Contact Us</button>
-              <button className="vfx-btn-enroll">Enroll Now</button>
+              <button className="vfx-btn-contact" onClick={handleWhatsAppClick}>Contact Us</button>
+              <button className="vfx-btn-enroll" onClick={handleEnrollClick}>
+                <span className="vfx-btn-text">Enroll Now</span>
+              </button>
             </div>
             </motion.div>
 
@@ -131,7 +143,7 @@ const VFXAnimationCoursePricing: React.FC = () => {
               <div className="vfx-course-icon">
                 <img src={FigmaLogo} alt="VFX Animation" />
               </div>
-              <div className="vfx-course-duration">11 Months</div>
+              <div className="vfx-course-duration">37 Weeks</div>
             </div>
 
             <h3 className="vfx-course-title">VFX Animation with Specialization + Portfolio</h3>
@@ -178,12 +190,19 @@ const VFXAnimationCoursePricing: React.FC = () => {
             </div>
 
             <div className="vfx-card-buttons">
-              <button className="vfx-btn-contact">Contact Us</button>
-              <button className="vfx-btn-enroll">Enroll Now</button>
+              <button className="vfx-btn-contact" onClick={handleWhatsAppClick}>Contact Us</button>
+              <button className="vfx-btn-enroll" onClick={handleEnrollClick}>
+                <span className="vfx-btn-text">Enroll Now</span>
+              </button>
             </div>
             </motion.div>
         </div>
       </div>
+
+      <EnrollModal 
+        isOpen={isEnrollModalOpen} 
+        onClose={() => setIsEnrollModalOpen(false)} 
+      />
     </section>
   );
 };

@@ -2,10 +2,20 @@ import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import './CSS/UXDesignCoursePricing.css';
 import FigmaLogo from '../assets/FigmaLogo.png';
+import EnrollModal from '../components/EnrollModal';
 
 const UXDesignCoursePricing: React.FC = () => {
   const [leftPaymentType, setLeftPaymentType] = useState<'one-time' | '3-months' | '6-months'>('one-time');
   const [rightPaymentType, setRightPaymentType] = useState<'one-time' | '3-months' | '6-months'>('3-months');
+  const [isEnrollModalOpen, setIsEnrollModalOpen] = useState(false);
+
+  const handleWhatsAppClick = () => {
+    window.open('https://wa.me/919836841945', '_blank');
+  };
+
+  const handleEnrollClick = () => {
+    setIsEnrollModalOpen(true);
+  };
 
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { 
@@ -117,8 +127,10 @@ const UXDesignCoursePricing: React.FC = () => {
             </div>
 
             <div className="ux-card-buttons">
-              <button className="ux-btn-contact">Contact Us</button>
-              <button className="ux-btn-enroll">Enroll Now</button>
+              <button className="ux-btn-contact" onClick={handleWhatsAppClick}>Contact Us</button>
+              <button className="ux-btn-enroll" onClick={handleEnrollClick}>
+                <span className="ux-btn-text">Enroll Now</span>
+              </button>
             </div>
           </motion.div>
 
@@ -181,12 +193,19 @@ const UXDesignCoursePricing: React.FC = () => {
             </div>
 
             <div className="ux-card-buttons">
-              <button className="ux-btn-contact">Contact Us</button>
-              <button className="ux-btn-enroll">Enroll Now</button>
+              <button className="ux-btn-contact" onClick={handleWhatsAppClick}>Contact Us</button>
+              <button className="ux-btn-enroll" onClick={handleEnrollClick}>
+                <span className="ux-btn-text">Enroll Now</span>
+              </button>
             </div>
           </motion.div>
         </div>
       </div>
+
+      <EnrollModal 
+        isOpen={isEnrollModalOpen} 
+        onClose={() => setIsEnrollModalOpen(false)} 
+      />
     </section>
   );
 };

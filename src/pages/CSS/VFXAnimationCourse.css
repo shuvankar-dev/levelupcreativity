@@ -102,7 +102,7 @@
   align-items: flex-start;
   padding: 0px;
   gap: 24px;
-  width: 290px;
+  width: auto;
   height: 70px;
   flex: none;
   order: 0;
@@ -115,10 +115,10 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-end;
-  padding: 24px 64px;
+  align-items: center;
+  padding: 24px 40px;
   gap: 8px;
-  width: 290px;
+  width: auto;
   height: 70px;
   background: linear-gradient(94.54deg, #6443FF 5.91%, #8838B9 95.53%);
   border: 1px solid #B7A5D9;
@@ -129,12 +129,44 @@
   position: relative;
 }
 
+/* View Curriculum Button */
+.vfx-view-curriculum-button {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 40px;
+  gap: 8px;
+  width: auto;
+  height: 70px;
+  background: transparent;
+  border: 1px solid #B7A5D9;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: #EDECEE;
+}
+
+.vfx-view-curriculum-button:hover {
+  background: rgba(100, 67, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(100, 67, 255, 0.2);
+}
+
 /* Button text container for animation */
 .vfx-button-text {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   transition: transform 0.3s ease;
-  width: 87px;
+  width: auto;
   height: 27px;
   position: relative;
 }
@@ -150,6 +182,7 @@
   color: #EDECEE;
   transition: transform 0.3s ease, opacity 0.3s ease;
   white-space: nowrap;
+  text-align: center;
 }
 
 .vfx-button-text-inner:first-child {
@@ -212,9 +245,13 @@
 
   .vfx-hero-button-container {
     width: 100%;
+    flex-direction: column;
+    height: auto;
+    gap: 16px;
   }
 
-  .vfx-enroll-button {
+  .vfx-enroll-button,
+  .vfx-view-curriculum-button {
     width: 250px;
     padding: 20px 48px;
     height: 60px;
@@ -237,13 +274,15 @@
     line-height: 21px;
   }
 
-  .vfx-enroll-button {
+  .vfx-enroll-button,
+  .vfx-view-curriculum-button {
     width: 220px;
     padding: 18px 40px;
     height: 56px;
   }
 
-  .vfx-button-text-inner {
+  .vfx-button-text-inner,
+  .vfx-view-curriculum-button {
     font-size: 15px;
   }
 }

@@ -8,7 +8,9 @@ import alaramIcon from '../assets/VFXShortCources/alaram.png';
 import rsIcon from '../assets/VFXShortCources/rs.png';
 import dateIcon from '../assets/VFXShortCources/date.png';
 import dashboardImage from '../assets/VFXShortCources/dashbord_fundamental.png';
-import figmaIcon from '../assets/toolslogo/Figma.png';
+import figmaIcon from '../assets/fundamentalIcon/figma.png';
+import excalidrawIcon from '../assets/fundamentalIcon/Excalidraw.png';
+import base44Icon from '../assets/fundamentalIcon/Base44.png';
 import clockIcon from '../assets/whylevelupicon/Vector.png';
 import calendarIcon from '../assets/whylevelupicon/Hands-on Project.png';
 import arrowRightIcon from '../assets/whylevelupicon/ArrowRight.png';
@@ -317,9 +319,7 @@ const DashboardFundamental: React.FC = () => {
               {/* Figma */}
               <motion.div className="dashboard-tool-card" variants={staggerItemVariants}>
                 <div className="dashboard-tool-content">
-                  <div className="dashboard-tool-icon-wrapper">
-                    <img src={figmaIcon} alt="Figma" className="dashboard-tool-icon" />
-                  </div>
+                  <img src={figmaIcon} alt="Figma" className="dashboard-tool-icon" />
                   <span className="dashboard-tool-name">Figma</span>
                 </div>
               </motion.div>
@@ -327,11 +327,7 @@ const DashboardFundamental: React.FC = () => {
               {/* Excalidraw */}
               <motion.div className="dashboard-tool-card" variants={staggerItemVariants}>
                 <div className="dashboard-tool-content">
-                  <div className="dashboard-tool-icon-wrapper">
-                    <svg className="dashboard-tool-icon-svg" viewBox="0 0 56 56" fill="none">
-                      <path d="M28 0L52 14V42L28 56L4 42V14L28 0Z" fill="#FEFEFE"/>
-                    </svg>
-                  </div>
+                  <img src={excalidrawIcon} alt="Excalidraw" className="dashboard-tool-icon" />
                   <span className="dashboard-tool-name">Excalidraw</span>
                 </div>
               </motion.div>
@@ -339,13 +335,7 @@ const DashboardFundamental: React.FC = () => {
               {/* Base44 */}
               <motion.div className="dashboard-tool-card" variants={staggerItemVariants}>
                 <div className="dashboard-tool-content">
-                  <div className="dashboard-tool-icon-wrapper">
-                    <div className="dashboard-tool-base44">
-                      <div className="base44-circle"></div>
-                      <div className="base44-circle"></div>
-                      <div className="base44-circle"></div>
-                    </div>
-                  </div>
+                  <img src={base44Icon} alt="Base44" className="dashboard-tool-icon" />
                   <span className="dashboard-tool-name">Base44</span>
                 </div>
               </motion.div>

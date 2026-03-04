@@ -169,7 +169,8 @@
   align-items: center;
   padding: 16px 24px;
   gap: 8px;
-  width: 130px;
+  width: auto;
+  min-width: 130px;
   height: 59px;
   background: #151417;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -179,6 +180,7 @@
   line-height: 27px;
   color: #EDECEE;
   flex: none;
+  white-space: nowrap;
 }
 
 /* Course Title */
