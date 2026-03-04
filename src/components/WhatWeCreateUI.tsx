@@ -19,7 +19,6 @@ const WhatWeCreateUI: React.FC<WhatWeCreateUIProps> = ({ images }) => {
   const [headerTranslateY, setHeaderTranslateY] = useState(50);
   const [cardsOpacity, setCardsOpacity] = useState(0);
   const [cardsTranslateY, setCardsTranslateY] = useState(100);
-  const [containerZIndex, setContainerZIndex] = useState(1);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -38,10 +37,9 @@ const WhatWeCreateUI: React.FC<WhatWeCreateUIProps> = ({ images }) => {
       const phase2Duration = windowHeight * 0.3; // Cards entry
       const phase2Start = phase1Duration;
       const scrollAnimationStart = phase2Start + phase2Duration;
-      // Reserve last 1.5 viewports for card animation + exit
-      const scrollAnimationEnd = sectionHeight - windowHeight - (windowHeight * 0.5);
+      // Use all remaining scroll space for card animation (no exit reserve)
+      const scrollAnimationEnd = sectionHeight - windowHeight;
       const scrollAnimationRange = Math.max(scrollAnimationEnd - scrollAnimationStart, windowHeight);
-      const exitDuration = windowHeight * 0.3;
 
       // Calculate section visibility
       const hasExited = sectionTop < -(sectionHeight - windowHeight);
@@ -55,7 +53,6 @@ const WhatWeCreateUI: React.FC<WhatWeCreateUIProps> = ({ images }) => {
         setCardsOpacity(0);
         setCardsTranslateY(100);
         setScrollProgress(0);
-        setContainerZIndex(1);
         return;
       }
 
@@ -66,7 +63,6 @@ const WhatWeCreateUI: React.FC<WhatWeCreateUIProps> = ({ images }) => {
         setHeaderTranslateY(50 * (1 - progress));
         setCardsOpacity(0);
         setCardsTranslateY(100);
-        setContainerZIndex(1);
       } 
       // Phase 2: Cards slide up and fade in
       else if (scrolledInto <= phase2Start + phase2Duration) {
@@ -75,7 +71,6 @@ const WhatWeCreateUI: React.FC<WhatWeCreateUIProps> = ({ images }) => {
         const progress = (scrolledInto - phase2Start) / phase2Duration;
         setCardsOpacity(progress);
         setCardsTranslateY(100 * (1 - progress));
-        setContainerZIndex(1);
       }
       // Phase 3: Everything visible, cards scroll animation
       else {
@@ -83,33 +78,17 @@ const WhatWeCreateUI: React.FC<WhatWeCreateUIProps> = ({ images }) => {
         setHeaderTranslateY(0);
         setCardsOpacity(1);
         setCardsTranslateY(0);
-        setContainerZIndex(1);
       }
 
       // Calculate card scroll progress (after entry animations)
-      let currentScrollProgress = 0;
       if (scrolledInto > scrollAnimationStart) {
-        currentScrollProgress = (scrolledInto - scrollAnimationStart) / scrollAnimationRange;
+        const currentScrollProgress = (scrolledInto - scrollAnimationStart) / scrollAnimationRange;
         setScrollProgress(Math.min(Math.max(currentScrollProgress, 0), 1));
       } else {
         setScrollProgress(0);
       }
-
-      // Fade out after all cards are done (when progress reaches 1)
-      if (currentScrollProgress >= 1) {
-        const exitStart = scrollAnimationStart + scrollAnimationRange;
-        const exitProgress = (scrolledInto - exitStart) / exitDuration;
-        const fadeOut = Math.max(0, 1 - exitProgress);
-        setHeaderOpacity(fadeOut);
-        setCardsOpacity(fadeOut);
-        // Push container behind when fading out
-        setContainerZIndex(fadeOut > 0.3 ? 1 : -1);
-        
-        // Hide completely when fully faded
-        if (fadeOut <= 0) {
-          setIsInView(false);
-        }
-      }
+      // No exit fade — the last card stays visible.
+      // Subsequent sections scroll over this fixed container via z-index.
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -196,10 +175,9 @@ const WhatWeCreateUI: React.FC<WhatWeCreateUIProps> = ({ images }) => {
       <div 
         className="what-create-container"
         style={{
-          display: isInView ? 'flex' : 'none',
           visibility: isInView ? 'visible' : 'hidden',
           pointerEvents: isInView ? 'auto' : 'none',
-          zIndex: containerZIndex,
+          zIndex: 0,
           opacity: Math.max(headerOpacity, cardsOpacity),
         }}
       >

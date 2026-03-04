@@ -12,6 +12,8 @@
   padding-left: 32px;
   gap: 120px;
   background-color: #000000;
+  position: relative;
+  z-index: 2;
   opacity: 1;
 }
 

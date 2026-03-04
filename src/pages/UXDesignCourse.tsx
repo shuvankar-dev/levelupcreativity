@@ -174,10 +174,7 @@ function UXDesignCourse() {
                   className="ux-button ux-button-primary"
                   onClick={() => setIsModalOpen(true)}
                 >
-                  <span className="button-text">
-                    <span className="button-text-inner">Enroll Now</span>
-                    <span className="button-text-inner">Enroll Now</span>
-                  </span>
+                  <span>Enroll Now</span>
                 </button>
 
                 {/* Download Brochure Button */}
